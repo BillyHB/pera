@@ -1,0 +1,13 @@
+/*Base*/
+@import url('Base/normalize.css');
+
+/*Layout*/
+@import url('Layout/layout.css');
+
+/*Menu*/
+@import url('Menu/menu.css');
+
+/*Contenido*/
+@import url('Content/index.css');
+@import url('Content/forms.css');
+

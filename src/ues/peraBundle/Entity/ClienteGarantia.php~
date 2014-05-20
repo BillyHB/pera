@@ -1,0 +1,74 @@
+<?php
+
+namespace ues\peraBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ClienteGarantia
+ *
+ * @ORM\Table(name="cliente_garantia", uniqueConstraints={@ORM\UniqueConstraint(name="cliente_garantia_pk", columns={"id"})}, indexes={@ORM\Index(name="tiene_fk", columns={"idcliente"}), @ORM\Index(name="conforma_fk", columns={"idgarantia"})})
+ * @ORM\Entity
+ */
+class ClienteGarantia
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="cliente_garantia_id_seq", allocationSize=1, initialValue=1)
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="docreferenciaclientegarantia", type="string", length=30, nullable=false)
+     */
+    private $docreferenciaclientegarantia;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="valorclientegarantia", type="decimal", precision=9, scale=2, nullable=false)
+     */
+    private $valorclientegarantia;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ubicacionclientegarantia", type="string", length=50, nullable=false)
+     */
+    private $ubicacionclientegarantia;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="observacionclientegarantia", type="string", length=150, nullable=false)
+     */
+    private $observacionclientegarantia;
+
+    /**
+     * @var \Garantia
+     *
+     * @ORM\ManyToOne(targetEntity="Garantia")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idgarantia", referencedColumnName="id")
+     * })
+     */
+    private $idgarantia;
+
+    /**
+     * @var \Cliente
+     *
+     * @ORM\ManyToOne(targetEntity="Cliente")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idcliente", referencedColumnName="id")
+     * })
+     */
+    private $idcliente;
+
+
+}

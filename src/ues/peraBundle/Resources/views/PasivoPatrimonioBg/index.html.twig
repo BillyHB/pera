@@ -1,0 +1,49 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>PasivoPatrimonioBg list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Proveedoresppbg</th>
+                <th>Prestamosinstppbg</th>
+                <th>Otrosprestppbg</th>
+                <th>Patrimonioppbg</th>
+                <th>Totalppbg</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('pasivopatrimoniobg_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.proveedoresppbg }}</td>
+                <td>{{ entity.prestamosinstppbg }}</td>
+                <td>{{ entity.otrosprestppbg }}</td>
+                <td>{{ entity.patrimonioppbg }}</td>
+                <td>{{ entity.totalppbg }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('pasivopatrimoniobg_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('pasivopatrimoniobg_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('pasivopatrimoniobg_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

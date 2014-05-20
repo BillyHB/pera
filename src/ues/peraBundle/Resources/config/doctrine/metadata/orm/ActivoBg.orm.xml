@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="ActivoBg" table="activo_bg">
+    <indexes>
+      <index name="relationship_13_fk" columns="idnegocio"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="activo_bg_pk" columns="id"/>
+    </unique-constraints>
+    <id name="id" type="integer" column="id">
+      <generator strategy="SEQUENCE"/>
+    </id>
+    <field name="disponibleabg" type="decimal" column="disponibleabg" precision="9" scale="2" nullable="false"/>
+    <field name="cuentasxcobrarabg" type="decimal" column="cuentasxcobrarabg" precision="9" scale="2" nullable="false"/>
+    <field name="activofijoabg" type="decimal" column="activofijoabg" precision="9" scale="2" nullable="false"/>
+    <field name="totalabg" type="decimal" column="totalabg" precision="9" scale="2" nullable="true"/>
+    <many-to-one field="idnegocio" target-entity="Negocio">
+      <join-columns>
+        <join-column name="idnegocio" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,49 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>IngresoFlujocaja list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Ventacontadoifc</th>
+                <th>Recuentaxcobrarifc</th>
+                <th>Ventascreditoifc</th>
+                <th>Otrosingresosifc</th>
+                <th>Totalifc</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('ingresoflujocaja_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.ventacontadoifc }}</td>
+                <td>{{ entity.recuentaxcobrarifc }}</td>
+                <td>{{ entity.ventascreditoifc }}</td>
+                <td>{{ entity.otrosingresosifc }}</td>
+                <td>{{ entity.totalifc }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('ingresoflujocaja_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('ingresoflujocaja_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('ingresoflujocaja_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

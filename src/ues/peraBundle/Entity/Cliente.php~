@@ -1,0 +1,138 @@
+<?php
+
+namespace ues\peraBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Cliente
+ *
+ * @ORM\Table(name="cliente", uniqueConstraints={@ORM\UniqueConstraint(name="ak_uk1_cliente_cliente", columns={"duicliente"}), @ORM\UniqueConstraint(name="ak_uk2_cliente_cliente", columns={"issscliente"}), @ORM\UniqueConstraint(name="ak_uk3_cliente_cliente", columns={"nitcliente"}), @ORM\UniqueConstraint(name="cliente_pk", columns={"id"})})
+ * @ORM\Entity
+ */
+class Cliente
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="cliente_id_seq", allocationSize=1, initialValue=1)
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombrescliente", type="string", length=50, nullable=false)
+     */
+    private $nombrescliente;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="primapellidocliente", type="string", length=30, nullable=false)
+     */
+    private $primapellidocliente;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="segapellidocliente", type="string", length=30, nullable=true)
+     */
+    private $segapellidocliente;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lecturafirmacliente", type="string", length=25, nullable=false)
+     */
+    private $lecturafirmacliente;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="duicliente", type="string", length=10, nullable=false)
+     */
+    private $duicliente;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="duifechaexpcliente", type="date", nullable=false)
+     */
+    private $duifechaexpcliente;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="duilugarexpcliente", type="string", length=20, nullable=false)
+     */
+    private $duilugarexpcliente;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="issscliente", type="string", length=10, nullable=false)
+     */
+    private $issscliente;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nitcliente", type="string", nullable=false)
+     */
+    private $nitcliente;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telefonocliente", type="string", nullable=false)
+     */
+    private $telefonocliente;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="estadocivilcliente", type="string", nullable=false)
+     */
+    private $estadocivilcliente;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sexocliente", type="string", nullable=false)
+     */
+    private $sexocliente;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="profesioncliente", type="string", length=30, nullable=false)
+     */
+    private $profesioncliente;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nomconyugcliente", type="string", length=100, nullable=true)
+     */
+    private $nomconyugcliente;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="numhijocliente", type="integer", nullable=true)
+     */
+    private $numhijocliente;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fechaingresocliente", type="date", nullable=false)
+     */
+    private $fechaingresocliente;
+
+
+}

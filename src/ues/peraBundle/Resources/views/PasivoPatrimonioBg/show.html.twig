@@ -1,0 +1,48 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>PasivoPatrimonioBg</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Proveedoresppbg</th>
+                <td>{{ entity.proveedoresppbg }}</td>
+            </tr>
+            <tr>
+                <th>Prestamosinstppbg</th>
+                <td>{{ entity.prestamosinstppbg }}</td>
+            </tr>
+            <tr>
+                <th>Otrosprestppbg</th>
+                <td>{{ entity.otrosprestppbg }}</td>
+            </tr>
+            <tr>
+                <th>Patrimonioppbg</th>
+                <td>{{ entity.patrimonioppbg }}</td>
+            </tr>
+            <tr>
+                <th>Totalppbg</th>
+                <td>{{ entity.totalppbg }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('pasivopatrimoniobg') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('pasivopatrimoniobg_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

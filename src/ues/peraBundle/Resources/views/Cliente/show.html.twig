@@ -1,0 +1,92 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Cliente</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombrescliente</th>
+                <td>{{ entity.nombrescliente }}</td>
+            </tr>
+            <tr>
+                <th>Primapellidocliente</th>
+                <td>{{ entity.primapellidocliente }}</td>
+            </tr>
+            <tr>
+                <th>Segapellidocliente</th>
+                <td>{{ entity.segapellidocliente }}</td>
+            </tr>
+            <tr>
+                <th>Lecturafirmacliente</th>
+                <td>{{ entity.lecturafirmacliente }}</td>
+            </tr>
+            <tr>
+                <th>Duicliente</th>
+                <td>{{ entity.duicliente }}</td>
+            </tr>
+            <tr>
+                <th>Duifechaexpcliente</th>
+                <td>{{ entity.duifechaexpcliente|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Duilugarexpcliente</th>
+                <td>{{ entity.duilugarexpcliente }}</td>
+            </tr>
+            <tr>
+                <th>Issscliente</th>
+                <td>{{ entity.issscliente }}</td>
+            </tr>
+            <tr>
+                <th>Nitcliente</th>
+                <td>{{ entity.nitcliente }}</td>
+            </tr>
+            <tr>
+                <th>Telefonocliente</th>
+                <td>{{ entity.telefonocliente }}</td>
+            </tr>
+            <tr>
+                <th>Estadocivilcliente</th>
+                <td>{{ entity.estadocivilcliente }}</td>
+            </tr>
+            <tr>
+                <th>Sexocliente</th>
+                <td>{{ entity.sexocliente }}</td>
+            </tr>
+            <tr>
+                <th>Profesioncliente</th>
+                <td>{{ entity.profesioncliente }}</td>
+            </tr>
+            <tr>
+                <th>Nomconyugcliente</th>
+                <td>{{ entity.nomconyugcliente }}</td>
+            </tr>
+            <tr>
+                <th>Numhijocliente</th>
+                <td>{{ entity.numhijocliente }}</td>
+            </tr>
+            <tr>
+                <th>Fechaingresocliente</th>
+                <td>{{ entity.fechaingresocliente|date('Y-m-d H:i:s') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('cliente') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('cliente_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

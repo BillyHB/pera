@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Negocio" table="negocio">
+    <indexes>
+      <index name="asigna_fk" columns="idcliente"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="ak_uk_negocio_negocio" columns="idcliente,nombrenegocio"/>
+      <unique-constraint name="negocio_pk" columns="id"/>
+    </unique-constraints>
+    <id name="id" type="integer" column="id">
+      <generator strategy="SEQUENCE"/>
+    </id>
+    <field name="nombrenegocio" type="string" column="nombrenegocio" length="30" nullable="false"/>
+    <field name="deptonegocio" type="string" column="deptonegocio" length="15" nullable="false"/>
+    <field name="municipionegocio" type="string" column="municipionegocio" length="25" nullable="false"/>
+    <field name="direccionnegocio" type="string" column="direccionnegocio" length="50" nullable="false"/>
+    <field name="telefononegocio" type="string" column="telefononegocio" length="9" nullable="false"/>
+    <field name="horariopmcliente" type="string" column="horariopmcliente" length="20" nullable="false"/>
+    <many-to-one field="idcliente" target-entity="Cliente">
+      <join-columns>
+        <join-column name="idcliente" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

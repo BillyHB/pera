@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="IngresoFlujocaja" table="ingreso_flujocaja">
+    <indexes>
+      <index name="relationship_15_fk" columns="idnegocio"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="ingreso_flujocaja_pk" columns="id"/>
+    </unique-constraints>
+    <id name="id" type="integer" column="id">
+      <generator strategy="SEQUENCE"/>
+    </id>
+    <field name="ventacontadoifc" type="decimal" column="ventacontadoifc" precision="9" scale="2" nullable="false"/>
+    <field name="recuentaxcobrarifc" type="decimal" column="recuentaxcobrarifc" precision="9" scale="2" nullable="false"/>
+    <field name="ventascreditoifc" type="decimal" column="ventascreditoifc" precision="9" scale="2" nullable="false"/>
+    <field name="otrosingresosifc" type="decimal" column="otrosingresosifc" precision="9" scale="2" nullable="false"/>
+    <field name="totalifc" type="decimal" column="totalifc" precision="9" scale="2" nullable="false"/>
+    <many-to-one field="idnegocio" target-entity="Negocio">
+      <join-columns>
+        <join-column name="idnegocio" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

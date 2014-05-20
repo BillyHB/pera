@@ -1,0 +1,102 @@
+<?php
+
+namespace ues\peraBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ClienteDomicilio
+ *
+ * @ORM\Table(name="cliente_domicilio", uniqueConstraints={@ORM\UniqueConstraint(name="ak_uk_cliente_domicil_cliente_", columns={"deptoclientedomicilio", "municipioclientedomicilio", "direccionclientedomicilio", "idcliente"}), @ORM\UniqueConstraint(name="cliente_domicilio_pk", columns={"id"})}, indexes={@ORM\Index(name="contiene_fk", columns={"iddomicilio"}), @ORM\Index(name="posee_fk", columns={"idcliente"})})
+ * @ORM\Entity
+ */
+class ClienteDomicilio
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="cliente_domicilio_id_seq", allocationSize=1, initialValue=1)
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="deptoclientedomicilio", type="string", length=15, nullable=false)
+     */
+    private $deptoclientedomicilio;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="municipioclientedomicilio", type="string", length=25, nullable=false)
+     */
+    private $municipioclientedomicilio;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="direccionclientedomicilio", type="string", length=50, nullable=false)
+     */
+    private $direccionclientedomicilio;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telefonoclientedomicilio", type="string", length=9, nullable=false)
+     */
+    private $telefonoclientedomicilio;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="horarioclientedomicilio", type="string", length=20, nullable=false)
+     */
+    private $horarioclientedomicilio;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="aniosresidenciaclientedomicilio", type="integer", nullable=false)
+     */
+    private $aniosresidenciaclientedomicilio;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="alquilerclientedomicilio", type="smallint", nullable=false)
+     */
+    private $alquilerclientedomicilio;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="institucionclientedomicilio", type="string", length=40, nullable=true)
+     */
+    private $institucionclientedomicilio;
+
+    /**
+     * @var \Domicilio
+     *
+     * @ORM\ManyToOne(targetEntity="Domicilio")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="iddomicilio", referencedColumnName="id")
+     * })
+     */
+    private $iddomicilio;
+
+    /**
+     * @var \Cliente
+     *
+     * @ORM\ManyToOne(targetEntity="Cliente")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idcliente", referencedColumnName="id")
+     * })
+     */
+    private $idcliente;
+
+
+}

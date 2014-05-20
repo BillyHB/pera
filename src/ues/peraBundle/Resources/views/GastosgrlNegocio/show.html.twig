@@ -1,0 +1,68 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>GastosgrlNegocio</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Sueldosggn</th>
+                <td>{{ entity.sueldosggn }}</td>
+            </tr>
+            <tr>
+                <th>Alquileresggn</th>
+                <td>{{ entity.alquileresggn }}</td>
+            </tr>
+            <tr>
+                <th>Serviciosggn</th>
+                <td>{{ entity.serviciosggn }}</td>
+            </tr>
+            <tr>
+                <th>Transporteggn</th>
+                <td>{{ entity.transporteggn }}</td>
+            </tr>
+            <tr>
+                <th>Bodegaggn</th>
+                <td>{{ entity.bodegaggn }}</td>
+            </tr>
+            <tr>
+                <th>Impuestosggn</th>
+                <td>{{ entity.impuestosggn }}</td>
+            </tr>
+            <tr>
+                <th>Cuotaptmosggn</th>
+                <td>{{ entity.cuotaptmosggn }}</td>
+            </tr>
+            <tr>
+                <th>Otrosgastosggn</th>
+                <td>{{ entity.otrosgastosggn }}</td>
+            </tr>
+            <tr>
+                <th>Imprevistosggn</th>
+                <td>{{ entity.imprevistosggn }}</td>
+            </tr>
+            <tr>
+                <th>Totalggn</th>
+                <td>{{ entity.totalggn }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('gastosgrlnegocio') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('gastosgrlnegocio_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

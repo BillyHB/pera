@@ -1,0 +1,36 @@
+{% extends 'uesperaBundle::Layout.html.twig' %}
+
+{% block body -%}
+    <div id="form_wrapper">
+        
+        <div id="nombre_form">
+            <h1>Nuevo Domicilio</h1>
+            <div class="btns">                
+                <button class="cancelar" onclick="location.href='{{ path('domicilio') }}';"> Cancelar </button>
+                <button class="guardar" title="Guardar" onclick="document.getElementById('domicilio_form').submit();">Guardar</button>                 
+            </div>
+        </div>
+
+        <form id="domicilio_form" action="{{ path('domicilio_create') }}" method="post" {{ form_enctype(form) }}> 
+            {{ form_errors(form) }}
+                
+            <section>
+                <div class="top">
+                    <h2>Información General</h2>
+                </div>
+                <div class="content_wrapper padding">
+                    <p class="col1"></p>
+                    <p class="col1">
+                        {{ form_label(form.tipodomicilio) }}
+                        {{ form_widget(form.tipodomicilio) }}
+                    </p>
+                    <p class="col1"></p>
+                </div>
+            </section>        
+                
+            {{ form_rest(form) }}    
+        </form> 
+        
+    </div>                
+    
+{% endblock %}

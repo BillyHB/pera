@@ -1,0 +1,44 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>ReferenciaFamiliar</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombrereffamiliar</th>
+                <td>{{ entity.nombrereffamiliar }}</td>
+            </tr>
+            <tr>
+                <th>Parentescoreffamiliar</th>
+                <td>{{ entity.parentescoreffamiliar }}</td>
+            </tr>
+            <tr>
+                <th>Direccionreffamiliar</th>
+                <td>{{ entity.direccionreffamiliar }}</td>
+            </tr>
+            <tr>
+                <th>Telefonoreffamiliar</th>
+                <td>{{ entity.telefonoreffamiliar }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('referenciafamiliar') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('referenciafamiliar_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

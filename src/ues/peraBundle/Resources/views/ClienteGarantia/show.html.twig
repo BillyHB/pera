@@ -1,0 +1,44 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>ClienteGarantia</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Docreferenciaclientegarantia</th>
+                <td>{{ entity.docreferenciaclientegarantia }}</td>
+            </tr>
+            <tr>
+                <th>Valorclientegarantia</th>
+                <td>{{ entity.valorclientegarantia }}</td>
+            </tr>
+            <tr>
+                <th>Ubicacionclientegarantia</th>
+                <td>{{ entity.ubicacionclientegarantia }}</td>
+            </tr>
+            <tr>
+                <th>Observacionclientegarantia</th>
+                <td>{{ entity.observacionclientegarantia }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('clientegarantia') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('clientegarantia_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

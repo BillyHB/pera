@@ -1,0 +1,52 @@
+{# empty Twig template #}
+<ul id="menu">
+    
+    <li><a href="{{ path('cliente') }}">clientes</a>
+        <ul>
+            <li><a href="{{ path('cliente_new') }}">Nuevo Cliente</a></li>
+            {#<li><a href="#">Illustrator</a></li>
+            <li><a href="#">Web Design</a>
+                <ul>
+                    <li><a href="#">HTML</a></li>
+                    <li><a href="#">CSS</a></li>
+                </ul>
+            </li>#}
+        </ul>
+    </li>
+    
+    <li><a href="{{ path('clientecredito') }}">créditos / clientes</a>
+        <ul>
+            <li><a href="{{ path('clientecredito_new') }}">Nueva Asignación</a></li>            
+        </ul>
+    </li>
+    
+    <li><a href="{{ path('credito') }}">créditos</a>
+        <ul>
+            <li><a href="{{ path('credito_new') }}">Nuevo Crédito</a></li>
+        </ul>
+    </li>
+    
+    <li><a href="{{ path('domicilio') }}">domicilios</a>
+        <ul>
+            <li><a href="{{ path('domicilio_new') }}">Nuevo domicilio</a></li>            
+        </ul>
+    </li>
+    
+    <li><a href="{{ path('garantia') }}">garantías</a>
+        <ul>
+            <li><a href="{{ path('garantia_new') }}">Nueva garantía</a></li>            
+        </ul>
+    </li>
+    
+    <li class="divider"></li>
+
+    <li><a id="usr" href="#">Billy H. Balette</a>
+        <ul id="usr_ops">
+            <li><a href="#">Configurar cuenta</a></li>
+            <li><a href="#">Cerrar Sesión</a></li>
+        </ul>
+    </li>
+    
+    <li class="divider"></li>
+        
+</ul>

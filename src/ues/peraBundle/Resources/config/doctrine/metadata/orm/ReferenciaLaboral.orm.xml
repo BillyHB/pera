@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="ReferenciaLaboral" table="referencia_laboral">
+    <indexes>
+      <index name="presenta_fk" columns="idcliente"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="ak_uk_referencia_labo_referenc" columns="idcliente,nombreempresareflaboral"/>
+      <unique-constraint name="referencia_laboral_pk" columns="id"/>
+    </unique-constraints>
+    <id name="id" type="integer" column="id">
+      <generator strategy="SEQUENCE"/>
+    </id>
+    <field name="nombreempresareflaboral" type="string" column="nombreempresareflaboral" length="30" nullable="false"/>
+    <field name="direccionreflaboral" type="string" column="direccionreflaboral" length="50" nullable="false"/>
+    <field name="telefonoreflaboral" type="string" column="telefonoreflaboral" nullable="false"/>
+    <field name="cargoreflaboral" type="string" column="cargoreflaboral" length="30" nullable="false"/>
+    <field name="salarioreflaboral" type="decimal" column="salarioreflaboral" precision="6" scale="2" nullable="false"/>
+    <field name="nombrejefereflaboral" type="string" column="nombrejefereflaboral" length="30" nullable="false"/>
+    <many-to-one field="idcliente" target-entity="Cliente">
+      <join-columns>
+        <join-column name="idcliente" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

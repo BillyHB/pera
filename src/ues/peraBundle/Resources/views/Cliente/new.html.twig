@@ -1,0 +1,627 @@
+{% extends 'uesperaBundle::Layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('bundles/uespera/js/Zebra_Datepicker-master/public/css/metallic.css') }}" rel="stylesheet" type="text/css" /> 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/uespera/js/modernizr.custom.91424.js') }}" ></script> 
+    <script type="text/javascript" src="{{ asset('bundles/uespera/js/jquery.maskedinput.js') }}" ></script>           
+    <script type="text/javascript" src="{{ asset('bundles/uespera/js/jquery.price_format.2.0.min.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('bundles/uespera/js/Zebra_Datepicker-master/public/javascript/zebra_datepicker.js') }}" ></script>   
+{% endblock %}
+
+{% block body -%}
+    
+    <div id="fixed_menu">
+        <div id="nombre_form_fixed">
+            <h1>Nuevo Cliente</h1>
+            <div class="btns_fixed">                
+                <button class="cancelar" title="Cancelar" onclick="location.href='{{ path('cliente') }}';"> Cancelar </button>
+                <button class="guardar" title="Guardar" onclick="document.getElementById('cliente_form').submit();">Guardar</button>               
+            </div>
+        </div>
+    </div>
+    
+    <div id="form_wrapper">
+        
+        <div id="nombre_form">
+            <h1>Nuevo Cliente</h1>
+            <div class="btns">                
+                <button class="cancelar" title="Cancelar" onclick="location.href='{{ path('cliente') }}';"> Cancelar </button>
+                <button class="guardar" title="Guardar" onclick="document.getElementById('cliente_form').submit();">Guardar</button>               
+            </div>
+        </div>
+              
+        <form id="cliente_form" action="{{ path('cliente_create') }}" method="post" {{ form_enctype(form) }}> 
+            {{ form_errors(form) }}
+                
+            <section>
+                <div class="top">
+                    <h2>Información General</h2>
+                </div>
+                <div class="content_wrapper padding"> 
+                    <p class="col1">
+                        {{ form_label(form.sexocliente) }}
+                        {{ form_widget(form.sexocliente) }}
+                    </p>  
+                    <p class="col1">
+                        {{ form_label(form.nombrescliente) }}
+                        {{ form_widget(form.nombrescliente) }}
+                    </p>
+                    <p class="col1"> 
+                        {{ form_label(form.primapellidocliente) }} 
+                        {{ form_widget(form.primapellidocliente) }}     
+                    </p>
+                    <p class="col1">
+                        {{ form_label(form.segapellidocliente) }}
+                        {{ form_widget(form.segapellidocliente) }}
+                    </p>
+                    <p class="col1">
+                        {{ form_label(form.lecturafirmacliente) }}
+                        {{ form_widget(form.lecturafirmacliente) }}
+                    </p>
+                    <p class="col1">
+                        {{ form_label(form.duicliente) }}
+                        {{ form_widget(form.duicliente) }}
+                    </p>
+                    <p class="col1">
+                        {{ form_label(form.duifechaexpcliente) }}
+                        {{ form_widget(form.duifechaexpcliente) }}
+                    </p>
+                    <p class="col1">
+                        {{ form_label(form.duilugarexpcliente) }}
+                        {{ form_widget(form.duilugarexpcliente) }}
+                    </p>
+                    <p class="col1">
+                        {{ form_label(form.issscliente) }}
+                        {{ form_widget(form.issscliente) }}
+                    </p>
+                    <p class="col1">
+                        {{ form_label(form.nitcliente) }}
+                        {{ form_widget(form.nitcliente) }}
+                    </p>
+                    <p class="col1">
+                        {{ form_label(form.telefonocliente) }}
+                        {{ form_widget(form.telefonocliente) }}
+                    </p>
+                    <p class="col1">
+                        {{ form_label(form.profesioncliente) }}
+                        {{ form_widget(form.profesioncliente) }}
+                    </p>
+                    <p class="col1"v>
+                        {{ form_label(form.estadocivilcliente) }}
+                        {{ form_widget(form.estadocivilcliente) }}
+                    </p>
+                    <p class="col1">
+                        {{ form_label(form.nomconyugcliente) }}
+                        {{ form_widget(form.nomconyugcliente) }}
+                    </p>
+                    <p class="col1">
+                        {{ form_label(form.numhijocliente) }}
+                        {{ form_widget(form.numhijocliente) }}
+                    </p>
+                    <p class="col1">
+                        {{ form_label(form.fechaingresocliente) }}
+                        {{ form_widget(form.fechaingresocliente) }}
+                    </p>
+                </div>   
+            </section> 
+                    
+            <section>
+                <div class="top">
+                    <h2>Domicilio</h2>
+                    <a class="add_domicilio_link" title="Agregar Domicilio" href="#"></a>      
+                </div>
+                <div class="content_wrapper">                  
+                    <ul class="domicilio" data-prototype="{{ form_widget(form.clientedomicilio.vars.prototype)|e }}">
+                      {{ form_widget(form.clientedomicilio) }}
+                    </ul>
+                </div>
+            </section>      
+              
+            <section>
+                <div class="top">
+                    <h2>Referencias Familiares</h2>
+                    <a class="add_reffam_link" title="Agregar Referencia Familiar" href="#"></a>
+                </div>
+                <div class="content_wrapper">                           
+                    <ul class="reffam" data-prototype="{{ form_widget(form.refsfamiliar.vars.prototype)|e }}">
+                        {{ form_widget(form.refsfamiliar) }}
+                    </ul>
+                </div>
+            </section> 
+                    
+            <section>
+                <div class="top">
+                    <h2>Referencias Laborales</h2>
+                    <a class="add_reflab_link" title="Agregar Referencia Laboral" href="#"></a>
+                </div>
+                <div class="content_wrapper">                          
+                    <ul class="reflabs" data-prototype="{{ form_widget(form.refslaboral.vars.prototype)|e }}">
+                        {{ form_widget(form.refslaboral) }}
+                    </ul>                  
+                </div>
+            </section>      
+              
+            <section>
+                <div class="top">
+                    <h2>Garantias</h2>
+                    <a class="add_garantias_link" title="Agregar Garantia" href="#"></a> 
+                </div>
+                <div class="content_wrapper">
+                    <ul class="garantias" data-prototype="{{ form_widget(form.clientegarantias.vars.prototype)|e }}">
+                        {{ form_widget(form.clientegarantias) }}
+                    </ul>
+                </div>
+            </section>      
+              
+            <section>
+                <div class="top">
+                    <h2>Ingresos y Gastos Familiares</h2>
+                </div>
+                <div class="content_wrapper">
+                    <div class="col padding">
+                        <legend>Ingresos</legend>
+                        
+                        <p>
+                          {{ form_label(form.ingresosfamiliares.salariosingfamiliares) }}
+                          {{ form_widget(form.ingresosfamiliares.salariosingfamiliares) }}
+                        </p>
+                        <p>
+                          {{ form_label(form.ingresosfamiliares.alquileresingfamiliares) }}
+                          {{ form_widget(form.ingresosfamiliares.alquileresingfamiliares) }}
+                        </p>
+                        <p>
+                          {{ form_label(form.ingresosfamiliares.remesasingfamiliares) }}
+                          {{ form_widget(form.ingresosfamiliares.remesasingfamiliares) }}
+                        </p>
+                        <p>
+                          {{ form_label(form.ingresosfamiliares.pensionesingfamiliares) }}
+                          {{ form_widget(form.ingresosfamiliares.pensionesingfamiliares) }}
+                        </p>
+                        <p>
+                          {{ form_label(form.ingresosfamiliares.otrosingresosingfamiliares) }}
+                          {{ form_widget(form.ingresosfamiliares.otrosingresosingfamiliares) }}
+                        </p>
+                        <p>
+                          {{ form_label(form.ingresosfamiliares.totalingfamiliares) }}
+                          {{ form_widget(form.ingresosfamiliares.totalingfamiliares) }}
+                        </p>
+                    </div>
+
+                    <div class="col padding border_left">
+                        <legend>Gastos</legend>
+                        <p>
+                          {{ form_label(form.gastosfamiliares.alimentaciongasfamiliares) }}
+                          {{ form_widget(form.gastosfamiliares.alimentaciongasfamiliares) }}
+                        </p>
+                        <p>
+                          {{ form_label(form.gastosfamiliares.educaciongasfamiliares) }}
+                          {{ form_widget(form.gastosfamiliares.educaciongasfamiliares) }}
+                        </p>
+                        <p>
+                          {{ form_label(form.gastosfamiliares.alquilergasfamiliares) }}
+                          {{ form_widget(form.gastosfamiliares.alquilergasfamiliares) }}
+                        </>
+                        <p>
+                          {{ form_label(form.gastosfamiliares.serviciosgasfamiliares) }}
+                          {{ form_widget(form.gastosfamiliares.serviciosgasfamiliares) }}
+                        </p>
+                        <p>
+                          {{ form_label(form.gastosfamiliares.transportegasfamiliares) }}
+                          {{ form_widget(form.gastosfamiliares.transportegasfamiliares) }}
+                        </p>
+                        <p>
+                          {{ form_label(form.gastosfamiliares.saludgasfamiliares) }}
+                          {{ form_widget(form.gastosfamiliares.saludgasfamiliares) }}
+                        </p>
+                        <p>
+                          {{ form_label(form.gastosfamiliares.prestamospersgasfamiliares) }}
+                          {{ form_widget(form.gastosfamiliares.prestamospersgasfamiliares) }}
+                        </p>
+                        <p>
+                          {{ form_label(form.gastosfamiliares.otrosgastosgasfamiliares) }}
+                          {{ form_widget(form.gastosfamiliares.otrosgastosgasfamiliares) }}
+                        </p>
+                        <p>
+                          {{ form_label(form.gastosfamiliares.imprevistosgasfamiliares) }}
+                          {{ form_widget(form.gastosfamiliares.imprevistosgasfamiliares) }}
+                        </p>
+                        <p>
+                          {{ form_label(form.gastosfamiliares.totalgasfamiliares) }}
+                          {{ form_widget(form.gastosfamiliares.totalgasfamiliares) }}
+                        </p>
+                    </div>
+                </div>
+            </section>      
+                    
+            <section> 
+                <div class="top">
+                    <h2>Información del Negocio</h2>
+                </div>
+                <div class="content_wrapper padding">
+                    <p class="col1">
+                      {{ form_label(form.negocio.nombrenegocio) }}
+                      {{ form_widget(form.negocio.nombrenegocio) }}
+                    </p>
+                    <p class="col1">
+                      {{ form_label(form.negocio.deptonegocio) }}
+                      {{ form_widget(form.negocio.deptonegocio) }}
+                    </p>
+                    <p class="col1">
+                      {{ form_label(form.negocio.municipionegocio) }}
+                      {{ form_widget(form.negocio.municipionegocio) }}
+                    </p>
+                    <p class="col1">
+                      {{ form_label(form.negocio.direccionnegocio) }}
+                      {{ form_widget(form.negocio.direccionnegocio) }}
+                    </p>
+                    <p class="col1">
+                      {{ form_label(form.negocio.telefononegocio) }}
+                      {{ form_widget(form.negocio.telefononegocio) }}
+                    </p>
+                    <p class="col1">
+                      {{ form_label(form.negocio.horarionegocio) }}
+                      {{ form_widget(form.negocio.horarionegocio) }}
+                    </p>
+                </div>
+            </section>  
+                  
+            <section>   
+                <div class="top">
+                    <h2>Gastos Generales del Negocio</h2>
+                </div>
+                <div class="content_wrapper padding">
+                    <p class="col1">
+                      {{ form_label(form.negocio.gastosgrlnegocio.sueldosggn) }} 
+                      {{ form_widget(form.negocio.gastosgrlnegocio.sueldosggn) }}
+                    </p>
+                    <p class="col1">
+                      {{ form_label(form.negocio.gastosgrlnegocio.alquileresggn) }}
+                      {{ form_widget(form.negocio.gastosgrlnegocio.alquileresggn) }}
+                    </p>
+                    <p class="col1">
+                      {{ form_label(form.negocio.gastosgrlnegocio.serviciosggn) }}
+                      {{ form_widget(form.negocio.gastosgrlnegocio.serviciosggn) }}
+                    </p>
+                    <p class="col1">
+                      {{ form_label(form.negocio.gastosgrlnegocio.transporteggn) }}
+                      {{ form_widget(form.negocio.gastosgrlnegocio.transporteggn) }}
+                    </p>
+                    <p class="col1">
+                      {{ form_label(form.negocio.gastosgrlnegocio.bodegaggn) }}
+                      {{ form_widget(form.negocio.gastosgrlnegocio.bodegaggn) }}
+                    </p>
+                    <p class="col1">
+                      {{ form_label(form.negocio.gastosgrlnegocio.impuestosggn) }}
+                      {{ form_widget(form.negocio.gastosgrlnegocio.impuestosggn) }}
+                    </p>
+                    <p class="col1">
+                      {{ form_label(form.negocio.gastosgrlnegocio.cuotaptmosggn) }}
+                      {{ form_widget(form.negocio.gastosgrlnegocio.cuotaptmosggn) }}
+                    </p>
+                    <p class="col1">
+                      {{ form_label(form.negocio.gastosgrlnegocio.otrosgastosggn) }}
+                      {{ form_widget(form.negocio.gastosgrlnegocio.otrosgastosggn) }}
+                    </p>
+                    <p class="col1">
+                      {{ form_label(form.negocio.gastosgrlnegocio.imprevistosggn) }}
+                      {{ form_widget(form.negocio.gastosgrlnegocio.imprevistosggn) }}
+                    </p>
+                    <p class="col1">
+                      {{ form_label(form.negocio.gastosgrlnegocio.totalggn) }} 
+                      {{ form_widget(form.negocio.gastosgrlnegocio.totalggn) }}
+                    </p>
+                </div> 
+            </section>    
+              
+            <section>
+                <div class="top">
+                    <h2>Flujo de Caja</h2>
+                </div>
+                <div class="content_wrapper">
+                    <div class="col padding border_right">
+                        <legend>Ingresos</legend>
+                        <p>
+                            {{ form_label(form.negocio.ingresoflujocaja.ventacontadoifc) }} 
+                            {{ form_widget(form.negocio.ingresoflujocaja.ventacontadoifc) }}
+                        </p>
+                        <p>
+                            {{ form_label(form.negocio.ingresoflujocaja.recuentaxcobrarifc) }}
+                            {{ form_widget(form.negocio.ingresoflujocaja.recuentaxcobrarifc) }}
+                        </p>
+                        <p>
+                            {{ form_label(form.negocio.ingresoflujocaja.ventascreditoifc) }}
+                            {{ form_widget(form.negocio.ingresoflujocaja.ventascreditoifc) }}
+                        </p>
+                        <p>
+                            {{ form_label(form.negocio.ingresoflujocaja.otrosingresosifc) }}
+                            {{ form_widget(form.negocio.ingresoflujocaja.otrosingresosifc) }}
+                        </p>
+                        <p>
+                            {{ form_label(form.negocio.ingresoflujocaja.totalifc) }}
+                            {{ form_widget(form.negocio.ingresoflujocaja.totalifc) }}
+                        </p>
+                    </div>
+                    <div class="col padding">
+                        <legend>Gastos</legend>
+                        <p>
+                            {{ form_label(form.negocio.gastosflujocaja.compramercaderiagfc) }}
+                            {{ form_widget(form.negocio.gastosflujocaja.compramercaderiagfc) }}
+                        </p>
+                        <p>
+                            {{ form_label(form.negocio.gastosflujocaja.gastosnegociogfc) }}
+                            {{ form_widget(form.negocio.gastosflujocaja.gastosnegociogfc) }}
+                        </p>
+                        <p>
+                          {{ form_label(form.negocio.gastosflujocaja.gastosfamiliaresgfc) }}
+                          {{ form_widget(form.negocio.gastosflujocaja.gastosfamiliaresgfc) }}
+                        </p>
+                        <p>
+                          {{ form_label(form.negocio.gastosflujocaja.totalgfc) }}
+                          {{ form_widget(form.negocio.gastosflujocaja.totalgfc) }}
+                        </p>
+                    </div>
+                </div>    
+            </section>
+                    
+            <section>
+                <div class="top">
+                    <h2>Balance General</h2>
+                </div>
+                <div class="content_wrapper">
+                    <div class="col padding border_right">
+                        <legend>Activos</legend>
+                        <p>
+                            {{ form_label(form.negocio.activobg.disponibleabg) }} 
+                            {{ form_widget(form.negocio.activobg.disponibleabg) }}
+                        </p>
+                        <p>
+                            {{ form_label(form.negocio.activobg.cuentasxcobrarabg) }} 
+                            {{ form_widget(form.negocio.activobg.cuentasxcobrarabg) }}
+                        </p>
+                        <p>
+                            {{ form_label(form.negocio.activobg.inventariosabg) }} 
+                            {{ form_widget(form.negocio.activobg.inventariosabg) }}
+                        </p>
+                        <p>
+                            {{ form_label(form.negocio.activobg.activofijoabg) }} 
+                            {{ form_widget(form.negocio.activobg.activofijoabg) }}
+                        </p>
+                        <p>
+                            {{ form_label(form.negocio.activobg.totalabg) }} 
+                            {{ form_widget(form.negocio.activobg.totalabg) }}
+                        </p>
+                    </div>
+                    <div class="col padding">
+                        <legend>Pasivos</legend>
+                        <p>
+                            {{ form_label(form.negocio.pasivopatrimoniobg.proveedoresppbg) }}
+                            {{ form_widget(form.negocio.pasivopatrimoniobg.proveedoresppbg) }}
+                        </p>
+                        <p>
+                            {{ form_label(form.negocio.pasivopatrimoniobg.prestamosinstppbg) }}
+                            {{ form_widget(form.negocio.pasivopatrimoniobg.prestamosinstppbg) }}
+                        </p>
+                        <p>
+                            {{ form_label(form.negocio.pasivopatrimoniobg.otrosprestppbg) }}
+                            {{ form_widget(form.negocio.pasivopatrimoniobg.otrosprestppbg) }}
+                        </p>
+                        <p>
+                            {{ form_label(form.negocio.pasivopatrimoniobg.patrimonioppbg) }}
+                            {{ form_widget(form.negocio.pasivopatrimoniobg.patrimonioppbg) }}
+                        </p>
+                        <p>
+                            {{ form_label(form.negocio.pasivopatrimoniobg.totalppbg) }}
+                            {{ form_widget(form.negocio.pasivopatrimoniobg.totalppbg) }}
+                        </p>
+                    </div>
+                </div>    
+            </section>  
+                    
+            {{ form_rest(form) }}      
+        </form>
+    </div>    
+        
+    {#<ul class="record_actions">
+        <li>
+            <a href="{{ path('cliente') }}"> Back to the list </a>
+        </li>
+    </ul>#}
+{% endblock %}
+
+{% block script -%}
+    <script>
+        // Se obtiene las ul que contienen las etiquetas de las colecciones de formularios
+        var collectionHolder  = $('ul.reflabs');
+        var collectionHolder2 = $('ul.reffam');
+        var collectionHolder3 = $('ul.garantias');
+        var collectionHolder4 = $('ul.domicilio');
+        
+        $(document).ready(function(){
+            $("#ues_perabundle_cliente_duicliente").mask("99999999-9",{placeholder:"_"});
+            $("#ues_perabundle_cliente_nitcliente").mask("9999-999999-999-9",{placeholder:"_"});
+            $("#ues_perabundle_cliente_telefonocliente").mask("9999-9999",{placeholder:"_"});
+            $("#ues_perabundle_cliente_negocio_telefononegocio").mask("9999-9999",{placeholder:"_"});
+            $(".date").mask("99-99-9999",{placeholder:""});
+            
+            
+            collectionHolder.data('index', collectionHolder.find(':input').length);
+            addTagForm(collectionHolder);
+            
+            collectionHolder2.data('index', collectionHolder2.find(':input').length);
+            addTagForm(collectionHolder2);
+            
+            collectionHolder3.data('index', collectionHolder3.find(':input').length);
+            addTagForm(collectionHolder3);
+            
+            collectionHolder4.data('index', collectionHolder4.find(':input').length);
+            addTagForm(collectionHolder4);
+            
+            $('.add_reflab_link').on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // add a new tag form (see next code block)
+                addTagForm(collectionHolder);
+            });
+            
+            $('.add_reffam_link').on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // add a new tag form (see next code block)
+                addTagForm(collectionHolder2);
+            });
+            
+            $('.add_garantias_link').on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // add a new tag form (see next code block)
+                addTagForm(collectionHolder3);
+            });
+            
+            $('.add_domicilio_link').on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // add a new tag form (see next code block)
+                addTagForm(collectionHolder4);
+            });
+            
+            function addTagForm(collectionHolder) {
+                // Get the data-prototype explained earlier
+                var prototype = collectionHolder.data('prototype');
+
+                // get the new index
+                var index = collectionHolder.data('index');
+
+                // Replace '__name__' in the prototype's HTML to
+                // instead be a number based on how many items we have
+                var newForm = prototype.replace(/__name__/g, index);
+
+                // increase the index with one for the next item
+                collectionHolder.data('index', index + 1);
+
+                // Display the form in the page in an li, before the "Add a tag" link li
+                var $newFormLi = $('<li></li>').append(newForm);
+
+                collectionHolder.append($newFormLi);
+
+                // add a delete link to the new form
+                addTagFormDeleteLink($newFormLi);
+                
+                $('input[id*="_telefonoreflaboral"]').mask("9999-9999",{placeholder:"_"});
+                $(".money").priceFormat({
+                    prefix: ''
+                });
+                $('input[id*="_telefonoreffamiliar"]').mask("9999-9999",{placeholder:"_"});
+                $('input[id*="_telefonoclientedomicilio"]').mask("9999-9999",{placeholder:"_"});
+            }
+            
+            function addTagFormDeleteLink($tagFormLi) {
+                var $removeFormA = $('<a class="link" href="#"></a>');
+                $tagFormLi.append($removeFormA);
+                
+                $removeFormA.on('click', function(e) {
+                    // prevent the link from creating a "#" on the URL
+                    e.preventDefault();
+
+                    // remove the li for the tag form
+                    $tagFormLi.remove();                    
+                });
+            }
+            
+        });
+        
+        //if(!Modernizr.inputtypes['date']) {
+            $('.date').Zebra_DatePicker({
+                        direction: false,
+                        readonly_element: false,        
+                        format: 'd-m-Y'
+                    });
+        //}        
+                
+        $('.ingfamiliares').focusout(function() {
+            var sum = 0;
+            $('.ingfamiliares').each(function(){
+               if($(this).val() !== '')
+                    sum += parseFloat( $(this).val().replace(/,/g,'') ); 
+            });
+            $('#ues_perabundle_cliente_ingresosfamiliares_totalingfamiliares').val(sum.toFixed(2));
+        });
+        
+        $('.gasfamiliares').focusout(function() {
+            var sum = 0;
+            $('.gasfamiliares').each(function(){
+               if($(this).val() !== '')                    
+                    sum += parseFloat( $(this).val().replace(/,/g,'') ); 
+            });
+            $('#ues_perabundle_cliente_gastosfamiliares_totalgasfamiliares').val(sum.toFixed(2));
+        });
+        
+        $('.ggn').focusout(function() {
+            var sum = 0;
+            $('.ggn').each(function(){
+               if($(this).val() !== '')
+                    sum += parseFloat( $(this).val().replace(/,/g,'') ); 
+            });
+            $('#ues_perabundle_cliente_negocio_gastosgrlnegocio_totalggn').val(sum.toFixed(2));
+        });
+        
+        $('.ifc').focusout(function() {
+            var sum = 0;
+            $('.ifc').each(function(){
+               if($(this).val() !== '')
+                    sum += parseFloat( $(this).val().replace(/,/g,'') ); 
+            });
+            $('#ues_perabundle_cliente_negocio_ingresoflujocaja_totalifc').val(sum.toFixed(2));
+        });
+        
+        $('.gfc').focusout(function() {
+            var sum = 0;
+            $('.gfc').each(function(){
+               if($(this).val() !== '')
+                    sum += parseFloat( $(this).val().replace(/,/g,'') ); 
+            });
+            $('#ues_perabundle_cliente_negocio_gastosflujocaja_totalgfc').val(sum.toFixed(2));
+        });
+        
+        $('.abg').focusout(function() {
+            var sum = 0;
+            $('.abg').each(function(){
+               if($(this).val() !== '')
+                    sum += parseFloat( $(this).val().replace(/,/g,'') ); 
+            });
+            $('#ues_perabundle_cliente_negocio_activobg_totalabg').val(sum.toFixed(2));
+        });
+        
+        $('.ppbg').focusout(function() {
+            var sum = 0;
+            $('.ppbg').each(function(){
+               if($(this).val() !== '')
+                    sum += parseFloat( $(this).val().replace(/,/g,'') ); 
+            });
+            $('#ues_perabundle_cliente_negocio_pasivopatrimoniobg_totalppbg').val(sum.toFixed(2));
+        });
+        
+        $(window).scroll(function(){
+		            
+                var window_top = $(window).scrollTop();
+                var div_top = $('#form_wrapper').offset().top;
+                //alert(div_top);
+                if(window_top > div_top){
+                    $('#fixed_menu').css('visibility','visible');
+                }
+                else{
+                    $('#fixed_menu').css('visibility','hidden');
+                }                          
+                
+	});
+    </script>
+{% endblock %}    
+    

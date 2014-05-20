@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="PasivoPatrimonioBg" table="pasivo_patrimonio_bg">
+    <indexes>
+      <index name="relationship_14_fk" columns="idnegocio"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="pasivo_patrimonio_bg_pk" columns="id"/>
+    </unique-constraints>
+    <id name="id" type="integer" column="id">
+      <generator strategy="SEQUENCE"/>
+    </id>
+    <field name="proveedoresppbg" type="decimal" column="proveedoresppbg" precision="9" scale="2" nullable="false"/>
+    <field name="prestamosinstppbg" type="decimal" column="prestamosinstppbg" precision="9" scale="2" nullable="false"/>
+    <field name="otrosprestppbg" type="decimal" column="otrosprestppbg" precision="9" scale="2" nullable="false"/>
+    <field name="patrimonioppbg" type="decimal" column="patrimonioppbg" precision="9" scale="2" nullable="false"/>
+    <field name="totalppbg" type="decimal" column="totalppbg" precision="9" scale="2" nullable="false"/>
+    <many-to-one field="idnegocio" target-entity="Negocio">
+      <join-columns>
+        <join-column name="idnegocio" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

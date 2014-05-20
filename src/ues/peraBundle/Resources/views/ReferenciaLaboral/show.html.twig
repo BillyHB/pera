@@ -1,0 +1,52 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>ReferenciaLaboral</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombreempresareflaboral</th>
+                <td>{{ entity.nombreempresareflaboral }}</td>
+            </tr>
+            <tr>
+                <th>Direccionreflaboral</th>
+                <td>{{ entity.direccionreflaboral }}</td>
+            </tr>
+            <tr>
+                <th>Telefonoreflaboral</th>
+                <td>{{ entity.telefonoreflaboral }}</td>
+            </tr>
+            <tr>
+                <th>Cargoreflaboral</th>
+                <td>{{ entity.cargoreflaboral }}</td>
+            </tr>
+            <tr>
+                <th>Salarioreflaboral</th>
+                <td>{{ entity.salarioreflaboral }}</td>
+            </tr>
+            <tr>
+                <th>Nombrejefereflaboral</th>
+                <td>{{ entity.nombrejefereflaboral }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('referencialaboral') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('referencialaboral_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

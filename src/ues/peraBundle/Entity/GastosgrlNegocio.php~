@@ -1,0 +1,106 @@
+<?php
+
+namespace ues\peraBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GastosgrlNegocio
+ *
+ * @ORM\Table(name="gastosgrl_negocio", uniqueConstraints={@ORM\UniqueConstraint(name="gastosgrl_negocio_pk", columns={"id"})}, indexes={@ORM\Index(name="relationship_12_fk", columns={"idnegocio"})})
+ * @ORM\Entity
+ */
+class GastosgrlNegocio
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="gastosgrl_negocio_id_seq", allocationSize=1, initialValue=1)
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sueldosggn", type="decimal", precision=9, scale=2, nullable=false)
+     */
+    private $sueldosggn;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="alquileresggn", type="decimal", precision=9, scale=2, nullable=false)
+     */
+    private $alquileresggn;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="serviciosggn", type="decimal", precision=9, scale=2, nullable=false)
+     */
+    private $serviciosggn;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="transporteggn", type="decimal", precision=9, scale=2, nullable=false)
+     */
+    private $transporteggn;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="bodegaggn", type="decimal", precision=9, scale=2, nullable=false)
+     */
+    private $bodegaggn;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="impuestosggn", type="decimal", precision=9, scale=2, nullable=false)
+     */
+    private $impuestosggn;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cuotaptmosggn", type="decimal", precision=9, scale=2, nullable=false)
+     */
+    private $cuotaptmosggn;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="otrosgastosggn", type="decimal", precision=9, scale=2, nullable=false)
+     */
+    private $otrosgastosggn;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="imprevistosggn", type="decimal", precision=9, scale=2, nullable=false)
+     */
+    private $imprevistosggn;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="totalggn", type="decimal", precision=9, scale=2, nullable=false)
+     */
+    private $totalggn;
+
+    /**
+     * @var \Negocio
+     *
+     * @ORM\ManyToOne(targetEntity="Negocio")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idnegocio", referencedColumnName="id")
+     * })
+     */
+    private $idnegocio;
+
+
+}

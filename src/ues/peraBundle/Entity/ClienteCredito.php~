@@ -1,0 +1,53 @@
+<?php
+
+namespace ues\peraBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ClienteCredito
+ *
+ * @ORM\Table(name="cliente_credito", uniqueConstraints={@ORM\UniqueConstraint(name="cliente_credito_pk", columns={"id"})}, indexes={@ORM\Index(name="efectua_fk", columns={"idcliente"}), @ORM\Index(name="consta_fk", columns={"idcredito"})})
+ * @ORM\Entity
+ */
+class ClienteCredito
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="cliente_credito_id_seq", allocationSize=1, initialValue=1)
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="destinocredito", type="string", length=100, nullable=true)
+     */
+    private $destinocredito;
+
+    /**
+     * @var \Credito
+     *
+     * @ORM\ManyToOne(targetEntity="Credito")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idcredito", referencedColumnName="id")
+     * })
+     */
+    private $idcredito;
+
+    /**
+     * @var \Cliente
+     *
+     * @ORM\ManyToOne(targetEntity="Cliente")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idcliente", referencedColumnName="id")
+     * })
+     */
+    private $idcliente;
+
+
+}

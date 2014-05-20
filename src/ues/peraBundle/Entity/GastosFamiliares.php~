@@ -1,0 +1,106 @@
+<?php
+
+namespace ues\peraBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GastosFamiliares
+ *
+ * @ORM\Table(name="gastos_familiares", uniqueConstraints={@ORM\UniqueConstraint(name="gastos_familiares_pk", columns={"idgasfamiliares"})}, indexes={@ORM\Index(name="cliente_gas_fam_fk", columns={"idcliente"})})
+ * @ORM\Entity
+ */
+class GastosFamiliares
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idgasfamiliares", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="gastos_familiares_idgasfamiliares_seq", allocationSize=1, initialValue=1)
+     */
+    private $idgasfamiliares;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="alimentaciongasfamiliares", type="decimal", precision=9, scale=2, nullable=false)
+     */
+    private $alimentaciongasfamiliares;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="educaciongasfamiliares", type="decimal", precision=9, scale=2, nullable=false)
+     */
+    private $educaciongasfamiliares;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="alquilergasfamiliares", type="decimal", precision=9, scale=2, nullable=false)
+     */
+    private $alquilergasfamiliares;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="serviciosgasfamiliares", type="decimal", precision=9, scale=2, nullable=false)
+     */
+    private $serviciosgasfamiliares;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="transportegasfamiliares", type="decimal", precision=9, scale=2, nullable=false)
+     */
+    private $transportegasfamiliares;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="saludgasfamiliares", type="decimal", precision=9, scale=2, nullable=false)
+     */
+    private $saludgasfamiliares;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="prestamospersgasfamiliares", type="decimal", precision=9, scale=2, nullable=false)
+     */
+    private $prestamospersgasfamiliares;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="otrosgastosgasfamiliares", type="decimal", precision=9, scale=2, nullable=false)
+     */
+    private $otrosgastosgasfamiliares;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="imprevistosgasfamiliares", type="decimal", precision=9, scale=2, nullable=false)
+     */
+    private $imprevistosgasfamiliares;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="totalgasfamiliares", type="decimal", precision=9, scale=2, nullable=false)
+     */
+    private $totalgasfamiliares;
+
+    /**
+     * @var \Cliente
+     *
+     * @ORM\ManyToOne(targetEntity="Cliente")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idcliente", referencedColumnName="id")
+     * })
+     */
+    private $idcliente;
+
+
+}

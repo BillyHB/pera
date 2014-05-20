@@ -1,0 +1,43 @@
+{% extends 'uesperaBundle::Layout.html.twig' %}
+
+{% block body -%}
+    <div id="form_wrapper">
+        
+        <div id="nombre_form">
+            <h1>Nueva Garantía</h1>
+            <div class="btns">                
+                <button class="cancelar" onclick="location.href='{{ path('garantia') }}';"> Cancelar </button>
+                <button class="guardar" title="Guardar" onclick="document.getElementById('garantia_form').submit();">Guardar</button>                 
+            </div>
+        </div>    
+        
+        <form id="garantia_form" action="{{ path('garantia_create') }}" method="post" {{ form_enctype(form) }}> 
+            {{ form_errors(form) }}
+                
+            <section>
+                <div class="top">
+                    <h2>Información General</h2>
+                </div>
+                <div class="content_wrapper padding">
+                    <p class="col1"></p>
+                    <p class="col1">
+                        {{ form_label(form.tipogarantia) }}
+                        {{ form_widget(form.tipogarantia) }}
+                    </p>
+                    <p class="col1"></p>
+                </div>
+            </section>        
+                
+            {{ form_rest(form) }}    
+        </form> 
+        
+    </div>
+
+{#<ul class="record_actions">
+    <li>
+        <a href="{{ path('garantia') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>#}
+{% endblock %}

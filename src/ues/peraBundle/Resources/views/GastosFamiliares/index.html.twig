@@ -1,0 +1,59 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>GastosFamiliares list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Alimentaciongasfamiliares</th>
+                <th>Educaciongasfamiliares</th>
+                <th>Alquilergasfamiliares</th>
+                <th>Serviciosgasfamiliares</th>
+                <th>Transportegasfamiliares</th>
+                <th>Saludgasfamiliares</th>
+                <th>Prestamospersgasfamiliares</th>
+                <th>Otrosgastosgasfamiliares</th>
+                <th>Imprevistosgasfamiliares</th>
+                <th>Totalgasfamiliares</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('gastosfamiliares_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.alimentaciongasfamiliares }}</td>
+                <td>{{ entity.educaciongasfamiliares }}</td>
+                <td>{{ entity.alquilergasfamiliares }}</td>
+                <td>{{ entity.serviciosgasfamiliares }}</td>
+                <td>{{ entity.transportegasfamiliares }}</td>
+                <td>{{ entity.saludgasfamiliares }}</td>
+                <td>{{ entity.prestamospersgasfamiliares }}</td>
+                <td>{{ entity.otrosgastosgasfamiliares }}</td>
+                <td>{{ entity.imprevistosgasfamiliares }}</td>
+                <td>{{ entity.totalgasfamiliares }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('gastosfamiliares_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('gastosfamiliares_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('gastosfamiliares_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

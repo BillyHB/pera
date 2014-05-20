@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="GastosFamiliares" table="gastos_familiares">
+    <indexes>
+      <index name="cliente_gas_fam_fk" columns="idcliente"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="gastos_familiares_pk" columns="idgasfamiliares"/>
+    </unique-constraints>
+    <id name="id" type="integer" column="id">
+      <generator strategy="SEQUENCE"/>
+    </id>
+    <field name="alimentaciongasfamiliares" type="decimal" column="alimentaciongasfamiliares" precision="9" scale="2" nullable="false"/>
+    <field name="educaciongasfamiliares" type="decimal" column="educaciongasfamiliares" precision="9" scale="2" nullable="false"/>
+    <field name="alquilergasfamiliares" type="decimal" column="alquilergasfamiliares" precision="9" scale="2" nullable="false"/>
+    <field name="serviciosgasfamiliares" type="decimal" column="serviciosgasfamiliares" precision="9" scale="2" nullable="false"/>
+    <field name="transportegasfamiliares" type="decimal" column="transportegasfamiliares" precision="9" scale="2" nullable="false"/>
+    <field name="saludgasfamiliares" type="decimal" column="saludgasfamiliares" precision="9" scale="2" nullable="false"/>
+    <field name="prestamospersgasfamiliares" type="decimal" column="prestamospersgasfamiliares" precision="9" scale="2" nullable="false"/>
+    <field name="otrosgastosgasfamiliares" type="decimal" column="otrosgastosgasfamiliares" precision="9" scale="2" nullable="false"/>
+    <field name="imprevistosgasfamiliares" type="decimal" column="imprevistosgasfamiliares" precision="9" scale="2" nullable="false"/>
+    <field name="totalgasfamiliares" type="decimal" column="totalgasfamiliares" precision="9" scale="2" nullable="false"/>
+    <many-to-one field="idcliente" target-entity="Cliente">
+      <join-columns>
+        <join-column name="idcliente" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

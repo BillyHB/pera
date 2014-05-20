@@ -1,0 +1,64 @@
+<?php
+
+namespace ues\peraBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ActivoBg
+ *
+ * @ORM\Table(name="activo_bg", uniqueConstraints={@ORM\UniqueConstraint(name="activo_bg_pk", columns={"id"})}, indexes={@ORM\Index(name="relationship_13_fk", columns={"idnegocio"})})
+ * @ORM\Entity
+ */
+class ActivoBg
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="activo_bg_id_seq", allocationSize=1, initialValue=1)
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="disponibleabg", type="decimal", precision=9, scale=2, nullable=false)
+     */
+    private $disponibleabg;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cuentasxcobrarabg", type="decimal", precision=9, scale=2, nullable=false)
+     */
+    private $cuentasxcobrarabg;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="activofijoabg", type="decimal", precision=9, scale=2, nullable=false)
+     */
+    private $activofijoabg;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="totalabg", type="decimal", precision=9, scale=2, nullable=true)
+     */
+    private $totalabg;
+
+    /**
+     * @var \Negocio
+     *
+     * @ORM\ManyToOne(targetEntity="Negocio")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idnegocio", referencedColumnName="id")
+     * })
+     */
+    private $idnegocio;
+
+
+}

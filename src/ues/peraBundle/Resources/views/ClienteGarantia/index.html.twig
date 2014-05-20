@@ -1,0 +1,47 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>ClienteGarantia list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Docreferenciaclientegarantia</th>
+                <th>Valorclientegarantia</th>
+                <th>Ubicacionclientegarantia</th>
+                <th>Observacionclientegarantia</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('clientegarantia_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.docreferenciaclientegarantia }}</td>
+                <td>{{ entity.valorclientegarantia }}</td>
+                <td>{{ entity.ubicacionclientegarantia }}</td>
+                <td>{{ entity.observacionclientegarantia }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('clientegarantia_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('clientegarantia_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('clientegarantia_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

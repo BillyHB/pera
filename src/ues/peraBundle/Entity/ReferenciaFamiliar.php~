@@ -1,0 +1,64 @@
+<?php
+
+namespace ues\peraBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ReferenciaFamiliar
+ *
+ * @ORM\Table(name="referencia_familiar", uniqueConstraints={@ORM\UniqueConstraint(name="referencia_familiar_pk", columns={"id"})}, indexes={@ORM\Index(name="proporciona_fk", columns={"idcliente"})})
+ * @ORM\Entity
+ */
+class ReferenciaFamiliar
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="referencia_familiar_id_seq", allocationSize=1, initialValue=1)
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombrereffamiliar", type="string", length=75, nullable=false)
+     */
+    private $nombrereffamiliar;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="parentescoreffamiliar", type="string", length=15, nullable=false)
+     */
+    private $parentescoreffamiliar;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="direccionreffamiliar", type="string", length=50, nullable=false)
+     */
+    private $direccionreffamiliar;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telefonoreffamiliar", type="string", nullable=false)
+     */
+    private $telefonoreffamiliar;
+
+    /**
+     * @var \Cliente
+     *
+     * @ORM\ManyToOne(targetEntity="Cliente")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idcliente", referencedColumnName="id")
+     * })
+     */
+    private $idcliente;
+
+
+}

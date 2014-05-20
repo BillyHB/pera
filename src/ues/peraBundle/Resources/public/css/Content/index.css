@@ -1,0 +1,182 @@
+/* 
+    Document   : index
+    Created on : 05-03-2014, 12:03:30 PM
+    Author     : billyhb
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#contenido #listado_wrapper{
+    /*padding: 10px;*/
+    /*margin: 1% 0;*/
+    /*border: solid 1px #D8D8D8;*/
+    /*border-radius: 3px;*/
+    /*box-shadow: 1px 1px 3px 1px #ccc;*/
+    background: #D5D5D5;
+    box-shadow: 0px 0px 0px 7px rgba(150, 150, 150, 0.1), 0px 1px 3px rgba(25, 25, 25, 0.3), 0px 10px 15px rgba(200, 200, 200, 0.1) inset;
+}
+
+#contenido #listado_wrapper.delgado{
+    width: 840px;
+    margin: 0 auto;    
+}
+
+#listado_wrapper .top{
+    padding: 10px;
+    position: relative;
+    height: 20px;
+    margin-top: 10px;
+    /*margin-bottom: 15px;*/
+    border: solid 1px #D8D8D8;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px; 
+    
+    background: #fff;
+    
+}
+
+    #listado_wrapper .top h1{
+        position: absolute;
+        display: inline;
+        width: auto;
+        /*padding: 5px 0;*/
+        margin: 4px 0;
+        /*top: 10px;*/
+        color: #4798D7;
+        font-family: Arial;
+        font-size: 18px;
+        font-weight: 300;
+    }
+    
+    #listado_wrapper .top input[type="search"]{
+        height: 20px;
+        border: solid 1px #D8D8D8;
+        border-radius: 2px; 
+    }
+    
+    #listado_wrapper .top input[type="search"]:focus{
+        border: solid 1px #3bbed6;
+        box-shadow: 0 0 1px rgba(0,0,0,.2) inset;
+    }
+
+#listado_wrapper .table_wrapper{
+    padding: 15px 10px;
+    height: 430px;
+    border: solid 1px #D8D8D8;
+    border-top: none;
+    border-bottom: none;
+    
+    background: #fff;
+}
+
+#listado_wrapper .bottom{
+    padding: 10px;
+    height: 20px;
+    /*margin-top: 15px;*/
+    border: solid 1px #D8D8D8;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px; 
+    
+    background: #fff;
+}
+
+    #listado_wrapper .bottom select {
+        -webkit-appearance: none;
+           -moz-appearance: none;
+            -ms-appearance: none;
+             -o-appearance: none;
+                appearance: none;
+        text-indent: 0.01px;
+        text-overflow: "";
+        
+        height: 20px;
+        width: 50px;
+        background-color: #fff;
+        background: url('../../img/sort_desc.png') no-repeat;
+        background-position: 92% 50%;
+        border: solid 1px #D8D8D8;
+        cursor: pointer;
+    
+        outline: none; 
+    }
+
+    #listado_wrapper .bottom #listado_length{
+        position: absolute;
+        left: 120px;
+        bottom: 10px;
+        padding-left: 10px;
+        border-left: solid 1px #ccc;
+    }
+    
+    #listado_wrapper .bottom #listado_paginate{
+        position: absolute;
+        right: 0;
+        bottom: 7px;
+    }
+    
+    button:focus, button:focus{
+        outline: 0;
+    }
+    
+    #listado_wrapper .bottom .buttons{
+        position: absolute;
+        bottom: 4px;
+        height: 32px;
+        width: 100px; 
+    }
+    
+        .buttons .btn{
+            height: 32px;
+            width: 32px;
+            float: left;
+            border: solid 1px #fff;
+            border-radius: 50%;
+            background: none;
+            /*box-shadow: 0px 0px 0px 7px rgba(150, 150, 150, 0.1), 0px 1px 3px rgba(25, 25, 25, 0.3), 0px 10px 15px rgba(200, 200, 200, 0.1) inset;*/
+            cursor: pointer;
+
+            font-family: inherit;
+            font-size: 12px;
+            text-align: center;
+
+            -webkit-touch-callout: none;
+              -webkit-user-select: none;
+               -khtml-user-select: none;
+                 -moz-user-select: none;
+                  -ms-user-select: none;
+                      user-select: none;
+        }
+        
+        .buttons .btn::-moz-focus-inner{
+            border: 0;
+        }
+        
+        .buttons #nuevo{
+            background-image: url('../../img/add1.png');
+            background-size: 32px 32px;  
+            background-repeat: no-repeat;
+            background-position:  50% 55%;
+        }
+            .buttons #nuevo:hover{
+                background-image: url('../../img/add_hover.png');                
+            }
+            
+        .buttons #borrar{
+            background-image: url('../../img/delete1.png');
+            background-size: 32px 32px;  
+            background-repeat: no-repeat;
+            background-position:  50% 55%;
+        }
+            .buttons #borrar:hover{
+                background-image: url('../../img/delete_hover.png');                
+            }    
+            
+       .buttons #actualizar{
+            background-image: url('../../img/update1.png');
+            background-size: 32px 32px;  
+            background-repeat: no-repeat;
+            background-position:  50% 55%;
+        }
+            .buttons #actualizar:hover{
+                background-image: url('../../img/update_hover.png');                
+            } 

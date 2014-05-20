@@ -1,0 +1,78 @@
+<?php
+
+namespace ues\peraBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * IngresosFamiliares
+ *
+ * @ORM\Table(name="ingresos_familiares", uniqueConstraints={@ORM\UniqueConstraint(name="ingresos_familiares_pk", columns={"id"})}, indexes={@ORM\Index(name="cliente_ing_fam_fk", columns={"idcliente"})})
+ * @ORM\Entity
+ */
+class IngresosFamiliares
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="ingresos_familiares_id_seq", allocationSize=1, initialValue=1)
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="salariosingfamiliares", type="decimal", precision=9, scale=2, nullable=false)
+     */
+    private $salariosingfamiliares;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="alquileresingfamiliares", type="decimal", precision=9, scale=2, nullable=false)
+     */
+    private $alquileresingfamiliares;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="remesasingfamiliares", type="decimal", precision=9, scale=2, nullable=false)
+     */
+    private $remesasingfamiliares;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pensionesingfamiliares", type="decimal", precision=9, scale=2, nullable=false)
+     */
+    private $pensionesingfamiliares;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="otrosingresosingfamiliares", type="decimal", precision=9, scale=2, nullable=false)
+     */
+    private $otrosingresosingfamiliares;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="totalingfamiliares", type="decimal", precision=9, scale=2, nullable=false)
+     */
+    private $totalingfamiliares;
+
+    /**
+     * @var \Cliente
+     *
+     * @ORM\ManyToOne(targetEntity="Cliente")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idcliente", referencedColumnName="id")
+     * })
+     */
+    private $idcliente;
+
+
+}

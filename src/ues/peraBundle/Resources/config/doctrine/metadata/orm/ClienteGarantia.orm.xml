@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="ClienteGarantia" table="cliente_garantia">
+    <indexes>
+      <index name="tiene_fk" columns="idcliente"/>
+      <index name="conforma_fk" columns="idgarantia"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="cliente_garantia_pk" columns="id"/>
+    </unique-constraints>
+    <id name="id" type="integer" column="id">
+      <generator strategy="SEQUENCE"/>
+    </id>
+    <field name="docreferenciaclientegarantia" type="string" column="docreferenciaclientegarantia" length="30" nullable="false"/>
+    <field name="valorclientegarantia" type="decimal" column="valorclientegarantia" precision="9" scale="2" nullable="false"/>
+    <field name="ubicacionclientegarantia" type="string" column="ubicacionclientegarantia" length="50" nullable="false"/>
+    <field name="observacionclientegarantia" type="string" column="observacionclientegarantia" length="150" nullable="false"/>
+    <many-to-one field="idcliente" target-entity="Cliente">
+      <join-columns>
+        <join-column name="idcliente" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idgarantia" target-entity="Garantia">
+      <join-columns>
+        <join-column name="idgarantia" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

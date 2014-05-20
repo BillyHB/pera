@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Domicilio" table="domicilio">
+    <unique-constraints>
+      <unique-constraint name="ak_uk_domicilio_domicili" columns="tipodomicilio"/>
+      <unique-constraint name="domicilio_pk" columns="id"/>
+    </unique-constraints>
+    <id name="id" type="integer" column="id">
+      <generator strategy="SEQUENCE"/>
+    </id>
+    <field name="tipodomicilio" type="string" column="tipodomicilio" length="15" nullable="false"/>
+  </entity>
+</doctrine-mapping>

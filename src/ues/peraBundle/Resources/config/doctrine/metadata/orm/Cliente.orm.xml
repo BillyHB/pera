@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Cliente" table="cliente">
+    <unique-constraints>
+      <unique-constraint name="ak_uk1_cliente_cliente" columns="duicliente"/>
+      <unique-constraint name="ak_uk2_cliente_cliente" columns="issscliente"/>
+      <unique-constraint name="ak_uk3_cliente_cliente" columns="nitcliente"/>
+      <unique-constraint name="cliente_pk" columns="id"/>
+    </unique-constraints>
+    <id name="id" type="integer" column="id">
+      <generator strategy="SEQUENCE"/>
+    </id>
+    <field name="nombrescliente" type="string" column="nombrescliente" length="50" nullable="false"/>
+    <field name="primapellidocliente" type="string" column="primapellidocliente" length="30" nullable="false"/>
+    <field name="segapellidocliente" type="string" column="segapellidocliente" length="30" nullable="true"/>
+    <field name="lecturafirmacliente" type="string" column="lecturafirmacliente" length="25" nullable="false"/>
+    <field name="duicliente" type="string" column="duicliente" length="10" nullable="false"/>
+    <field name="duifechaexpcliente" type="date" column="duifechaexpcliente" nullable="false"/>
+    <field name="duilugarexpcliente" type="string" column="duilugarexpcliente" length="20" nullable="false"/>
+    <field name="issscliente" type="string" column="issscliente" length="10" nullable="false"/>
+    <field name="nitcliente" type="string" column="nitcliente" nullable="false"/>
+    <field name="telefonocliente" type="string" column="telefonocliente" nullable="false"/>
+    <field name="estadocivilcliente" type="string" column="estadocivilcliente" nullable="false"/>
+    <field name="sexocliente" type="string" column="sexocliente" nullable="false"/>
+    <field name="profesioncliente" type="string" column="profesioncliente" length="30" nullable="false"/>
+    <field name="nomconyugcliente" type="string" column="nomconyugcliente" length="100" nullable="true"/>
+    <field name="numhijocliente" type="integer" column="numhijocliente" nullable="true"/>
+    <field name="fechaingresocliente" type="date" column="fechaingresocliente" nullable="false"/>
+  </entity>
+</doctrine-mapping>

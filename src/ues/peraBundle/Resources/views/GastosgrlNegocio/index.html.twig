@@ -1,0 +1,59 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>GastosgrlNegocio list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Sueldosggn</th>
+                <th>Alquileresggn</th>
+                <th>Serviciosggn</th>
+                <th>Transporteggn</th>
+                <th>Bodegaggn</th>
+                <th>Impuestosggn</th>
+                <th>Cuotaptmosggn</th>
+                <th>Otrosgastosggn</th>
+                <th>Imprevistosggn</th>
+                <th>Totalggn</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('gastosgrlnegocio_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.sueldosggn }}</td>
+                <td>{{ entity.alquileresggn }}</td>
+                <td>{{ entity.serviciosggn }}</td>
+                <td>{{ entity.transporteggn }}</td>
+                <td>{{ entity.bodegaggn }}</td>
+                <td>{{ entity.impuestosggn }}</td>
+                <td>{{ entity.cuotaptmosggn }}</td>
+                <td>{{ entity.otrosgastosggn }}</td>
+                <td>{{ entity.imprevistosggn }}</td>
+                <td>{{ entity.totalggn }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('gastosgrlnegocio_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('gastosgrlnegocio_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('gastosgrlnegocio_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

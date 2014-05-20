@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    
+    {# Bloque para hojas de estilo #}
+    {% block stylesheets %}
+        <link href="{{ asset('bundles/uespera/css/styles.css') }}" rel="stylesheet" type="text/css"/>
+    {% endblock %}
+    
+    {# Bloque para javascript #}    
+    {% block javascripts %}            
+        <script src="{{ asset('bundles/uespera/js/jquery-1.10.2.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+        <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+    {% endblock %}  
+                
+</head>
+
+<body>
+    
+    <header>
+        <div id="header_container">
+            <h1>
+                <img class="header-logo" title="Nombre_proyecto" alt="Nombre_proyecto" src="/bundles/uespera/img/logo.png"></img>
+                Nombre proyecto
+            </h1>
+            <nav>
+                {% include 'uesperaBundle::menu.html.twig' %}
+            </nav>    
+        </div>
+    </header>
+    
+    <div id="contenido">
+        {% block body %} {% endblock %}
+    </div>
+    
+    <footer>
+        Derechos reservados &copy;
+    </footer>
+    
+    {% block script %} {% endblock %}    
+</body>
+</html>
