@@ -1,82 +1,518 @@
-{% extends '::base.html.twig' %}
+{% extends 'uesperaBundle::Layout.html.twig' %}
 
 {% block body -%}
-    <h1>Cliente</h1>
+    <div id="form_wrapper">
+        {#<a href='{{ path('cliente_pdf', { 'id': 5 }) }}' target="_blank"> asd </a>#}
+        <div id="nombre_form">
+            <h1>{{ entity.nombrescliente }} {{ entity.primapellidocliente }} {{ entity.segapellidocliente }}</h1>
+            <div class="btns">                
+                <button class="cancelar" title="Volver a listado de clientes" onclick="location.href='{{ path('cliente') }}';"> Volver </button>
+                <button class="guardar" title="Exportar a PDF" onclick="location.href='{{ path('cliente_pdf', { 'id': entity.id }) }}';">Exportar</button>               
+            </div>
+        </div>
+        
+        <section>
+            <div class="top">
+                <h2>Información General</h2>
+            </div>
+            <div class="content_wrapper padding">
+                <p class="col1">
+                    <label class="largo">Sexo:</label>
+                    <input type="text" value="{% if entity.sexocliente == 'm' %}Masculino
+                                              {% else %}Femenino
+                                              {% endif %}" readonly="readonly"></input>
+                </p>
+                <p class="col1">
+                    <label class="largo">Como se lee Firma:</label>
+                    <input type="text" value="{{ entity.lecturafirmacliente }}" readonly="readonly"></input>
+                </p>
+                <p class="col1">
+                    <label class="largo">D.U.I.:</label>
+                    <input type="text" value="{{ entity.duicliente }}" readonly="readonly"></input>
+                </p>
+                <p class="col1">
+                    <label class="largo">Fecha de Expedición de DUI:</label>
+                    <input type="text" value="{{ entity.duifechaexpcliente|date('d-m-Y') }}" readonly="readonly"></input>
+                </p>
+                <p class="col1">
+                    <label class="largo">Lugar de Expedición de DUI:</label>
+                    <input type="text" value="{{ entity.duilugarexpcliente }}" readonly="readonly"></input>
+                </p>
+                
+                <p class="col1">
+                    <label class="largo">I.S.S.S.:</label>
+                    <input type="text" value="{{ entity.issscliente }}" readonly="readonly"></input>
+                </p>
+                <p class="col1">
+                    <label class="largo">N.I.T.:</label>
+                    <input type="text" value="{{ entity.nitcliente }}" readonly="readonly"></input>
+                </p>
+                <p class="col1">
+                    <label class="largo">Telefono:</label>
+                    <input type="text" value="{{ entity.telefonocliente }}" readonly="readonly"></input>
+                </p>
+                <p class="col1">
+                    <label class="largo">Profesión u Oficio:</label>
+                    <input type="text" value="{{ entity.profesioncliente }}" readonly="readonly"></input>
+                </p>
+                <p class="col1">
+                    <label class="largo">Estado Civil:</label>
+                    <input type="text" value="{% if entity.estadocivilcliente == 's' %}Soltero/a
+                                              {% elseif entity.estadocivilcliente == 'c' %}Casado/a  
+                                              {% else %}Viudo/a
+                                              {% endif %}" readonly="readonly"></input>
+                </p>
+                <p class="col1">
+                    <label class="largo">Nombre del Conyuge:</label>
+                    <input type="text" value="{{ entity.nomconyugcliente }}" readonly="readonly"></input>
+                </p>
+                <p class="col1">
+                    <label class="largo">No. de Hijos:</label>
+                    <input type="text" value="{{ entity.numhijocliente }}" readonly="readonly"></input>
+                </p>
+                <p class="col1">
+                    <label class="largo">Fecha de Ingreso:</label>
+                    <input type="text" value="{{ entity.fechaingresocliente|date('d-m-Y') }}" readonly="readonly"></input>
+                </p>
+            </div>
+        </section>
+        
+        <section>
+            <div class="top">
+                <h2>Domicilio</h2>      
+            </div>
+            <div class="content_wrapper">
+                <ul>
+                    {% for domicilio in entity.clientedomicilio %}
+                    <li>
+                        <div>
+                            <div>
+                                <div>
+                                    <label class="largo">Tipo de Domicilio:</label>
+                                    <input type="text" value="{{ domicilio.iddomicilio }}" readonly="readonly"></input>
+                                </div>
+                                <div>
+                                    <label class="largo">Departamento:</label>
+                                    <input type="text" value="{{ domicilio.deptoclientedomicilio }}" readonly="readonly"></input>
+                                </div>
+                                <div>
+                                    <label class="largo">Municipio:</label>
+                                    <input type="text" value="{{ domicilio.municipioclientedomicilio }}" readonly="readonly"></input>
+                                </div>
+                                <div>
+                                    <label class="largo">Dirección:</label>
+                                    <input type="text" value="{{ domicilio.direccionclientedomicilio }}" readonly="readonly"></input>
+                                </div>
+                                <div>
+                                    <label class="largo">Telefono:</label>
+                                    <input type="text" value="{{ domicilio.telefonoclientedomicilio }}" readonly="readonly"></input>
+                                </div>
+                                <div>
+                                    <label class="largo">Horario de permanencia:</label>
+                                    <input type="text" value="{{ domicilio.horarioclientedomicilio }}" readonly="readonly"></input>
+                                </div>
+                                <div>
+                                    <label class="largo">No. Años de residencia:</label>
+                                    <input type="text" value="{{ domicilio.aniosresidenciaclientedomicilio }} Años" readonly="readonly"></input>
+                                </div>
+                                <div>
+                                    <label class="largo">Pertenencia:</label>
+                                    <input type="text" value="{% if domicilio.alquilerclientedomicilio == 'p' %}Propio
+                                                              {% elseif domicilio.alquilerclientedomicilio == 'a' %}Alquilado  
+                                                              {% else %}Compartido
+                                                              {% endif %}" readonly="readonly"></input>
+                                </div>
+                                <div>
+                                    <label class="largo">Institución:</label>
+                                    <input type="text" value="{{ domicilio.institucionclientedomicilio }}" readonly="readonly"></input>
+                                </div>   
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}                    
+                </ul>
+            </div>
+        </section>        
+            
+        <section>
+            <div class="top">
+                <h2>Referencias Familiares</h2>
+            </div>
+            <div class="content_wrapper">                           
+                <ul>
+                    {% for reffamiliar in entity.refsfamiliar %}
+                    <li>
+                        <div>
+                            <div>
+                                <div>
+                                    <label class="largo">Nombre:</label>
+                                    <input type="text" class="nombre" value="{{ reffamiliar.nombrereffamiliar }}" readonly="readonly"></input>
+                                </div>
+                                <div>
+                                    <label class="largo">Parentesco:</label>
+                                    <input type="text" value="{{ reffamiliar.parentescoreffamiliar }}" readonly="readonly"></input>
+                                </div>
+                                <div>
+                                    <label class="largo">Dirección:</label>
+                                    <input type="text" value="{{ reffamiliar.direccionreffamiliar }}" readonly="readonly"></input>
+                                </div>
+                                <div>
+                                    <label class="largo">Telefono:</label>
+                                    <input type="text" value="{{ reffamiliar.telefonoreffamiliar }}" readonly="readonly"></input>
+                                </div>  
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}                    
+                </ul>
+            </div>
+        </section>
+            
+        <section>
+            <div class="top">
+                <h2>Referencias Laborales</h2>
+            </div>
+            <div class="content_wrapper">                          
+                <ul>
+                    {% for reflaboral in entity.refslaboral %}
+                    <li>
+                        <div>
+                            <div>
+                                <div>
+                                    <label class="largo">Empresa en que Labora:</label>
+                                    <input type="text" value="{{ reflaboral.nombreempresareflaboral }}" readonly="readonly"></input>
+                                </div>
+                                <div>
+                                    <label class="largo">Dirección:</label>
+                                    <input type="text" value="{{ reflaboral.direccionreflaboral }}" readonly="readonly"></input>
+                                </div>
+                                <div>
+                                    <label class="largo">Telefono:</label>
+                                    <input type="text" value="{{ reflaboral.telefonoreflaboral }}" readonly="readonly"></input>
+                                </div>
+                                <div>
+                                    <label class="largo">Cargo que Desempeña:</label>
+                                    <input type="text" value="{{ reflaboral.cargoreflaboral }}" readonly="readonly"></input>
+                                </div> 
+                                <div>
+                                    <label class="largo">Salario:</label>
+                                    <input type="text" value="$ {{ reflaboral.salarioreflaboral|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                                </div>
+                                <div>
+                                    <label class="largo">Nombre de jefe inmediato:</label>
+                                    <input type="text" class="nombre" value="{{ reflaboral.nombrejefereflaboral }}" readonly="readonly"></input>
+                                </div>     
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}                    
+                </ul>    
+            </div>
+        </section>      
+            
+        <section>
+            <div class="top">
+                <h2>Garantias</h2>            
+            </div>
+            <div class="content_wrapper">
+                <ul>
+                    {% for garantia in entity.clientegarantias %}
+                    <li>
+                        <div>
+                            <div>
+                                <div>
+                                    <label class="largo">Tipo de Garantia:</label>
+                                    <input type="text" value="{{ garantia.idgarantia }}" readonly="readonly"></input>
+                                </div>
+                                <div>
+                                    <label class="largo">Doc. de Referencia:</label>
+                                    <input type="text" value="{{ garantia.docreferenciaclientegarantia }}" readonly="readonly"></input>
+                                </div>
+                                <div>
+                                    <label class="largo">Valorado en:</label>
+                                    <input type="text" value="$ {{ garantia.valorclientegarantia|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                                </div>
+                                <div>
+                                    <label class="largo">Ubicación:</label>
+                                    <input type="text" value={{ garantia.ubicacionclientegarantia }}" readonly="readonly"></input>
+                                </div> 
+                                <div>
+                                    <label class="largo">Observaciones:</label>
+                                    <input type="text" value="{{ garantia.observacionclientegarantia }}" readonly="readonly"></input>
+                                </div>    
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}                    
+                </ul>    
+            </div>
+        </section>    
+            
+        <section>
+            <div class="top">
+                <h2>Ingresos y Gastos Familiares</h2>
+            </div>
+            <div class="content_wrapper">
+                <div class="col padding">
+                    <legend>Ingresos</legend>
+                    <p>
+                        <label class="corto">Salarios:</label>
+                        <input type="text" value="$ {{ entity.ingresosfamiliares.salariosingfamiliares|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                    </p>
+                    <p>
+                        <label class="corto">Alquileres:</label>
+                        <input type="text" value="$ {{ entity.ingresosfamiliares.alquileresingfamiliares|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                    </p>
+                    <p>
+                        <label class="corto">Remesas:</label>
+                        <input type="text" value="$ {{ entity.ingresosfamiliares.remesasingfamiliares|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                    </p>
+                    <p>
+                        <label class="corto">Pensiones:</label>
+                        <input type="text" value="$ {{ entity.ingresosfamiliares.pensionesingfamiliares|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                    </p>
+                    <p>
+                        <label class="corto">Otros Ingresos:</label>
+                        <input type="text" value="$ {{ entity.ingresosfamiliares.otrosingresosingfamiliares|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                    </p>
+                    <p>
+                        <label class="corto">Total:</label>
+                        <input type="text" value="$ {{ entity.ingresosfamiliares.totalingfamiliares|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                    </p>
+                </div>
+                <div class="col padding border_left">
+                    <legend>Gastos</legend>
+                    <p>
+                        <label class="largo">Alimentación:</label>
+                        <input type="text" value="$ {{ entity.gastosfamiliares.alimentaciongasfamiliares|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                    </p>
+                    <p>
+                        <label class="largo">Educación:</label>
+                        <input type="text" value="$ {{ entity.gastosfamiliares.educaciongasfamiliares|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                    </p>
+                    <p>
+                        <label class="largo">Alquileres:</label>
+                        <input type="text" value="$ {{ entity.gastosfamiliares.alquilergasfamiliares|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                    </p>
+                    <p>
+                        <label class="largo">Servicios:</label>
+                        <input type="text" value="$ {{ entity.gastosfamiliares.serviciosgasfamiliares|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                    </p>
+                    <p>
+                        <label class="largo">Transporte:</label>
+                        <input type="text" value="$ {{ entity.gastosfamiliares.transportegasfamiliares|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                    </p>
+                    <p>
+                        <label class="largo">Salud:</label>
+                        <input type="text" value="$ {{ entity.gastosfamiliares.saludgasfamiliares|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                    </p>
+                    <p>
+                        <label class="largo">Ptmos. Person.:</label>
+                        <input type="text" value="$ {{ entity.gastosfamiliares.prestamospersgasfamiliares|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                    </p>
+                    <p>
+                        <label class="largo">Otros Gastos:</label>
+                        <input type="text" value="$ {{ entity.gastosfamiliares.otrosgastosgasfamiliares|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                    </p>
+                    <p>
+                        <label class="largo">Imprevistos:</label>
+                        <input type="text" value="$ {{ entity.gastosfamiliares.imprevistosgasfamiliares|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                    </p>
+                    <p>
+                        <label class="largo">Total:</label>
+                        <input type="text" value="$ {{ entity.gastosfamiliares.totalgasfamiliares|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                    </p>
+                </div>
+            </div>
+        </section>
+            
+        <section> 
+            <div class="top">
+                <h2>Información del Negocio</h2>
+            </div>
+            <div class="content_wrapper padding">  
+                <p class="col1">
+                    <label class="largo">Nombre:</label>
+                    <input type="text" value="{{ entity.negocio.nombrenegocio }}" readonly="readonly"></input>
+                </p>
+                <p class="col1">
+                    <label class="largo">Departamento:</label>
+                    <input type="text" value="{{ entity.negocio.deptonegocio }}" readonly="readonly"></input>
+                </p>
+                <p class="col1">
+                    <label class="largo">Municipio:</label>
+                    <input type="text" value="{{ entity.negocio.municipionegocio }}" readonly="readonly"></input>
+                </p>
+                <p class="col1">
+                    <label class="largo">Dirección:</label>
+                    <input type="text" class="nombre" value="{{ entity.negocio.direccionnegocio }}" readonly="readonly"></input>
+                </p>
+                <p class="col1">
+                    <label class="largo">Telefono:</label>
+                    <input type="text" value="{{ entity.negocio.telefononegocio }}" readonly="readonly"></input>
+                </p>                
+                <p class="col1">
+                    <label class="largo">Horario de Atención:</label>
+                    <input type="text" value="{{ entity.negocio.horarionegocio }}" readonly="readonly"></input>
+                </p>
+            </div>
+        </section>
+            
+        <section>   
+            <div class="top">
+                <h2>Gastos Generales del Negocio</h2>
+            </div>
+            <div class="content_wrapper padding">
+                <p class="col1">
+                    <label class="largo">Sueldos:</label>
+                    <input type="text" value="$ {{ entity.negocio.gastosgrlnegocio.sueldosggn|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                </p>
+                <p class="col1">
+                    <label class="largo">Alquileres:</label>
+                    <input type="text" value="$ {{ entity.negocio.gastosgrlnegocio.alquileresggn|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                </p>
+                <p class="col1">
+                    <label class="largo">Servicios:</label>
+                    <input type="text" value="$ {{ entity.negocio.gastosgrlnegocio.serviciosggn|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                </p>
+                <p class="col1">
+                    <label class="largo">Transporte:</label>
+                    <input type="text" value="$ {{ entity.negocio.gastosgrlnegocio.transporteggn|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                </p>
+                <p class="col1">
+                    <label class="largo">Bodega:</label>
+                    <input type="text" value="$ {{ entity.negocio.gastosgrlnegocio.bodegaggn|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                </p>
+                <p class="col1">
+                    <label class="largo">Impuestos:</label>
+                    <input type="text" value="$ {{ entity.negocio.gastosgrlnegocio.impuestosggn|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                </p>
+                <p class="col1">
+                    <label class="largo">Cuotas Ptmos.:<</label>
+                    <input type="text" value="$ {{ entity.negocio.gastosgrlnegocio.cuotaptmosggn|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                </p>
+                <p class="col1">
+                    <label class="largo">Otros Gastos:</label>
+                    <input type="text" value="$ {{ entity.negocio.gastosgrlnegocio.otrosgastosggn|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                </p>
+                <p class="col1">
+                    <label class="largo">Imprevistos:</label>
+                    <input type="text" value="$ {{ entity.negocio.gastosgrlnegocio.imprevistosggn|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                </p>
+                <p class="col1">
+                    <label class="largo">Total:</label>
+                    <input type="text" value="$ {{ entity.negocio.gastosgrlnegocio.totalggn|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                </p>
+            </div>
+        </section>    
+            
+        <section>
+            <div class="top">
+                <h2>Flujo de Caja</h2>
+            </div>
+            <div class="content_wrapper">
+                <div class="col padding border_right">
+                    <legend>Ingresos</legend>
+                    <p>
+                        <label class="normal">Ventas al Contado:</label>
+                        <input type="text" value="$ {{ entity.negocio.ingresoflujocaja.ventacontadoifc|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                    </p>
+                    <p>
+                        <label class="normal">Recup. ctas por Cobrar:</label>
+                        <input type="text" value="$ {{ entity.negocio.ingresoflujocaja.recuentaxcobrarifc|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                    </p>
+                    <p>
+                        <label class="normal">Ventas al Credito:</label>
+                        <input type="text" value="$ {{ entity.negocio.ingresoflujocaja.ventascreditoifc|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                    </p>
+                    <p>
+                        <label class="normal">Otros Ingresos:</label>
+                        <input type="text" value="$ {{ entity.negocio.ingresoflujocaja.otrosingresosifc|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                    </p>
+                    <p>
+                        <label class="normal">Total:</label>
+                        <input type="text" value="$ {{ entity.negocio.ingresoflujocaja.totalifc|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                    </p>
+                </div>
+                <div class="col padding">
+                    <legend>Gastos</legend>
+                    <p>
+                        <label class="normal">Compra de mercadería:</label>
+                        <input type="text" value="$ {{ entity.negocio.gastosflujocaja.compramercaderiagfc|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                    </p>
+                    <p>
+                        <label class="normal">Gastos del Negocio:</label>
+                        <input type="text" value="$ {{ entity.negocio.gastosflujocaja.gastosnegociogfc|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                    </p>
+                    <p>
+                        <label class="normal">Gastos Familiares:</label>
+                        <input type="text" value="$ {{ entity.negocio.gastosflujocaja.gastosfamiliaresgfc|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                    </p>
+                    <p>
+                        <label class="normal">Total:</label>
+                        <input type="text" value="$ {{ entity.negocio.gastosflujocaja.totalgfc|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                    </p>
+                </div>
+            </div>
+        </section>
+            
+        <section>
+            <div class="top">
+                <h2>Balance General</h2>
+            </div>
+            <div class="content_wrapper">
+                <div class="col padding border_right">
+                    <legend>Activos</legend>
+                    <p>
+                        <label class="normal">Disponible:</label>
+                        <input type="text" value="$ {{ entity.negocio.activobg.disponibleabg|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                    </p>
+                    <p>
+                        <label class="normal">Cuentas por Cobrar:</label>
+                        <input type="text" value="$ {{ entity.negocio.activobg.cuentasxcobrarabg|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                    </p>
+                    <p>
+                        <label class="normal">Inventarios:</label>
+                        <input type="text" value="$ {{ entity.negocio.activobg.inventariosabg|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                    </p>
+                    <p>
+                        <label class="normal">Activo Fijo:</label>
+                        <input type="text" value="$ {{ entity.negocio.activobg.activofijoabg|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                    </p>
+                    <p>
+                        <label class="normal">Total Activos:</label>
+                        <input type="text" value="$ {{ entity.negocio.activobg.totalabg|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                    </p>
+                </div>
+                <div class="col padding">
+                    <legend>Pasivos</legend>
+                    <p>
+                        <label class="largo">Proveedores:</label>
+                        <input type="text" value="$ {{ entity.negocio.pasivopatrimoniobg.proveedoresppbg|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                    </p>
+                    <p>
+                        <label class="largo">Préstamos en Instituciones:</label>
+                        <input type="text" value="$ {{ entity.negocio.pasivopatrimoniobg.prestamosinstppbg|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                    </p>
+                    <p>
+                        <label class="largo">OTros Préstamos:</label>
+                        <input type="text" value="$ {{ entity.negocio.pasivopatrimoniobg.otrosprestppbg|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                    </p>
+                    <p>
+                        <label class="largo">Patrimonio:</label>
+                        <input type="text" value="$ {{ entity.negocio.pasivopatrimoniobg.patrimonioppbg|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                    </p>
+                    <p>
+                        <label class="largo">Total Pasivo y Patrimonio:</label>
+                        <input type="text" value="$ {{ entity.negocio.pasivopatrimoniobg.totalppbg|number_format(2, '.', ',') }}" readonly="readonly"></input>
+                    </p>
+                </div>
+            </div>    
+        </section>
+    </div>
 
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Nombrescliente</th>
-                <td>{{ entity.nombrescliente }}</td>
-            </tr>
-            <tr>
-                <th>Primapellidocliente</th>
-                <td>{{ entity.primapellidocliente }}</td>
-            </tr>
-            <tr>
-                <th>Segapellidocliente</th>
-                <td>{{ entity.segapellidocliente }}</td>
-            </tr>
-            <tr>
-                <th>Lecturafirmacliente</th>
-                <td>{{ entity.lecturafirmacliente }}</td>
-            </tr>
-            <tr>
-                <th>Duicliente</th>
-                <td>{{ entity.duicliente }}</td>
-            </tr>
-            <tr>
-                <th>Duifechaexpcliente</th>
-                <td>{{ entity.duifechaexpcliente|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Duilugarexpcliente</th>
-                <td>{{ entity.duilugarexpcliente }}</td>
-            </tr>
-            <tr>
-                <th>Issscliente</th>
-                <td>{{ entity.issscliente }}</td>
-            </tr>
-            <tr>
-                <th>Nitcliente</th>
-                <td>{{ entity.nitcliente }}</td>
-            </tr>
-            <tr>
-                <th>Telefonocliente</th>
-                <td>{{ entity.telefonocliente }}</td>
-            </tr>
-            <tr>
-                <th>Estadocivilcliente</th>
-                <td>{{ entity.estadocivilcliente }}</td>
-            </tr>
-            <tr>
-                <th>Sexocliente</th>
-                <td>{{ entity.sexocliente }}</td>
-            </tr>
-            <tr>
-                <th>Profesioncliente</th>
-                <td>{{ entity.profesioncliente }}</td>
-            </tr>
-            <tr>
-                <th>Nomconyugcliente</th>
-                <td>{{ entity.nomconyugcliente }}</td>
-            </tr>
-            <tr>
-                <th>Numhijocliente</th>
-                <td>{{ entity.numhijocliente }}</td>
-            </tr>
-            <tr>
-                <th>Fechaingresocliente</th>
-                <td>{{ entity.fechaingresocliente|date('Y-m-d H:i:s') }}</td>
-            </tr>
-        </tbody>
-    </table>
 
-        <ul class="record_actions">
+{#<ul class="record_actions">
     <li>
         <a href="{{ path('cliente') }}">
             Back to the list
@@ -88,5 +524,5 @@
         </a>
     </li>
     <li>{{ form(delete_form) }}</li>
-</ul>
+</ul>#}
 {% endblock %}

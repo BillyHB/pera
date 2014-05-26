@@ -54,7 +54,7 @@ class GarantiaController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('garantia_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('garantia'));
         }
 
         return array(

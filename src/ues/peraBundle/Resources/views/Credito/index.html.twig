@@ -23,7 +23,7 @@
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('credito_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.id }}</td>
                 <td>{{ entity.nomcredito }}</td>
                 {#<td>
                     <ul>
@@ -121,7 +121,8 @@
                });
                
                if(id !== 0){
-                   $.getJSON(Routing.generate('credito_delete')+'/'+id,
+                   if (confirm("¿ Está seguro de eliminar el crédito seleccionado ?") === true) {
+                        $.getJSON(Routing.generate('credito_delete')+'/'+id,
                              function(data) { 
                                 if(data.success){
                                     alert(data.msje);
@@ -130,6 +131,7 @@
                                 else
                                     alert(data.msje);
                              });
+                   }
                }    
                else
                    alert('seleccione un registro')               

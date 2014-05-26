@@ -54,7 +54,7 @@ class ClienteCreditoController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('clientecredito_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('clientecredito'));
         }
 
         return array(

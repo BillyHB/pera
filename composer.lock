@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "96ec6728e8bfdbaada9d625900795864",
+    "hash": "82a4bf955fea52baf611c11c41a94a53",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -221,16 +221,16 @@
         },
         {
             "name": "doctrine/common",
-            "version": "v2.4.1",
+            "version": "v2.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/common.git",
-                "reference": "ceb18cf9b0230f3ea208b6238130fd415abda0a7"
+                "reference": "5db6ab40e4c531f14dad4ca96a394dfce5d4255b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/common/zipball/ceb18cf9b0230f3ea208b6238130fd415abda0a7",
-                "reference": "ceb18cf9b0230f3ea208b6238130fd415abda0a7",
+                "url": "https://api.github.com/repos/doctrine/common/zipball/5db6ab40e4c531f14dad4ca96a394dfce5d4255b",
+                "reference": "5db6ab40e4c531f14dad4ca96a394dfce5d4255b",
                 "shasum": ""
             },
             "require": {
@@ -240,6 +240,9 @@
                 "doctrine/inflector": "1.*",
                 "doctrine/lexer": "1.*",
                 "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~3.7"
             },
             "type": "library",
             "extra": {
@@ -292,7 +295,7 @@
                 "persistence",
                 "spl"
             ],
-            "time": "2013-09-07 10:20:34"
+            "time": "2014-05-21 19:28:51"
         },
         {
             "name": "doctrine/dbal",
@@ -1515,6 +1518,63 @@
             "time": "2014-04-27 13:39:18"
         },
         {
+            "name": "tecnick.com/tcpdf",
+            "version": "6.0.080",
+            "source": {
+                "type": "git",
+                "url": "git://git.code.sf.net/p/tcpdf/code",
+                "reference": "fcd0098a2a8b0fb88e6ea291393dc8c1ecb2f38b"
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "fonts",
+                    "config",
+                    "include",
+                    "tcpdf.php",
+                    "tcpdf_parser.php",
+                    "tcpdf_import.php",
+                    "tcpdf_barcodes_1d.php",
+                    "tcpdf_barcodes_2d.php",
+                    "include/tcpdf_colors.php",
+                    "include/tcpdf_filters.php",
+                    "include/tcpdf_font_data.php",
+                    "include/tcpdf_fonts.php",
+                    "include/tcpdf_images.php",
+                    "include/tcpdf_static.php",
+                    "include/barcodes/datamatrix.php",
+                    "include/barcodes/pdf417.php",
+                    "include/barcodes/qrcode.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPLv3"
+            ],
+            "authors": [
+                {
+                    "name": "Nicola Asuni",
+                    "email": "info@tecnick.com",
+                    "homepage": "http://nicolaasuni.tecnick.com"
+                }
+            ],
+            "description": "TCPDF is a PHP class for generating PDF documents.",
+            "homepage": "http://www.tcpdf.org/",
+            "keywords": [
+                "PDFD32000-2008",
+                "TCPDF",
+                "barcodes",
+                "datamatrix",
+                "pdf",
+                "pdf417",
+                "qrcode"
+            ],
+            "time": "2014-05-20 19:50:29"
+        },
+        {
             "name": "twig/extensions",
             "version": "v1.0.1",
             "source": {
@@ -1621,6 +1681,51 @@
             "time": "2014-02-13 10:19:29"
         },
         {
+            "name": "whiteoctober/tcpdf-bundle",
+            "version": "dev-master",
+            "target-dir": "WhiteOctober/TCPDFBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/whiteoctober/WhiteOctoberTCPDFBundle.git",
+                "reference": "33e3e6571b78823dc5676ee52e3150a07e044068"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/whiteoctober/WhiteOctoberTCPDFBundle/zipball/33e3e6571b78823dc5676ee52e3150a07e044068",
+                "reference": "33e3e6571b78823dc5676ee52e3150a07e044068",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/framework-bundle": ">=2.0",
+                "tecnick.com/tcpdf": "*"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "WhiteOctober\\TCPDFBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rich Sage",
+                    "email": "rich.sage@gmail.com",
+                    "homepage": "http://www.richsage.co.uk/"
+                }
+            ],
+            "description": "A bundle to easily integrate TCPDF into Symfony2",
+            "homepage": "https://github.com/whiteoctober/WhiteOctoberTCPDFBundle",
+            "keywords": [
+                "TCPDF",
+                "pdf"
+            ],
+            "time": "2014-03-14 08:41:59"
+        },
+        {
             "name": "willdurand/jsonp-callback-validator",
             "version": "v1.1.0",
             "source": {
@@ -1669,7 +1774,8 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "friendsofsymfony/jsrouting-bundle": 0
+        "friendsofsymfony/jsrouting-bundle": 0,
+        "whiteoctober/tcpdf-bundle": 20
     },
     "platform": {
         "php": ">=5.3.3"

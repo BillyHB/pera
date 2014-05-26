@@ -54,7 +54,7 @@ class CreditoController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('credito_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('credito'));
         }
 
         return array(

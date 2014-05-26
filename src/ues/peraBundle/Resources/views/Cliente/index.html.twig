@@ -80,6 +80,7 @@
             </a>
         </li>
     </ul>#}
+    
 {% endblock %}
     
 {% block script -%}
@@ -115,7 +116,8 @@
             $('div.top').append('<h1>Clientes</h1>');
             $('div.buttons').append('<button id="nuevo" class="btn" title="Nuevo Cliente" onclick="location.href=\'{{ path('cliente_new') }}\';"></button>'
                                     +'<button id="borrar" class="btn" title="Borrar Cliente"></button>'
-                                    +'<button id="actualizar" class="btn" title="Actualizar Cliente"></button>');
+                                    +'<button id="actualizar" class="btn" title="Actualizar Cliente"></button>'
+                                    +'<button id="exportar" class="btn" title="Exportar a PDF"></button>');
             
             /*
              * Agrega clase 'selected' al seleccionar una fila
@@ -161,8 +163,9 @@
                });
                
                if(id !== 0){
-                   $.getJSON(Routing.generate('cliente_delete')+'/'+id,
-                             function(data) { 
+                   if (confirm("¿ Está seguro de eliminar el cliente seleccionado ?") === true) {                           
+                        $.getJSON(Routing.generate('cliente_delete')+'/'+id,
+                            function(data) { 
                                 if(data.success){
                                     alert(data.msje);
                                     $('#listado tr.selected').remove();
@@ -170,9 +173,31 @@
                                 else
                                     alert(data.msje);
                              });
+                   }
                }    
                else
                    alert('seleccione un registro')               
+            });
+            
+            /*
+             * Exporta a pdf el cliente seleccionado
+             */
+            $('#exportar').on('click', function(e){
+               var id = 0; 
+               $('#listado tbody tr').each(function(){                                      
+                    if( $(this).hasClass('selected') ){
+                        if( !$(this).children(':first').hasClass('dataTables_empty') )
+                         id = parseInt($(this).children(':first').text());                         
+                    }                   
+               });
+               
+               if(id !== 0){
+                   var win = window.open(Routing.generate('cliente_pdf', {id: id}), '_blank');
+                   //alert(win);
+               }    
+                   //window.location = id+"/pdf";
+               else
+                   alert('seleccione un registro');
             });
             
         });

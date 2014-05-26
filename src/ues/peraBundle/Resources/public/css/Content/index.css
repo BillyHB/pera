@@ -102,7 +102,7 @@
 
     #listado_wrapper .bottom #listado_length{
         position: absolute;
-        left: 120px;
+        left: 150px;
         bottom: 10px;
         padding-left: 10px;
         border-left: solid 1px #ccc;
@@ -122,7 +122,7 @@
         position: absolute;
         bottom: 4px;
         height: 32px;
-        width: 100px; 
+        width: 150px; 
     }
     
         .buttons .btn{
@@ -180,3 +180,13 @@
             .buttons #actualizar:hover{
                 background-image: url('../../img/update_hover.png');                
             } 
+        
+        .buttons #exportar{
+            background-image: url('../../img/pdf.png');
+            background-size: 32px 32px;  
+            background-repeat: no-repeat;
+            background-position:  50% 55%;
+        }
+            .buttons #exportar:hover{
+                background-image: url('../../img/pdf_hover.png');                
+            }    

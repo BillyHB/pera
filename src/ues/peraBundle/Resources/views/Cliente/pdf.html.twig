@@ -1,0 +1,569 @@
+{% block body -%}
+
+    <h2 style="font-size:8px;border-bottom:1px solid #ccc;">
+        Información General
+    </h2>
+    <p>
+        <table cellspacing="1">
+            <tbody>
+                <tr style="background-color:#f6f6f6;">
+                    <th width="30%" color="#7e7e7e">&nbsp;Id:</th>
+                    <td width="70%" color="#4d4d4d">{{ entity.id }}</td>
+                </tr>                
+                <tr>
+                    <th color="#7e7e7e">&nbsp;Sexo:</th>
+                    <td color="#4d4d4d">{% if entity.sexocliente == 'm' %}Masculino
+                                        {% else %}Femenino
+                                        {% endif %}</td>
+                </tr>
+                <tr style="background-color:#f6f6f6;">
+                    <th color="#7e7e7e">&nbsp;Como se lee Firma:</th>
+                    <td color="#4d4d4d">{{ entity.lecturafirmacliente }}</td>
+                </tr>
+                <tr>
+                    <th color="#7e7e7e">&nbsp;D.U.I.:</th>
+                    <td color="#4d4d4d">{{ entity.duicliente }}</td>
+                </tr>
+                <tr style="background-color:#f6f6f6;">
+                    <th color="#7e7e7e">&nbsp;Fecha de Expedición de DUI:</th>
+                    <td color="#4d4d4d">{{ entity.duifechaexpcliente|date('d-m-Y') }}</td>
+                </tr>
+                <tr>
+                    <th color="#7e7e7e">&nbsp;Lugar de Expedición de DUI:</th>
+                    <td color="#4d4d4d">{{ entity.duilugarexpcliente }}</td>
+                </tr>
+                <tr style="background-color:#f6f6f6;">
+                    <th color="#7e7e7e">&nbsp;I.S.S.S.:</th>
+                    <td color="#4d4d4d">{{ entity.issscliente }}</td>
+                </tr>
+                <tr>
+                    <th color="#7e7e7e">&nbsp;N.I.T.:</th>
+                    <td color="#4d4d4d">{{ entity.nitcliente }}</td>
+                </tr>
+                <tr style="background-color:#f6f6f6;">
+                    <th color="#7e7e7e">&nbsp;Telefono:</th>
+                    <td color="#4d4d4d">{{ entity.telefonocliente }}</td>
+                </tr>
+                <tr>
+                    <th color="#7e7e7e">&nbsp;Profesión u Oficio:</th>
+                    <td color="#4d4d4d">{{ entity.profesioncliente }}</td>
+                </tr>
+                <tr style="background-color:#f6f6f6;">
+                    <th color="#7e7e7e">&nbsp;Estado Civil:</th>
+                    <td color="#4d4d4d">{% if entity.estadocivilcliente == 's' %}Soltero/a
+                                        {% elseif entity.estadocivilcliente == 'c' %}Casado/a  
+                                        {% else %}Viudo/a
+                                        {% endif %}</td>
+                </tr>
+                <tr>
+                    <th color="#7e7e7e">&nbsp;Nombre del Conyuge:</th>
+                    <td color="#4d4d4d">{{ entity.nomconyugcliente }}</td>
+                </tr>
+                <tr style="background-color:#f6f6f6;">
+                    <th color="#7e7e7e">&nbsp;No. de Hijos:</th>
+                    <td color="#4d4d4d">{{ entity.numhijocliente }}</td>
+                </tr>
+                <tr>
+                    <th color="#7e7e7e">&nbsp;Fecha de Ingreso:</th>
+                    <td color="#4d4d4d">{{ entity.fechaingresocliente|date('d-m-Y') }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </p>
+    
+    <h2 style="font-size:8px;border-bottom:1px solid #ccc;">
+        Domicilios
+    </h2>        
+    
+        <p>       
+            <table cellspacing="1">
+                <tbody>
+                    {% for domicilio in entity.clientedomicilio %}
+                    <tr style="background-color:#f6f6f6;">
+                        <th width="30%" color="#7e7e7e">&nbsp;Tipo de Domicilio:</th>
+                        <td width="70%" color="#4d4d4d">{{ domicilio.iddomicilio }}</td>
+                    </tr>
+                    <tr>
+                        <th width="30%" color="#7e7e7e">&nbsp;Departamento:</th>
+                        <td width="70%" color="#4d4d4d">{{ domicilio.deptoclientedomicilio }}</td>
+                    </tr>
+                    <tr style="background-color:#f6f6f6;">
+                        <th width="30%" color="#7e7e7e">&nbsp;Municipio:</th>
+                        <td width="70%" color="#4d4d4d">{{ domicilio.municipioclientedomicilio }}</td>
+                    </tr>
+                    <tr>
+                        <th width="30%" color="#7e7e7e">&nbsp;Dirección:</th>
+                        <td width="70%" color="#4d4d4d">{{ domicilio.direccionclientedomicilio }}</td>
+                    </tr>
+                    <tr style="background-color:#f6f6f6;">
+                        <th width="30%" color="#7e7e7e">&nbsp;Telefono:</th>
+                        <td width="70%" color="#4d4d4d">{{ domicilio.telefonoclientedomicilio }}</td>
+                    </tr>
+                    <tr>
+                        <th width="30%" color="#7e7e7e">&nbsp;Horario de permanencia:</th>
+                        <td width="70%" color="#4d4d4d">{{ domicilio.horarioclientedomicilio }}</td>
+                    </tr>
+                    <tr style="background-color:#f6f6f6;">
+                        <th width="30%" color="#7e7e7e">&nbsp;No. Años de residencia:</th>
+                        <td width="70%" color="#4d4d4d">{{ domicilio.aniosresidenciaclientedomicilio }} Años</td>
+                    </tr>
+                    <tr>
+                        <th width="30%" color="#7e7e7e">&nbsp;Pertenencia:</th>
+                        <td width="70%" color="#4d4d4d">{% if domicilio.alquilerclientedomicilio == 'p' %}Propio
+                                                        {% elseif domicilio.alquilerclientedomicilio == 'a' %}Alquilado  
+                                                        {% else %}Compartido
+                                                        {% endif %}</td>
+                    </tr>
+                    <tr style="background-color:#f6f6f6;">
+                        <th width="30%" color="#7e7e7e">&nbsp;Institución:</th>
+                        <td width="70%" color="#4d4d4d">{{ domicilio.institucionclientedomicilio }}</td>
+                    </tr>
+                    <tr>
+                        <th width="30%"></th>
+                        <td width="70%"></td>
+                    </tr>
+                    {% endfor %}     
+                </tbody>
+            </table>
+        </p>
+    
+    
+    <h2 style="font-size:8px;border-bottom:1px solid #ccc;">
+        Referencias Familiares
+    </h2>        
+    {% for reffamiliar in entity.refsfamiliar %}
+        <p>
+            <table cellspacing="1">
+                <tbody>
+                    <tr style="background-color:#f6f6f6;">
+                        <th width="30%" color="#7e7e7e">&nbsp;Nombre:</th>
+                        <td width="70%" color="#4d4d4d">{{ reffamiliar.nombrereffamiliar }}</td>
+                    </tr>
+                    <tr>
+                        <th width="30%" color="#7e7e7e">&nbsp;Parentesco:</th>
+                        <td width="70%" color="#4d4d4d">{{ reffamiliar.parentescoreffamiliar }}</td>
+                    </tr>
+                    <tr style="background-color:#f6f6f6;">
+                        <th width="30%" color="#7e7e7e">&nbsp;Dirección:</th>
+                        <td width="70%" color="#4d4d4d">{{ reffamiliar.direccionreffamiliar }}</td>
+                    </tr>
+                    <tr>
+                        <th width="30%" color="#7e7e7e">&nbsp;Telefono:</th>
+                        <td width="70%" color="#4d4d4d">{{ reffamiliar.telefonoreffamiliar }}</td>
+                    </tr>
+                </tbody>
+            </table>        
+        </p>
+    {% endfor %} 
+        
+    <h2 style="font-size:8px;border-bottom:1px solid #ccc;">
+        Referencias Laborales
+    </h2>        
+    {% for reflaboral in entity.refslaboral %}
+        <p>
+            <table cellspacing="1">
+                <tbody>
+                    <tr style="background-color:#f6f6f6;">
+                        <th width="30%" color="#7e7e7e">&nbsp;Empresa en que Labora:</th>
+                        <td width="70%" color="#4d4d4d">{{ reflaboral.nombreempresareflaboral }}</td>
+                    </tr>
+                    <tr>
+                        <th width="30%" color="#7e7e7e">&nbsp;Dirección:</th>
+                        <td width="70%" color="#4d4d4d">{{ reflaboral.direccionreflaboral }}</td>
+                    </tr>
+                    <tr style="background-color:#f6f6f6;">
+                        <th width="30%" color="#7e7e7e">&nbsp;Telefono:</th>
+                        <td width="70%" color="#4d4d4d">{{ reflaboral.telefonoreflaboral }}</td>
+                    </tr>
+                    <tr>
+                        <th width="30%" color="#7e7e7e">&nbsp;Cargo que Desempeña:</th>
+                        <td width="70%" color="#4d4d4d">{{ reflaboral.cargoreflaboral }}</td>
+                    </tr>
+                    <tr style="background-color:#f6f6f6;">
+                        <th width="30%" color="#7e7e7e">&nbsp;Salario:</th>
+                        <td width="70%" color="#4d4d4d">$ {{ reflaboral.salarioreflaboral|number_format(2, '.', ',') }}</td>
+                    </tr>
+                    <tr>
+                        <th width="30%" color="#7e7e7e">&nbsp;Nombre de jefe inmediato:</th>
+                        <td width="70%" color="#4d4d4d">{{ reflaboral.nombrejefereflaboral }}</td>
+                    </tr>
+                </tbody>
+            </table>        
+        </p>
+    {% endfor %}   
+        
+    <h2 style="font-size:8px;border-bottom:1px solid #ccc;">
+        Garantias
+    </h2>        
+    {% for garantia in entity.clientegarantias %}
+        <p>
+            <table cellspacing="1">
+                <tbody>
+                    <tr style="background-color:#f6f6f6;">
+                        <th width="30%" color="#7e7e7e">&nbsp;Tipo de Garantia:</th>
+                        <td width="70%" color="#4d4d4d">{{ garantia.idgarantia }}</td>
+                    </tr>
+                    <tr>
+                        <th width="30%" color="#7e7e7e">&nbsp;Doc. de Referencia:</th>
+                        <td width="70%" color="#4d4d4d">{{ garantia.docreferenciaclientegarantia }}</td>
+                    </tr>
+                    <tr style="background-color:#f6f6f6;">
+                        <th width="30%" color="#7e7e7e">&nbsp;Valorado en:</th>
+                        <td width="70%" color="#4d4d4d">$ {{ garantia.valorclientegarantia|number_format(2, '.', ',') }}</td>
+                    </tr>
+                    <tr>
+                        <th width="30%" color="#7e7e7e">&nbsp;Ubicación:</th>
+                        <td width="70%" color="#4d4d4d">{{ garantia.ubicacionclientegarantia }}</td>
+                    </tr>
+                    <tr style="background-color:#f6f6f6;">
+                        <th width="30%" color="#7e7e7e">&nbsp;Observaciones:</th>
+                        <td width="70%" color="#4d4d4d">{{ garantia.observacionclientegarantia }}</td>
+                    </tr>
+                </tbody>
+            </table>        
+        </p>
+    {% endfor %}      
+    
+    <h2 style="font-size:8px;border-bottom:1px solid #ccc;">
+        Ingresos y Gastos Familiares
+    </h2>    
+    <p>
+        <table cellspacing="1">
+            <tbody>
+                <tr>
+                    <td width="50%" color="#000" style="text-align:center;">
+                        &nbsp;Ingresos
+                    </td> 
+                    <td width="50%" color="#000" style="text-align:center;">
+                        &nbsp;Gastos
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%">    
+                        <table cellspacing="1">
+                            <tbody>
+                                <tr style="background-color:#f6f6f6;">
+                                    <th width="50%" color="#7e7e7e">&nbsp;Salarios:</th>
+                                    <td width="50%" color="#4d4d4d">$ {{ entity.ingresosfamiliares.salariosingfamiliares|number_format(2, '.', ',') }}</td>
+                                </tr>
+                                <tr>
+                                    <th color="#7e7e7e">&nbsp;Alquileres:</th>
+                                    <td color="#4d4d4d">$ {{ entity.ingresosfamiliares.alquileresingfamiliares|number_format(2, '.', ',') }}</td>
+                                </tr>
+                                <tr style="background-color:#f6f6f6;">
+                                    <th color="#7e7e7e">&nbsp;Remesas:</th>
+                                    <td color="#4d4d4d">$ {{ entity.ingresosfamiliares.remesasingfamiliares|number_format(2, '.', ',') }}</td>
+                                </tr>
+                                <tr>
+                                    <th color="#7e7e7e">&nbsp;Pensiones:</th>
+                                    <td color="#4d4d4d">$ {{ entity.ingresosfamiliares.pensionesingfamiliares|number_format(2, '.', ',') }}</td>
+                                </tr>
+                                <tr style="background-color:#f6f6f6;">
+                                    <th color="#7e7e7e">&nbsp;Otros Ingresos:</th>
+                                    <td color="#4d4d4d">$ {{ entity.ingresosfamiliares.otrosingresosingfamiliares|number_format(2, '.', ',') }}</td>
+                                </tr>
+                                <tr>
+                                    <th color="#7e7e7e"></th>
+                                    <td color="#4d4d4d"></td>
+                                </tr>
+                                <tr style="background-color:#f6f6f6;">
+                                    <th color="#7e7e7e"></th>
+                                    <td color="#4d4d4d"></td>
+                                </tr>    
+                                <tr>
+                                    <th color="#7e7e7e"></th>
+                                    <td color="#4d4d4d"></td>
+                                </tr>
+                                <tr style="background-color:#f6f6f6;">
+                                    <th color="#7e7e7e"></th>
+                                    <td color="#4d4d4d"></td>
+                                </tr>
+                                <tr>
+                                    <th color="#7e7e7e">&nbsp;Total:</th>
+                                    <td color="#4d4d4d">$ {{ entity.ingresosfamiliares.totalingfamiliares|number_format(2, '.', ',') }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    
+                    <td width="50%">    
+                        <table cellspacing="1">
+                            <tbody>
+                                <tr style="background-color:#f6f6f6;">
+                                    <th width="50%" color="#7e7e7e">&nbsp;Alimentación:</th>
+                                    <td width="50%" color="#4d4d4d">$ {{ entity.gastosfamiliares.alimentaciongasfamiliares|number_format(2, '.', ',') }}</td>
+                                </tr>
+                                <tr>
+                                    <th color="#7e7e7e">&nbsp;Educación:</th>
+                                    <td color="#4d4d4d">$ {{ entity.gastosfamiliares.educaciongasfamiliares|number_format(2, '.', ',') }}</td>
+                                </tr>
+                                <tr style="background-color:#f6f6f6;">
+                                    <th color="#7e7e7e">&nbsp;Alquileres:</th>
+                                    <td color="#4d4d4d">$ {{ entity.gastosfamiliares.alquilergasfamiliares|number_format(2, '.', ',') }}</td>
+                                </tr>
+                                <tr>
+                                    <th color="#7e7e7e">&nbsp;Servicios:</th>
+                                    <td color="#4d4d4d">$ {{ entity.gastosfamiliares.serviciosgasfamiliares|number_format(2, '.', ',') }}</td>
+                                </tr>
+                                <tr style="background-color:#f6f6f6;">
+                                    <th color="#7e7e7e">&nbsp;Transporte:</th>
+                                    <td color="#4d4d4d">$ {{ entity.gastosfamiliares.transportegasfamiliares|number_format(2, '.', ',') }}</td>
+                                </tr>
+                                <tr>
+                                    <th color="#7e7e7e">&nbsp;Salud:</th>
+                                    <td color="#4d4d4d">$ {{ entity.gastosfamiliares.saludgasfamiliares|number_format(2, '.', ',') }}</td>
+                                </tr>
+                                <tr style="background-color:#f6f6f6;">
+                                    <th color="#7e7e7e">&nbsp;Ptmos. Person.:</th>
+                                    <td color="#4d4d4d">$ {{ entity.gastosfamiliares.prestamospersgasfamiliares|number_format(2, '.', ',') }}</td>
+                                </tr>
+                                <tr>
+                                    <th color="#7e7e7e">&nbsp;Otros Gastos:</th>
+                                    <td color="#4d4d4d">$ {{ entity.gastosfamiliares.otrosgastosgasfamiliares|number_format(2, '.', ',') }}</td>
+                                </tr>
+                                <tr style="background-color:#f6f6f6;">
+                                    <th color="#7e7e7e">&nbsp;Imprevistos:</th>
+                                    <td color="#4d4d4d">$ {{ entity.gastosfamiliares.imprevistosgasfamiliares|number_format(2, '.', ',') }}</td>
+                                </tr>
+                                <tr>
+                                    <th color="#7e7e7e">&nbsp;Total:</th>
+                                    <td color="#4d4d4d">$ {{ entity.gastosfamiliares.totalgasfamiliares|number_format(2, '.', ',') }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </p>    
+    
+    <h2 style="font-size:8px;border-bottom:1px solid #ccc;">
+        Información del Negocio
+    </h2>
+    <p>
+        <table cellspacing="1">
+            <tbody>
+                <tr style="background-color:#f6f6f6;">
+                    <th width="30%" color="#7e7e7e">&nbsp;Nombre:</th>
+                    <td width="70%" color="#4d4d4d">{{ entity.negocio.nombrenegocio }}</td>
+                </tr>                
+                <tr>
+                    <th color="#7e7e7e">&nbsp;Departamento:</th>
+                    <td color="#4d4d4d">{{ entity.negocio.deptonegocio }}</td>
+                </tr>
+                <tr style="background-color:#f6f6f6;">
+                    <th color="#7e7e7e">&nbsp;Municipio:</th>
+                    <td color="#4d4d4d">{{ entity.negocio.municipionegocio }}</td>
+                </tr>
+                <tr>
+                    <th color="#7e7e7e">&nbsp;Dirección:</th>
+                    <td color="#4d4d4d">{{ entity.negocio.direccionnegocio }}</td>
+                </tr>
+                <tr style="background-color:#f6f6f6;">
+                    <th color="#7e7e7e">&nbsp;Telefono:</th>
+                    <td color="#4d4d4d">{{ entity.negocio.telefononegocio }}</td>
+                </tr>
+                <tr>
+                    <th color="#7e7e7e">&nbsp;Horario de Atención:</th>
+                    <td color="#4d4d4d">{{ entity.negocio.horarionegocio }}</td>
+                </tr>                
+            </tbody>
+        </table>
+    </p>
+    
+    <h2 style="font-size:8px;border-bottom:1px solid #ccc;">
+        Gastos Generales del Negocio
+    </h2>
+    <p>
+        <table cellspacing="1">
+            <tbody>
+                <tr style="background-color:#f6f6f6;">
+                    <th width="30%" color="#7e7e7e">&nbsp;Sueldos:</th>
+                    <td width="70%" color="#4d4d4d">$ {{ entity.negocio.gastosgrlnegocio.sueldosggn|number_format(2, '.', ',') }}</td>
+                </tr>
+                <tr>
+                    <th color="#7e7e7e">&nbsp;Alquileres:</th>
+                    <td color="#4d4d4d">$ {{ entity.negocio.gastosgrlnegocio.alquileresggn|number_format(2, '.', ',') }}</td>
+                </tr>
+                <tr style="background-color:#f6f6f6;">
+                    <th width="30%" color="#7e7e7e">&nbsp;Servicios:</th>
+                    <td width="70%" color="#4d4d4d">$ {{ entity.negocio.gastosgrlnegocio.serviciosggn|number_format(2, '.', ',') }}</td>
+                </tr>
+                <tr>
+                    <th color="#7e7e7e">&nbsp;Transporte:</th>
+                    <td color="#4d4d4d">$ {{ entity.negocio.gastosgrlnegocio.transporteggn|number_format(2, '.', ',') }}</td>
+                </tr>
+                <tr style="background-color:#f6f6f6;">
+                    <th width="30%" color="#7e7e7e">&nbsp;Bodega:</th>
+                    <td width="70%" color="#4d4d4d">$ {{ entity.negocio.gastosgrlnegocio.bodegaggn|number_format(2, '.', ',') }}</td>
+                </tr>
+                <tr>
+                    <th color="#7e7e7e">&nbsp;Impuestos:</th>
+                    <td color="#4d4d4d">$ {{ entity.negocio.gastosgrlnegocio.impuestosggn|number_format(2, '.', ',') }}</td>
+                </tr>
+                <tr style="background-color:#f6f6f6;">
+                    <th width="30%" color="#7e7e7e">&nbsp;Cuotas Ptmos.:</th>
+                    <td width="70%" color="#4d4d4d">$ {{ entity.negocio.gastosgrlnegocio.cuotaptmosggn|number_format(2, '.', ',') }}</td>
+                </tr>
+                <tr>
+                    <th color="#7e7e7e">&nbsp;Otros Gastos:</th>
+                    <td color="#4d4d4d">$ {{ entity.negocio.gastosgrlnegocio.otrosgastosggn|number_format(2, '.', ',') }}</td>
+                </tr>
+                <tr style="background-color:#f6f6f6;">
+                    <th width="30%" color="#7e7e7e">&nbsp;Imprevistos:</th>
+                    <td width="70%" color="#4d4d4d">$ {{ entity.negocio.gastosgrlnegocio.imprevistosggn|number_format(2, '.', ',') }}</td>
+                </tr>
+                <tr>
+                    <th color="#7e7e7e">&nbsp;Total:</th>
+                    <td color="#4d4d4d">$ {{ entity.negocio.gastosgrlnegocio.totalggn|number_format(2, '.', ',') }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </p>
+    
+    <h2 style="font-size:8px;border-bottom:1px solid #ccc;">
+        Flujo de Caja
+    </h2>    
+    <p>
+        <table cellspacing="1">
+            <tbody>
+                <tr>
+                    <td width="50%" color="#000" style="text-align:center;">
+                        &nbsp;Ingresos
+                    </td> 
+                    <td width="50%" color="#000" style="text-align:center;">
+                        &nbsp;Gastos
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%">    
+                        <table cellspacing="1">
+                            <tbody>
+                                <tr style="background-color:#f6f6f6;">
+                                    <th width="50%" color="#7e7e7e">&nbsp;Ventas al Contado:</th>
+                                    <td width="50%" color="#4d4d4d">$ {{ entity.negocio.ingresoflujocaja.ventacontadoifc|number_format(2, '.', ',') }}</td>
+                                </tr>
+                                <tr>
+                                    <th color="#7e7e7e">&nbsp;Recup. ctas por Cobrar:</th>
+                                    <td color="#4d4d4d">$ {{ entity.negocio.ingresoflujocaja.recuentaxcobrarifc|number_format(2, '.', ',') }}</td>
+                                </tr>
+                                <tr style="background-color:#f6f6f6;">
+                                    <th color="#7e7e7e">&nbsp;Ventas al Credito:</th>
+                                    <td color="#4d4d4d">$ {{ entity.negocio.ingresoflujocaja.ventascreditoifc|number_format(2, '.', ',') }}</td>
+                                </tr>
+                                <tr>
+                                    <th color="#7e7e7e">&nbsp;Otros Ingresos:</th>
+                                    <td color="#4d4d4d">$ {{ entity.negocio.ingresoflujocaja.otrosingresosifc|number_format(2, '.', ',') }}</td>
+                                </tr>
+                                <tr style="background-color:#f6f6f6;">
+                                    <th color="#7e7e7e">&nbsp;Total:</th>
+                                    <td color="#4d4d4d">$ {{ entity.negocio.ingresoflujocaja.totalifc|number_format(2, '.', ',') }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    
+                    <td width="50%">    
+                        <table cellspacing="1">
+                            <tbody>
+                                <tr style="background-color:#f6f6f6;">
+                                    <th width="50%" color="#7e7e7e">&nbsp;Compra de mercadería:</th>
+                                    <td width="50%" color="#4d4d4d">$ {{ entity.negocio.gastosflujocaja.compramercaderiagfc|number_format(2, '.', ',') }}</td>
+                                </tr>
+                                <tr>
+                                    <th color="#7e7e7e">&nbsp;Gastos del Negocio:</th>
+                                    <td color="#4d4d4d">$ {{ entity.negocio.gastosflujocaja.gastosnegociogfc|number_format(2, '.', ',') }}</td>
+                                </tr>
+                                <tr style="background-color:#f6f6f6;">
+                                    <th color="#7e7e7e">&nbsp;Gastos Familiares:</th>
+                                    <td color="#4d4d4d">$ {{ entity.negocio.gastosflujocaja.gastosfamiliaresgfc|number_format(2, '.', ',') }}</td>
+                                </tr>
+                                <tr>
+                                    <th color="#7e7e7e"></th>
+                                    <td color="#4d4d4d"></td>
+                                </tr>                                
+                                <tr style="background-color:#f6f6f6;">
+                                    <th color="#7e7e7e">&nbsp;Total:</th>
+                                    <td color="#4d4d4d">$ {{ entity.negocio.gastosflujocaja.totalgfc|number_format(2, '.', ',') }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </p>
+    
+    <h2 style="font-size:8px;border-bottom:1px solid #ccc;">
+        Balance General
+    </h2>    
+    <p>
+        <table cellspacing="1">
+            <tbody>
+                <tr>
+                    <td width="50%" color="#000" style="text-align:center;">
+                        &nbsp;Activos
+                    </td> 
+                    <td width="50%" color="#000" style="text-align:center;">
+                        &nbsp;Pasivos
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%">    
+                        <table cellspacing="1">
+                            <tbody>
+                                <tr style="background-color:#f6f6f6;">
+                                    <th width="50%" color="#7e7e7e">&nbsp;Disponible:</th>
+                                    <td width="50%" color="#4d4d4d">$ {{ entity.negocio.activobg.disponibleabg|number_format(2, '.', ',') }}</td>
+                                </tr>
+                                <tr>
+                                    <th color="#7e7e7e">&nbsp;Cuentas por Cobrar:</th>
+                                    <td color="#4d4d4d">$ {{ entity.negocio.activobg.cuentasxcobrarabg|number_format(2, '.', ',') }}</td>
+                                </tr>
+                                <tr style="background-color:#f6f6f6;">
+                                    <th color="#7e7e7e">&nbsp;Inventarios:</th>
+                                    <td  color="#4d4d4d">$ {{ entity.negocio.activobg.inventariosabg|number_format(2, '.', ',') }}</td>
+                                </tr>
+                                <tr>
+                                    <th color="#7e7e7e">&nbsp;Activo Fijo:</th>
+                                    <td color="#4d4d4d">$ {{ entity.negocio.activobg.activofijoabg|number_format(2, '.', ',') }}</td>
+                                </tr>
+                                <tr style="background-color:#f6f6f6;">
+                                    <th color="#7e7e7e">&nbsp;Total Activos:</th>
+                                    <td color="#4d4d4d">$ {{ entity.negocio.activobg.totalabg|number_format(2, '.', ',') }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    
+                    <td width="50%">    
+                        <table cellspacing="1">
+                            <tbody>
+                                <tr style="background-color:#f6f6f6;">
+                                    <th width="50%" color="#7e7e7e">&nbsp;Proveedores:</th>
+                                    <td width="50%" color="#4d4d4d">$ {{ entity.negocio.pasivopatrimoniobg.proveedoresppbg|number_format(2, '.', ',') }}</td>
+                                </tr>
+                                <tr>
+                                    <th color="#7e7e7e">&nbsp;Préstamos en Instituciones:</th>
+                                    <td  color="#4d4d4d">$ {{ entity.negocio.pasivopatrimoniobg.prestamosinstppbg|number_format(2, '.', ',') }}</td>
+                                </tr>
+                                <tr style="background-color:#f6f6f6;">
+                                    <th color="#7e7e7e">&nbsp;OTros Préstamos:</th>
+                                    <td color="#4d4d4d">$ {{ entity.negocio.pasivopatrimoniobg.otrosprestppbg|number_format(2, '.', ',') }}</td>
+                                </tr>
+                                <tr>
+                                    <th color="#7e7e7e">&nbsp;Patrimonio:</th>
+                                    <td color="#4d4d4d">$ {{ entity.negocio.pasivopatrimoniobg.patrimonioppbg|number_format(2, '.', ',') }}</td>
+                                </tr>                                
+                                <tr style="background-color:#f6f6f6;">
+                                    <th color="#7e7e7e">&nbsp;Total Pasivo y Patrimonio:</th>
+                                    <td color="#4d4d4d">$ {{ entity.negocio.pasivopatrimoniobg.totalppbg|number_format(2, '.', ',') }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </p>
+{% endblock %}

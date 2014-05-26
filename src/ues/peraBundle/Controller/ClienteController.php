@@ -116,7 +116,7 @@ class ClienteController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Cliente entity.');
         }
-
+        
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -328,4 +328,66 @@ class ClienteController extends Controller
             ->getForm()
         ;
     }
+    
+    /**
+     * Genera pdf.
+     *
+     * @Route("/{id}/pdf", name="cliente_pdf", options={"expose"=true})
+     * @Method("GET")
+     */
+    public function pdfAction($id){
+        $em = $this->getDoctrine()->getEntityManager();
+        $cl = $em->getRepository('uesperaBundle:Cliente')->find($id); 
+        
+        $pdf = $this->container->get("white_october.tcpdf")->create(PDF_PAGE_ORIENTATION, PDF_UNIT, 'Letter', true, 'UTF-8', false);
+        
+        $pdf->SetAuthor('Billy HB');
+        $pdf->SetTitle('Cliente PDF');
+        $pdf->SetSubject('Cliente PDF');
+        $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
+        
+        //$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 039', PDF_HEADER_STRING);
+        $pdf->SetHeaderData('', '', '', $cl->getNombrescliente().' '.$cl->getPrimapellidocliente().' '.$cl->getSegapellidocliente(), array(71,152,215), array(71,152,215));
+        
+        // set header and footer fonts
+        $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', 15));
+        $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+        
+        // set default monospaced font
+        $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+
+        //set margins
+        $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+        $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+        $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+
+        //set auto page breaks
+        $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+
+        
+        $pdf->setFontSubsetting(true);
+        
+        $pdf->SetFont('dejavusans', '', 7, '', true);
+        $pdf->setHtmlVSpace(
+                array('h2' => array(0 => array('h' => 0.8, 'n' => 2), 1 => array('h' => 0.3, 'n' => 1)),
+                      'p' => array(0 => array('h' => 1, 'n' => 2), 1 => array('h' => '', 'n' => '')),
+                      'tbody' => array(0 => array('h' => '', 'n' => ''), 1 => array('h' => 2, 'n' => 2)))
+                );
+        $pdf->setCellHeightRatio(2);
+        $pdf->setCellPaddings(5,'','','');
+        
+        $pdf->AddPage();
+        $html = $this->renderView('uesperaBundle:Cliente:pdf.html.twig', array('entity' => $cl));
+        $pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
+//$pdf->AddPage();
+                
+//$pdf->writeHTML($html, true, false, true, false, '');
+        //$pdf->lastPage();
+        
+        //$pdf->Output('example_001.pdf');
+        
+        //$reg = array('success' => true, 'pdf' => $pdf);
+        return new Response( $pdf->Output($cl->getNombrescliente().' '.$cl->getPrimapellidocliente().'.pdf', 'I') );
+    }
+    
 }
