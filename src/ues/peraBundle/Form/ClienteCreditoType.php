@@ -21,11 +21,11 @@ class ClienteCreditoType extends AbstractType
             ->add('idcredito',null,
                   array('empty_value' => 'seleccione...',
                         'label' => 'Tipo Credito:',
-                        'label_attr' => array('class' => 'normal')))
+                        'label_attr' => array('class' => 'normal required')))
             ->add('idcliente',null,
                   array('empty_value' => 'seleccione...',
                         'label' => 'Cliente:',
-                        'label_attr' => array('class' => 'normal')))
+                        'label_attr' => array('class' => 'normal required')))
         ;
     }
     

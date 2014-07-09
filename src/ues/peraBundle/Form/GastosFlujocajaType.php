@@ -19,26 +19,26 @@ class GastosFlujocajaType extends AbstractType
                   array('currency' => null,
                         'grouping' => true,
                         'label' => 'Compra de mercadería:',
-                        'label_attr' => array('class' => 'normal'),
+                        'label_attr' => array('class' => 'largo'),
                         'attr'  => array('class' => 'gfc money')))
             ->add('gastosnegociogfc', 'money',
                   array('currency' => null,
                         'grouping' => true,
                         'label' => 'Gastos del Negocio:',
-                        'label_attr' => array('class' => 'normal'),
+                        'label_attr' => array('class' => 'largo'),
                         'attr'  => array('class' => 'gfc money')))
             ->add('gastosfamiliaresgfc', 'money',
                   array('currency' => null,
                         'grouping' => true,
                         'label' => 'Gastos Familiares:',
-                        'label_attr' => array('class' => 'normal'),
+                        'label_attr' => array('class' => 'largo'),
                         'attr'  => array('class' => 'gfc money')))
             ->add('totalgfc', 'money',
                   array('currency' => null,
                         'grouping' => true,
                         'read_only' => true,
                         'label' => 'Total:',
-                        'label_attr' => array('class' => 'normal'),
+                        'label_attr' => array('class' => 'largo'),
                         'attr'  => array('placeholder' => '0')))
             /*->add('idnegocio')*/
         ;

@@ -41,17 +41,17 @@
         display: inline;
         width: auto;
         /*padding: 5px 0;*/
-        margin: 8px 10px;
+        margin: 5px 10px;
         /*top: 10px;*/
         color: #4798D7;
         font-family: Arial;
-        font-size: 18px;
+        font-size: 22px;
         font-weight: 300;
     }
     
     #form_wrapper #nombre_form .btns{
         float:right;
-        margin: 5px 10px;
+        margin: 3px 10px;
         height: 25px;
         width: 250px;
         /*margin-top: 15px;*/
@@ -160,7 +160,13 @@ section label{
     }
     
     section label.corto{
-        width: 100px;        
+        width: 125px;        
+    }
+    
+    section label.required:before{ 
+        content:"*"; 
+        color:red;
+        font-size: 13px;
     }
     
 section input{
@@ -227,7 +233,7 @@ section select{
         border: none;
     }
     
-.content_wrapper li a{
+.content_wrapper li a.link{
     visibility: hidden;
     position: absolute;
     top: 5px;
@@ -241,11 +247,11 @@ section select{
     background-position:  50% 55%;
 }
 
-    .content_wrapper li a:hover{
+    .content_wrapper li a.link:hover{
         background-image: url('../../img/delete_hover.png');                
     }
     
-    .content_wrapper li:hover a{
+    .content_wrapper li:hover a.link{
         visibility: visible;
     }
     
@@ -273,7 +279,8 @@ li div div{
     border-width: 0 1px 0 0;
 }
 
-button{
+#form_wrapper button,
+#fixed_menu button{
     height: 25px;
     float: right;
     border: none;
@@ -292,11 +299,13 @@ button{
               user-select: none;
 }
 
-    button:focus, button:focus{
+    #form_wrapper button:focus,
+    #fixed_menu button:focus{
             outline: 0;
     }
     
-button.guardar{
+#form_wrapper button.guardar,
+#fixed_menu button.guardar{
     width: 100px;
     background-color: #3B97D6;
     border-radius: 2px;
@@ -305,7 +314,8 @@ button.guardar{
             box-shadow: inset 0 0 0 1px #3B97D6;
 }
 
-button.cancelar{
+#form_wrapper button.cancelar,
+#fixed_menu button.cancelar{
     width: 100px;    
     margin-left: 5px;
     background-color: #fff;
@@ -342,7 +352,7 @@ button.cancelar{
         /*top: 10px;*/
         color: #4798D7;
         font-family: Arial;
-        font-size: 18px;
+        font-size: 22px;
         font-weight: 300;
     }
     

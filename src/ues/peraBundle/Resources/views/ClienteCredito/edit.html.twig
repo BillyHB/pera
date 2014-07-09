@@ -3,13 +3,15 @@
 {% block body -%}
     <div id="form_wrapper">
         
-        <div id="nombre_form">
-            <h1>Modificar Crédito</h1>
-            <div class="btns">                
-                <button class="cancelar" onclick="location.href='{{ path('clientecredito') }}';"> Cancelar </button>
-                <button class="guardar" title="Guardar" onclick="document.getElementById('clientecredito_form').submit();">Guardar</button>                
+        <section>
+            <div id="nombre_form">
+                <h1>Modificar Crédito</h1>
+                <div class="btns">                
+                    <button class="cancelar" onclick="location.href='{{ path('clientecredito') }}';"> Cancelar </button>
+                    <button class="guardar" title="Guardar" onclick="document.getElementById('clientecredito_form').submit();">Guardar</button>                
+                </div>
             </div>
-        </div>
+        </section>
         
         <form id="clientecredito_form" action="{{ path('clientecredito_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
             <input type="hidden" name="_method" value="PUT" />

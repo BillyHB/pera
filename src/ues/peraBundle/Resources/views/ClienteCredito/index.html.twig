@@ -8,6 +8,7 @@
 {% block javascripts %}            
     {{ parent() }} 
     <script src="{{ asset('bundles/uespera/js/DataTables-1.10.0/media/js/jquery.dataTables.min.js') }}" type="text/javascript"></script> 
+    <script type="text/javascript" src="{{ asset('bundles/uespera/js/alertify.js-0.3.11/mensajes.js') }}" ></script>
 {% endblock %}
 
 {% block body -%}
@@ -135,20 +136,22 @@
                });
                
                if(id !== 0){
-                   if (confirm("¿ Está seguro de eliminar el registro seleccionado ?") === true) {
+                   alertify.confirm("¿ Está seguro de realizar esta operación ?", function (e){
+                      if(e){
                         $.getJSON(Routing.generate('clientecredito_delete')+'/'+id,
                              function(data) { 
                                 if(data.success){
-                                    alert(data.msje);
+                                    mensaje_exito(data.msje);
                                     $('#listado tr.selected').remove();
                                 }
                                 else
-                                    alert(data.msje);
+                                    mensaje_error(data.msje);
                              });
-                   }          
+                      } 
+                   });
                }    
                else
-                   alert('seleccione un registro')               
+                   mensaje_info('Debe seleccionar un registro');               
             });
                         
         });

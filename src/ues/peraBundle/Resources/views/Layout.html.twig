@@ -7,6 +7,8 @@
     {# Bloque para hojas de estilo #}
     {% block stylesheets %}
         <link href="{{ asset('bundles/uespera/css/styles.css') }}" rel="stylesheet" type="text/css"/>
+        <link href="{{ asset('bundles/uespera/js/alertify.js-0.3.11/themes/alertify.core.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('bundles/uespera/js/alertify.js-0.3.11/themes/alertify.bootstrap.css') }}" rel="stylesheet" type="text/css" />
     {% endblock %}
     
     {# Bloque para javascript #}    
@@ -14,6 +16,7 @@
         <script src="{{ asset('bundles/uespera/js/jquery-1.10.2.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
         <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/uespera/js/alertify.js-0.3.11/lib/alertify.min.js') }}" ></script>
     {% endblock %}  
                 
 </head>

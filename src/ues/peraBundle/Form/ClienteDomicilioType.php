@@ -19,9 +19,24 @@ class ClienteDomicilioType extends AbstractType
                   array('empty_value' => 'Seleccione...',
                         'label' => 'Tipo de Domicilio:',
                         'label_attr' => array('class' => 'largo')))
-            ->add('deptoclientedomicilio',null,
-                  array('label' => 'Departamento:',
-                        'label_attr' => array('class' => 'largo')))
+            ->add('deptoclientedomicilio','choice',
+                  array('label'      => 'Departamento:',
+                        'label_attr' => array('class' => 'largo'),
+                        'choices'    => array('Ahuachapán'   => 'Ahuachapán', 
+                                              'Santa Ana'    => 'Santa Ana',
+                                              'Sonsonate'    => 'Sonsonate',
+                                              'La Libertad'  => 'La Libertad',
+                                              'Chalatenango' => 'Chalatenango',
+                                              'Cuscatlán'    => 'Cuscatlán',
+                                              'San Salvador' => 'San Salvador',
+                                              'La Paz'       => 'La Paz',
+                                              'Cabañas'      => 'Cabañas',
+                                              'San Vicente'  => 'San Vicente',
+                                              'Usulután'     => 'Usulután',
+                                              'San Miguel'   => 'San Miguel',
+                                              'Morazán'      => 'Morazán',
+                                              'La Unión'     => 'La Unión'
+                                             )))
             ->add('municipioclientedomicilio',null,
                   array('label' => 'Municipio:',
                         'label_attr' => array('class' => 'largo')))
@@ -36,7 +51,8 @@ class ClienteDomicilioType extends AbstractType
                         'label_attr' => array('class' => 'largo')))
             ->add('aniosresidenciaclientedomicilio',null,
                   array('label' => 'No. Años de residencia:',
-                        'label_attr' => array('class' => 'largo')))
+                        'label_attr' => array('class' => 'largo'),
+                        'attr' => array('min' => 0)))
             ->add('alquilerclientedomicilio','choice',
                   array('label' => 'Pertenencia:',
                         'label_attr' => array('class' => 'largo'),

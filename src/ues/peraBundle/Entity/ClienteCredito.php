@@ -25,7 +25,7 @@ class ClienteCredito
     /**
      * @var string
      *
-     * @ORM\Column(name="destinocredito", type="string", length=100, nullable=true)
+     * @ORM\Column(name="destinocredito", type="string", length=100, nullable=false)
      */
     private $destinocredito;
 

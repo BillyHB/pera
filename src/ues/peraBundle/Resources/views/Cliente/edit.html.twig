@@ -16,7 +16,7 @@
 {% block body -%}
     <div id="fixed_menu">
         <div id="nombre_form_fixed">
-            <h1>Nuevo Cliente</h1>
+            <h1>Modificar Cliente</h1>
             <div class="btns_fixed">                
                 <button class="cancelar" title="Cancelar" onclick="location.href='{{ path('cliente') }}';"> Cancelar </button>
                 <button class="guardar" title="Guardar" onclick="document.getElementById('cliente_form').submit();">Guardar</button>               
@@ -25,13 +25,16 @@
     </div>
     
     <div id="form_wrapper">
-        <div id="nombre_form">
-            <h1>Modificar Cliente</h1>
-            <div class="btns">                
-                <button class="cancelar" title="Cancelar" onclick="location.href='{{ path('cliente') }}';"> Cancelar </button>
-                <button class="guardar" title="Guardar" onclick="document.getElementById('cliente_form').submit();">Guardar</button>               
+        
+        <section>
+            <div id="nombre_form">
+                <h1>Modificar Cliente</h1>
+                <div class="btns">                
+                    <button class="cancelar" title="Cancelar" onclick="location.href='{{ path('cliente') }}';"> Cancelar </button>
+                    <button class="guardar" title="Guardar" onclick="document.getElementById('cliente_form').submit();">Guardar</button>               
+                </div>
             </div>
-        </div>
+        </section>
             
         <form id="cliente_form" action="{{ path('cliente_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
             <input type="hidden" name="_method" value="PUT" />

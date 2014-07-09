@@ -68,7 +68,25 @@ class ClienteType extends AbstractType
                         'attr'  => array('class' => 'nombre')))
             ->add('numhijocliente',null,
                   array('label' => 'No. de Hijos:',
-                        'label_attr' => array('class' => 'largo')))
+                        'label_attr' => array('class' => 'largo'),
+                        'attr' => array('min' => 0, 'max'=> 15)
+                        /*'choices'   => array('0'  => '0', 
+                                             '1'  => '1', 
+                                             '2'  => '2',
+                                             '3'  => '3',
+                                             '4'  => '4',
+                                             '5'  => '5',
+                                             '6'  => '6',
+                                             '7'  => '7',
+                                             '8'  => '8',
+                                             '9'  => '9',
+                                             '10' => '10',
+                                             '11' => '11',
+                                             '12' => '12',
+                                             '13' => '13',
+                                             '14' => '14',
+                                             '15' => '15')*/
+                       ))
             ->add('fechaingresocliente',null,
                   array('label' => 'Fecha de Ingreso:',
                         'label_attr' => array('class' => 'largo'),
@@ -86,7 +104,8 @@ class ClienteType extends AbstractType
             
             ->add('negocio', new NegocioType(),
                   array('label'    => "Información del Negocio",
-                        'required' => false)
+                        //'required' => false
+                        )
                  )
                 
             ->add('refslaboral', 'collection', array(

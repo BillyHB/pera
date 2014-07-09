@@ -3,6 +3,7 @@
 {% block stylesheets %}
     {{ parent() }}
     <link href="{{ asset('bundles/uespera/js/Zebra_Datepicker-master/public/css/metallic.css') }}" rel="stylesheet" type="text/css" /> 
+    <link href="{{ asset('bundles/uespera/js/jquery-ui-1.11.0.custom/jquery-ui.css') }}" rel="stylesheet" type="text/css" />      
 {% endblock %}
 
 {% block javascripts %}
@@ -11,6 +12,8 @@
     <script type="text/javascript" src="{{ asset('bundles/uespera/js/jquery.maskedinput.js') }}" ></script>           
     <script type="text/javascript" src="{{ asset('bundles/uespera/js/jquery.price_format.2.0.min.js') }}" ></script>
     <script type="text/javascript" src="{{ asset('bundles/uespera/js/Zebra_Datepicker-master/public/javascript/zebra_datepicker.js') }}" ></script>   
+    <script type="text/javascript" src="{{ asset('bundles/uespera/js/jquery-ui-1.11.0.custom/jquery-ui.min.js') }}" ></script>       
+    <script type="text/javascript" src="{{ asset('bundles/uespera/js/alertify.js-0.3.11/mensajes.js') }}" ></script>
 {% endblock %}
 
 {% block body -%}
@@ -20,21 +23,25 @@
             <h1>Nuevo Cliente</h1>
             <div class="btns_fixed">                
                 <button class="cancelar" title="Cancelar" onclick="location.href='{{ path('cliente') }}';"> Cancelar </button>
-                <button class="guardar" title="Guardar" onclick="document.getElementById('cliente_form').submit();">Guardar</button>               
+                {#<button class="guardar" title="Guardar" onclick="document.getElementById('cliente_form').submit();">Guardar</button>#}               
+                <button class="guardar" title="Guardar">Guardar</button>
             </div>
         </div>
     </div>
     
     <div id="form_wrapper">
         
-        <div id="nombre_form">
-            <h1>Nuevo Cliente</h1>
-            <div class="btns">                
-                <button class="cancelar" title="Cancelar" onclick="location.href='{{ path('cliente') }}';"> Cancelar </button>
-                <button class="guardar" title="Guardar" onclick="document.getElementById('cliente_form').submit();">Guardar</button>               
+        <section>
+            <div id="nombre_form">
+                <h1>Nuevo Cliente</h1>
+                <div class="btns">                
+                    <button class="cancelar" title="Cancelar" onclick="location.href='{{ path('cliente') }}';"> Cancelar </button>
+                    {#<button class="guardar" title="Guardar" onclick="document.getElementById('cliente_form').submit();">Guardar</button>#}
+                    <button class="guardar" title="Guardar">Guardar</button>
+                </div>
             </div>
-        </div>
-              
+        </section>
+            
         <form id="cliente_form" action="{{ path('cliente_create') }}" method="post" {{ form_enctype(form) }}> 
             {{ form_errors(form) }}
                 
@@ -442,13 +449,19 @@
         var collectionHolder4 = $('ul.domicilio');
         
         $(document).ready(function(){
+            
             $("#ues_perabundle_cliente_duicliente").mask("99999999-9",{placeholder:"_"});
             $("#ues_perabundle_cliente_nitcliente").mask("9999-999999-999-9",{placeholder:"_"});
             $("#ues_perabundle_cliente_telefonocliente").mask("9999-9999",{placeholder:"_"});
             $("#ues_perabundle_cliente_negocio_telefononegocio").mask("9999-9999",{placeholder:"_"});
             $(".date").mask("99-99-9999",{placeholder:""});
+            //$("#ues_perabundle_cliente_numhijocliente").mask("99",{placeholder:""});
             
-            
+            if(!Modernizr.inputtypes.number){
+                $("#ues_perabundle_cliente_numhijocliente").spinner({ min: 0, max: 15 });
+                $(".ui-widget").css('marginLeft', 10);
+            };
+                        
             collectionHolder.data('index', collectionHolder.find(':input').length);
             addTagForm(collectionHolder);
             
@@ -521,6 +534,11 @@
                 });
                 $('input[id*="_telefonoreffamiliar"]').mask("9999-9999",{placeholder:"_"});
                 $('input[id*="_telefonoclientedomicilio"]').mask("9999-9999",{placeholder:"_"});
+                
+                if(!Modernizr.inputtypes.number){
+                    $('input[id*="_aniosresidenciaclientedomicilio"]').spinner({ min: 0 });
+                    $(".ui-widget").css('marginLeft', 10);
+                };
             }
             
             function addTagFormDeleteLink($tagFormLi) {
@@ -622,6 +640,36 @@
                 }                          
                 
 	});
+        
+        // Validación y submit del formulario
+        $('button.guardar').click(function(){
+            alertify.confirm("¿ Está seguro de realizar esta operación ?", function (e){
+                if(e){
+                    var i=0;
+                    
+                    $("form#cliente_form input[type=text]").each(function(){
+                        var input = $(this); // This is the jquery object of the input, do what you will
+                        var attr = input.attr('required');
+                        
+                        if(attr === 'required' && !input.val())
+                            i++;
+                    });
+                    
+                    $("form#cliente_form select").each(function(){
+                        var input = $(this); // This is the jquery object of the input, do what you will
+                                                
+                        if(!input.val())
+                            i++;
+                    });
+                    
+                    if(i > 0)
+                        mensaje_error("¡ ERROR ¡, Existen campos sin llenar.");
+                    else
+                        $('#cliente_form').submit();
+                }                
+            });                
+        });        
+        
     </script>
 {% endblock %}    
     

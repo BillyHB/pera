@@ -3,14 +3,16 @@
 {% block body -%}
     <div id="form_wrapper">
         {#<a href='{{ path('cliente_pdf', { 'id': 5 }) }}' target="_blank"> asd </a>#}
-        <div id="nombre_form">
-            <h1>{{ entity.nombrescliente }} {{ entity.primapellidocliente }} {{ entity.segapellidocliente }}</h1>
-            <div class="btns">                
-                <button class="cancelar" title="Volver a listado de clientes" onclick="location.href='{{ path('cliente') }}';"> Volver </button>
-                <button class="guardar" title="Exportar a PDF" onclick="location.href='{{ path('cliente_pdf', { 'id': entity.id }) }}';">Exportar</button>               
+        <section>
+            <div id="nombre_form">
+                <h1>{{ entity.nombrescliente }} {{ entity.primapellidocliente }} {{ entity.segapellidocliente }}</h1>
+                <div class="btns">                
+                    <button class="cancelar" title="Volver a listado de clientes" onclick="location.href='{{ path('cliente') }}';"> Volver </button>
+                    <button class="guardar" title="Exportar a PDF" onclick="location.href='{{ path('cliente_pdf', { 'id': entity.id }) }}';">Exportar</button>               
+                </div>
             </div>
-        </div>
-        
+        </section>    
+            
         <section>
             <div class="top">
                 <h2>Información General</h2>

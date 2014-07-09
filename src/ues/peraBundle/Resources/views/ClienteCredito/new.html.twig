@@ -1,15 +1,23 @@
 {% extends 'uesperaBundle::Layout.html.twig' %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/uespera/js/alertify.js-0.3.11/mensajes.js') }}" ></script>
+{% endblock %}
+
 {% block body -%}
     <div id="form_wrapper">
         
-        <div id="nombre_form">
-            <h1>Nueva Asignación de Crédito</h1>
-            <div class="btns">                
-                <button class="cancelar" onclick="location.href='{{ path('clientecredito') }}';"> Cancelar </button>
-                <button class="guardar" title="Guardar" onclick="document.getElementById('clientecredito_form').submit();">Guardar</button>                 
+        <section>
+            <div id="nombre_form">
+                <h1>Nueva Asignación de Crédito</h1>
+                <div class="btns">                
+                    <button class="cancelar" onclick="location.href='{{ path('clientecredito') }}';"> Cancelar </button>
+                    {#<button class="guardar" title="Guardar" onclick="document.getElementById('clientecredito_form').submit();">Guardar</button>#}                 
+                    <button class="guardar" title="Guardar">Guardar</button>
+                </div>
             </div>
-        </div>
+        </section>
         
         <form id="clientecredito_form" action="{{ path('clientecredito_create') }}" method="post" {{ form_enctype(form) }}> 
             {{ form_errors(form) }}
@@ -49,4 +57,39 @@
         </a>
     </li>
 </ul>#}
+{% endblock %}
+
+{% block script -%}
+    <script>
+        
+        // Validación y submit del formulario
+        $('button.guardar').click(function(){
+            alertify.confirm("¿ Está seguro de realizar esta operación ?", function (e){
+                if(e){
+                    var i=0;
+                    
+                    $("form#clientecredito_form input[type=text]").each(function(){
+                        var input = $(this); // This is the jquery object of the input, do what you will
+                        var attr = input.attr('required');
+                        
+                        if(attr === 'required' && !input.val())
+                            i++;
+                    });
+                    
+                    $("form#clientecredito_form select").each(function(){
+                        var input = $(this); // This is the jquery object of the input, do what you will
+                                                
+                        if(!input.val())
+                            i++;
+                    });
+                    
+                    if(i > 0)
+                        mensaje_error("¡ ERROR ¡, Existen campos sin llenar.");
+                    else
+                        $('#clientecredito_form').submit();
+                }                
+            });                
+        });        
+        
+    </script>
 {% endblock %}

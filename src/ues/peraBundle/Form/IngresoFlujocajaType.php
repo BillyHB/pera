@@ -19,32 +19,32 @@ class IngresoFlujocajaType extends AbstractType
                   array('currency' => null,
                         'grouping' => true,
                         'label' => 'Ventas al Contado:',
-                        'label_attr' => array('class' => 'normal'),
+                        'label_attr' => array('class' => 'largo'),
                         'attr'  => array('class' => 'ifc money')))
             ->add('recuentaxcobrarifc', 'money',
                   array('currency' => null,
                         'grouping' => true,
                         'label' => 'Recup. ctas por Cobrar:',
-                        'label_attr' => array('class' => 'normal'),
+                        'label_attr' => array('class' => 'largo'),
                         'attr'  => array('class' => 'ifc money')))
             ->add('ventascreditoifc', 'money',
                   array('currency' => null,
                         'grouping' => true,
                         'label' => 'Ventas al Credito:',
-                        'label_attr' => array('class' => 'normal'),
+                        'label_attr' => array('class' => 'largo'),
                         'attr'  => array('class' => 'ifc money')))
             ->add('otrosingresosifc', 'money',
                   array('currency' => null,
                         'grouping' => true,
                         'label' => 'Otros Ingresos:',
-                        'label_attr' => array('class' => 'normal'),
+                        'label_attr' => array('class' => 'largo'),
                         'attr'  => array('class' => 'ifc money')))
             ->add('totalifc', 'money',
                   array('currency' => null,
                         'grouping' => true,
                         'read_only' => true,
                         'label' => 'Total:',
-                        'label_attr' => array('class' => 'normal'),
+                        'label_attr' => array('class' => 'largo'),
                         'attr'  => array('placeholder' => '0')))
             /*->add('idnegocio')*/
         ;

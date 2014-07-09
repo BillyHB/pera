@@ -19,32 +19,32 @@ class ActivoBgType extends AbstractType
                   array('currency' => null,
                         'grouping' => true,
                         'label' => 'Disponible:',
-                        'label_attr' => array('class' => 'normal'),
+                        'label_attr' => array('class' => 'largo'),
                         'attr'  => array('class' => 'abg money')))
             ->add('cuentasxcobrarabg', 'money',
                   array('currency' => null,
                         'grouping' => true,
                         'label' => 'Cuentas por Cobrar:',
-                        'label_attr' => array('class' => 'normal'),
+                        'label_attr' => array('class' => 'largo'),
                         'attr'  => array('class' => 'abg money')))
             ->add('inventariosabg', 'money',
                   array('currency' => null,
                         'grouping' => true,
                         'label' => 'Inventarios:',
-                        'label_attr' => array('class' => 'normal'),
+                        'label_attr' => array('class' => 'largo'),
                         'attr'  => array('class' => 'abg money')))    
             ->add('activofijoabg', 'money',
                   array('currency' => null,
                         'grouping' => true,
                         'label' => 'Activo Fijo:',
-                        'label_attr' => array('class' => 'normal'),
+                        'label_attr' => array('class' => 'largo'),
                         'attr'  => array('class' => 'abg money')))
             ->add('totalabg', 'money',
                   array('currency' => null,
                         'grouping' => true,
                         'read_only' => true,
                         'label' => 'Total Activos:',
-                        'label_attr' => array('class' => 'normal'),
+                        'label_attr' => array('class' => 'largo'),
                         'attr'  => array('placeholder' => '0')))
             /*->add('idnegocio')*/
         ;
