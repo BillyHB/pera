@@ -31,7 +31,7 @@ class ClienteController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('uesperaBundle:Cliente')->findAll();
-
+        
         return array(
             'entities' => $entities,
         );
@@ -51,6 +51,10 @@ class ClienteController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            
+            $codigo_gen = $this->CodCliente($entity->getPrimapellidocliente(), $entity->getSegapellidocliente()); 
+            $entity->setCodigocliente( $codigo_gen );
+            
             $em->persist($entity);
             $em->flush();
 
@@ -341,7 +345,7 @@ class ClienteController extends Controller
         
         $pdf = $this->container->get("white_october.tcpdf")->create(PDF_PAGE_ORIENTATION, PDF_UNIT, 'Letter', true, 'UTF-8', false);
         
-        $pdf->SetAuthor('Billy HB');
+        $pdf->SetAuthor('Nombre del Proyecto');
         $pdf->SetTitle('Cliente PDF');
         $pdf->SetSubject('Cliente PDF');
         $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
@@ -388,6 +392,38 @@ class ClienteController extends Controller
         
         //$reg = array('success' => true, 'pdf' => $pdf);
         return new Response( $pdf->Output($cl->getNombrescliente().' '.$cl->getPrimapellidocliente().'.pdf', 'I') );
+    }
+    
+    /*
+     * Verifica y genera nuevo código de cliente
+     */
+    public function CodCliente($prim_apellido, $seg_apellido){
+        
+        if($seg_apellido !== null){            
+            $iniciales_año = strtoupper( substr($prim_apellido, 0, 1).substr($seg_apellido, 0, 1) ).substr(date("Y"), 2);
+        }else{
+            $iniciales_año = strtoupper( substr($prim_apellido, 0, 2) ).substr(date("Y"), 2);
+        }
+            
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+            "SELECT c.codigocliente FROM uesperaBundle:Cliente c
+             WHERE c.codigocliente LIKE :cod 
+             ORDER BY c.codigocliente DESC"
+        )->setParameter('cod', $iniciales_año.'%');
+
+        $products = $query->getResult();
+        
+        $correlativo_gen = intval( substr($products[0]['codigocliente'], 4) )+1;
+        
+        switch ( strlen($correlativo_gen) ){
+            case 1: $correlativo_gen = '00'.$correlativo_gen; break;
+            case 2: $correlativo_gen =  '0'.$correlativo_gen; break;
+            case 3: $correlativo_gen =      $correlativo_gen; break;
+        }
+        
+        return $iniciales_año.$correlativo_gen;    
+        
     }
     
 }

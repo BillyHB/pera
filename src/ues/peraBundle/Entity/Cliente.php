@@ -70,6 +70,13 @@ class Cliente
     /**
      * @var string
      *
+     * @ORM\Column(name="codigocliente", type="string", length=7, nullable=false)
+     */
+    private $codigocliente;
+    
+    /**
+     * @var string
+     *
      * @ORM\Column(name="nombrescliente", type="string", length=50, nullable=false)
      */
     private $nombrescliente;
@@ -190,7 +197,30 @@ class Cliente
     {
         return $this->id;
     }
+    
+    /**
+     * Set codigocliente
+     *
+     * @param string $codigocliente
+     * @return Cliente
+     */
+    public function setCodigocliente($codigocliente)
+    {
+        $this->codigocliente = $codigocliente;
 
+        return $this;
+    }
+
+    /**
+     * Get codigocliente
+     *
+     * @return string 
+     */
+    public function getCodigocliente()
+    {
+        return $this->codigocliente;
+    }
+    
     /**
      * Set nombrescliente
      *

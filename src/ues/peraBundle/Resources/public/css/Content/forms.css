@@ -279,7 +279,7 @@ li div div{
     border-width: 0 1px 0 0;
 }
 
-#form_wrapper button,
+#form_wrapper .btns button,
 #fixed_menu button{
     height: 25px;
     float: right;
