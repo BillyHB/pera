@@ -44,7 +44,8 @@ class ClienteGarantiaType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'ues\peraBundle\Entity\ClienteGarantia'
+            'data_class' => 'ues\peraBundle\Entity\ClienteGarantia',
+            'label' => false,
         ));
     }
 

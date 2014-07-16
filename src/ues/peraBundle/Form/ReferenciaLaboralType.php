@@ -47,7 +47,8 @@ class ReferenciaLaboralType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'ues\peraBundle\Entity\ReferenciaLaboral'
+            'data_class' => 'ues\peraBundle\Entity\ReferenciaLaboral',
+            'label' => false,
         ));
     }
 

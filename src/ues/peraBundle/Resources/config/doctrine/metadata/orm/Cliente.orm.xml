@@ -5,11 +5,13 @@
       <unique-constraint name="ak_uk1_cliente_cliente" columns="duicliente"/>
       <unique-constraint name="ak_uk2_cliente_cliente" columns="issscliente"/>
       <unique-constraint name="ak_uk3_cliente_cliente" columns="nitcliente"/>
+      <unique-constraint name="ak_uk4_cliente_cliente" columns="codigocliente"/>
       <unique-constraint name="cliente_pk" columns="id"/>
     </unique-constraints>
     <id name="id" type="integer" column="id">
       <generator strategy="SEQUENCE"/>
     </id>
+    <field name="codigocliente" type="string" column="codigocliente" length="7" nullable="false"/>
     <field name="nombrescliente" type="string" column="nombrescliente" length="50" nullable="false"/>
     <field name="primapellidocliente" type="string" column="primapellidocliente" length="30" nullable="false"/>
     <field name="segapellidocliente" type="string" column="segapellidocliente" length="30" nullable="true"/>

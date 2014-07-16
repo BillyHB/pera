@@ -38,7 +38,8 @@ class ReferenciaFamiliarType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'ues\peraBundle\Entity\ReferenciaFamiliar'
+            'data_class' => 'ues\peraBundle\Entity\ReferenciaFamiliar',
+            'label' => false,
         ));
     }
 

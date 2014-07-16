@@ -8,7 +8,13 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class NegocioType extends AbstractType
 {
-        /**
+    private $municipios;
+    
+    public function __construct($municipios) {
+        $this->municipios = $municipios;
+    }
+    
+    /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
@@ -18,12 +24,30 @@ class NegocioType extends AbstractType
             ->add('nombrenegocio',null,
                   array('label' => 'Nombre:',
                         'label_attr' => array('class' => 'normal')))
-            ->add('deptonegocio',null,
+            ->add('deptonegocio','choice',
                   array('label' => 'Departamento:',
-                        'label_attr' => array('class' => 'normal')))
-            ->add('municipionegocio',null,
+                        'label_attr' => array('class' => 'normal'),
+                        'empty_value' => 'Seleccione...',
+                        'choices'    => array('Ahuachapán'   => 'Ahuachapán', 
+                                              'Santa Ana'    => 'Santa Ana',
+                                              'Sonsonate'    => 'Sonsonate',
+                                              'La Libertad'  => 'La Libertad',
+                                              'Chalatenango' => 'Chalatenango',
+                                              'Cuscatlán'    => 'Cuscatlán',
+                                              'San Salvador' => 'San Salvador',
+                                              'La Paz'       => 'La Paz',
+                                              'Cabañas'      => 'Cabañas',
+                                              'San Vicente'  => 'San Vicente',
+                                              'Usulután'     => 'Usulután',
+                                              'San Miguel'   => 'San Miguel',
+                                              'Morazán'      => 'Morazán',
+                                              'La Unión'     => 'La Unión'
+                                             )))
+            ->add('municipionegocio','choice',
                   array('label' => 'Municipio:',
-                        'label_attr' => array('class' => 'normal')))
+                        'label_attr' => array('class' => 'normal'),
+                        'empty_value' => 'Seleccione...',
+                        'choices'     => $this->municipios))
             ->add('direccionnegocio',null,
                   array('label' => 'Dirección:',
                         'label_attr' => array('class' => 'normal'),

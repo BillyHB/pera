@@ -76,7 +76,7 @@ class ClienteController extends Controller
     */
     private function createCreateForm(Cliente $entity)
     {
-        $form = $this->createForm(new ClienteType(), $entity, array(
+        $form = $this->createForm(new ClienteType($this->getMunicipiosCh()), $entity, array(
             'action' => $this->generateUrl('cliente_create'),
             'method' => 'POST',
         ));
@@ -165,7 +165,7 @@ class ClienteController extends Controller
     */
     private function createEditForm(Cliente $entity)
     {
-        $form = $this->createForm(new ClienteType(), $entity, array(
+        $form = $this->createForm(new ClienteType($this->getMunicipiosCh()), $entity, array(
             'action' => $this->generateUrl('cliente_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
@@ -414,16 +414,60 @@ class ClienteController extends Controller
 
         $products = $query->getResult();
         
-        $correlativo_gen = intval( substr($products[0]['codigocliente'], 4) )+1;
+        if($products == null){
+            return $iniciales_año.'001';
+        }
+        else{
+            $correlativo_gen = intval( substr($products[0]['codigocliente'], 4) )+1;
         
-        switch ( strlen($correlativo_gen) ){
-            case 1: $correlativo_gen = '00'.$correlativo_gen; break;
-            case 2: $correlativo_gen =  '0'.$correlativo_gen; break;
-            case 3: $correlativo_gen =      $correlativo_gen; break;
+            switch ( strlen($correlativo_gen) ){
+                case 1: $correlativo_gen = '00'.$correlativo_gen; break;
+                case 2: $correlativo_gen =  '0'.$correlativo_gen; break;
+                case 3: $correlativo_gen =      $correlativo_gen; break;
+            }
+        
+            return $iniciales_año.$correlativo_gen;    
         }
         
-        return $iniciales_año.$correlativo_gen;    
+    }
+    
+    /*
+     * Obtiene el listado de todos los municipios y los envia al formulario
+     */
+    public function getMunicipiosCh(){
         
+        $municipios = array();
+        
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $result = $em->getRepository('uesperaBundle:DptoMunic')->findAll();
+        
+        foreach ($result as $mun){
+            $municipios[ $mun->getNommunicipiodm() ] = $mun->getNommunicipiodm();
+        }
+        
+        return $municipios;
+        
+    }
+    
+    /**
+     * @Route("/municipios/get", name="get_municipios", options={"expose"=true})
+     * @Method("GET")
+     */
+    public function getMunicipiosAction() {
+        
+        $request = $this->getRequest();
+        $nomDepto = $request->get('nomDepto');
+        $em = $this->getDoctrine()->getEntityManager();
+        
+        $dql = "SELECT m.nommunicipiodm FROM uesperaBundle:DptoMunic m
+                    WHERE m.nomdptodm = :nomDepto";
+        
+        $municipios['regs'] = $em->createQuery($dql)
+                ->setParameter('nomDepto', $nomDepto)
+                ->getArrayResult();
+        
+        return new Response(json_encode($municipios));
     }
     
 }

@@ -8,7 +8,13 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class ClienteDomicilioType extends AbstractType
 {
-        /**
+    private $municipios;
+    
+    public function __construct($municipios) {
+        $this->municipios = $municipios;
+    }
+    
+    /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
@@ -22,6 +28,7 @@ class ClienteDomicilioType extends AbstractType
             ->add('deptoclientedomicilio','choice',
                   array('label'      => 'Departamento:',
                         'label_attr' => array('class' => 'largo'),
+                        'empty_value' => 'Seleccione...',
                         'choices'    => array('Ahuachapán'   => 'Ahuachapán', 
                                               'Santa Ana'    => 'Santa Ana',
                                               'Sonsonate'    => 'Sonsonate',
@@ -37,9 +44,11 @@ class ClienteDomicilioType extends AbstractType
                                               'Morazán'      => 'Morazán',
                                               'La Unión'     => 'La Unión'
                                              )))
-            ->add('municipioclientedomicilio',null,
+            ->add('municipioclientedomicilio','choice',
                   array('label' => 'Municipio:',
-                        'label_attr' => array('class' => 'largo')))
+                        'label_attr' => array('class' => 'largo'),
+                        'empty_value' => 'Seleccione...',
+                        'choices'     => $this->municipios))
             ->add('direccionclientedomicilio',null,
                   array('label' => 'Dirección:',
                         'label_attr' => array('class' => 'largo')))
@@ -71,7 +80,8 @@ class ClienteDomicilioType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'ues\peraBundle\Entity\ClienteDomicilio'
+            'data_class' => 'ues\peraBundle\Entity\ClienteDomicilio',
+            'label' => false,
         ));
     }
 

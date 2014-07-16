@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="CreditoDestino" table="credito_destino">
+    <indexes>
+      <index name="credito_destino_fk" columns="iddestino"/>
+      <index name="credito_destino2_fk" columns="idcredito"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="credito_destino_pk" columns="id"/>
+    </unique-constraints>
+    <id name="id" type="integer" column="id">
+      <generator strategy="SEQUENCE"/>
+    </id>
+    <many-to-one field="idcredito" target-entity="Credito">
+      <join-columns>
+        <join-column name="idcredito" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="iddestino" target-entity="Destino">
+      <join-columns>
+        <join-column name="iddestino" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

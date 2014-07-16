@@ -539,6 +539,9 @@
                     $('input[id*="_aniosresidenciaclientedomicilio"]').spinner({ min: 0 });
                     $(".ui-widget").css('marginLeft', 10);
                 };
+                
+                $('select[id$="'+index+'_municipioclientedomicilio"]').attr('disabled',true);
+                $('select#ues_perabundle_cliente_negocio_municipionegocio').attr('disabled',true);
             }
             
             function addTagFormDeleteLink($tagFormLi) {
@@ -553,6 +556,7 @@
                     $tagFormLi.remove();                    
                 });
             }
+                       
             
         });
         
@@ -669,6 +673,53 @@
                 }                
             });                
         });        
+        
+        //Actualizacion de municipios luego de seleccionar un departamento
+        $('ul.domicilio').on('change', 'select[id$="_deptoclientedomicilio"]', function() {
+            var id = 'select#'+$(this).parent().parent().attr('id')+'_municipioclientedomicilio';
+            
+            $(id).empty().append('<option value="">Seleccione...</option>');
+            
+            if( $(this).find("option:selected").text() == 'Seleccione...'){
+                $(id).attr('disabled',true);                
+            }
+            else{
+                var parameters = '?nomDepto=' + $(this).find("option:selected").text();
+                
+                $.getJSON(Routing.generate('get_municipios')+parameters,
+                        function(data) {
+                            $.each(data.regs, function(indice, reg) {
+                                $(id).append('<option value="' + reg.nommunicipiodm + '">' + reg.nommunicipiodm + '</option>');                       
+                            });
+                        });
+                        
+                $(id).removeAttr('disabled');
+
+            }
+        });
+        
+        $('select[id$="_negocio_deptonegocio"]').on('change', function() {
+            var id = 'select#ues_perabundle_cliente_negocio_municipionegocio';
+            
+            $(id).empty().append('<option value="">Seleccione...</option>');
+            
+            if( $(this).find("option:selected").text() == 'Seleccione...'){
+                $(id).attr('disabled',true);                
+            }
+            else{
+                var parameters = '?nomDepto=' + $(this).find("option:selected").text();
+                
+                $.getJSON(Routing.generate('get_municipios')+parameters,
+                        function(data) {
+                            $.each(data.regs, function(indice, reg) {
+                                $(id).append('<option value="' + reg.nommunicipiodm + '">' + reg.nommunicipiodm + '</option>');                       
+                            });
+                        });
+                        
+                $(id).removeAttr('disabled');
+
+            }
+        });
         
     </script>
 {% endblock %}    

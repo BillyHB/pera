@@ -127,7 +127,7 @@
                         {% for domicilio in edit_form.clientedomicilio %}
                             <li> 
                                 {{ form_row(domicilio) }} 
-                                <a class="link" href="#""></a>
+                                <a class="link" href="#"></a>
                             </li>
                         {% endfor %}    
                     </ul>
@@ -144,7 +144,7 @@
                         {% for reffam in edit_form.refsfamiliar %}
                             <li> 
                                 {{ form_row(reffam) }} 
-                                <a class="link" href="#""></a>
+                                <a class="link" href="#"></a>
                             </li>
                         {% endfor %}
                     </ul>
@@ -161,7 +161,7 @@
                         {% for reflab in edit_form.refslaboral %}
                             <li> 
                                 {{ form_row(reflab) }} 
-                                <a class="link" href="#""></a>
+                                <a class="link" href="#"></a>
                             </li>
                         {% endfor %}    
                     </ul>
@@ -178,7 +178,7 @@
                         {% for garantia in edit_form.clientegarantias %}
                             <li> 
                                 {{ form_row(garantia) }} 
-                                <a class="link" href="#""></a>
+                                <a class="link" href="#"></a>
                             </li>
                         {% endfor %}    
                     </ul>
@@ -468,214 +468,257 @@
 {% block script -%}
     <script>
         
-    $(document).ready(function() {
+        $(document).ready(function() {
         
-        $("#ues_perabundle_cliente_duicliente").mask("99999999-9",{placeholder:"_"});
-        $("#ues_perabundle_cliente_nitcliente").mask("9999-999999-999-9",{placeholder:"_"});
-        $("#ues_perabundle_cliente_telefonocliente").mask("9999-9999",{placeholder:"_"});
-        $("#ues_perabundle_cliente_negocio_telefononegocio").mask("9999-9999",{placeholder:"_"});
+            $("#ues_perabundle_cliente_duicliente").mask("99999999-9",{placeholder:"_"});
+            $("#ues_perabundle_cliente_nitcliente").mask("9999-999999-999-9",{placeholder:"_"});
+            $("#ues_perabundle_cliente_telefonocliente").mask("9999-9999",{placeholder:"_"});
+            $("#ues_perabundle_cliente_negocio_telefononegocio").mask("9999-9999",{placeholder:"_"});
+
+            $('input[id*="_telefonoreflaboral"]').mask("9999-9999",{placeholder:"_"});
+            $('input[id*="_telefonoreffamiliar"]').mask("9999-9999",{placeholder:"_"});
+            $('input[id*="_telefonoclientedomicilio"]').mask("9999-9999",{placeholder:"_"});
+            $(".date").mask("99-99-9999",{placeholder:""});
         
-        $('input[id*="_telefonoreflaboral"]').mask("9999-9999",{placeholder:"_"});
-        $('input[id*="_telefonoreffamiliar"]').mask("9999-9999",{placeholder:"_"});
-        $('input[id*="_telefonoclientedomicilio"]').mask("9999-9999",{placeholder:"_"});
-        $(".date").mask("99-99-9999",{placeholder:""});
-        
-        if(!Modernizr.inputtypes.number){
+            if(!Modernizr.inputtypes.number){
                 $("#ues_perabundle_cliente_numhijocliente").spinner({ min: 0, max: 15 });
                 
                 $('input[id*="_aniosresidenciaclientedomicilio"]').spinner({ min: 0 });
                 $(".ui-widget").css('marginLeft', 10);
             };
         
-        $(".money").priceFormat({
-                    prefix: ''
-                });
+            $(".money").priceFormat({
+                prefix: ''
+            });
                 
-        var collectionHolder  = $('ul.reflabs');
-        collectionHolder.data('index', collectionHolder.find(':input').length);
+            var collectionHolder  = $('ul.reflabs');
+            collectionHolder.data('index', collectionHolder.find(':input').length);
         
-        $('.add_reflab_link').on('click', function(e) {
-            // prevent the link from creating a "#" on the URL
-            e.preventDefault();
+            $('.add_reflab_link').on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
 
-            // add a new tag form (see next code block)
-            addTagForm(collectionHolder);
-        });
+                // add a new tag form (see next code block)
+                addTagForm(collectionHolder);
+            });
         
-        var collectionHolder2  = $('ul.reffam');
-        collectionHolder2.data('index', collectionHolder.find(':input').length);
+            var collectionHolder2  = $('ul.reffam');
+            collectionHolder2.data('index', collectionHolder.find(':input').length);
         
-        $('.add_reffam_link').on('click', function(e) {
-            // prevent the link from creating a "#" on the URL
-            e.preventDefault();
+            $('.add_reffam_link').on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
 
-            // add a new tag form (see next code block)
-            addTagForm(collectionHolder2);
-        });
+                // add a new tag form (see next code block)
+                addTagForm(collectionHolder2);
+            });
         
-        var collectionHolder3  = $('ul.garantias');
-        collectionHolder3.data('index', collectionHolder.find(':input').length);
+            var collectionHolder3  = $('ul.garantias');
+            collectionHolder3.data('index', collectionHolder.find(':input').length);
         
-        $('.add_garantias_link').on('click', function(e) {
-            // prevent the link from creating a "#" on the URL
-            e.preventDefault();
+            $('.add_garantias_link').on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
 
-            // add a new tag form (see next code block)
-            addTagForm(collectionHolder3);
-        });
+                // add a new tag form (see next code block)
+                addTagForm(collectionHolder3);
+            });
         
-        var collectionHolder4  = $('ul.domicilio');
-        collectionHolder4.data('index', collectionHolder.find(':input').length);
+            var collectionHolder4  = $('ul.domicilio');
+            collectionHolder4.data('index', collectionHolder.find(':input').length);
         
-        $('.add_domicilio_link').on('click', function(e) {
-            // prevent the link from creating a "#" on the URL
-            e.preventDefault();
+            $('.add_domicilio_link').on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
 
-            // add a new tag form (see next code block)
-            addTagForm(collectionHolder4);
-        });
+                // add a new tag form (see next code block)
+                addTagForm(collectionHolder4);
+            });
         
-        $('.link').on('click', function(e) {
-            // prevent the link from creating a "#" on the URL
-            e.preventDefault();
+            $('.link').on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
 
-            // remove the li for the tag form
-            $(this).parent('li').remove();
-        });
-        
-    });    
+                // remove the li for the tag form
+                $(this).parent('li').remove();
+            });
+            
+            var i = 0;
+            $('select[id$="_municipioclientedomicilio"]').each(function(){
+                var munic_object = $(this);
+                var munic_selec = munic_object.find("option:selected").text();
+                var parameters = '?nomDepto=' + $('select[id$="'+i+'_deptoclientedomicilio"]').find("option:selected").text();
+                
+                munic_object.empty().append('<option value="">Seleccione...</option>');
+                
+                $.getJSON(Routing.generate('get_municipios')+parameters,
+                        function(data) {
+                            $.each(data.regs, function(indice, reg) {
+                                if(reg.nommunicipiodm === munic_selec)
+                                    munic_object.append('<option value="' + reg.nommunicipiodm + '" selected="true">' + reg.nommunicipiodm + '</option>');
+                                else
+                                    munic_object.append('<option value="' + reg.nommunicipiodm + '">' + reg.nommunicipiodm + '</option>');                       
+                            });
+                        });
+                
+                i++;
+            }); 
+            
+            $('select[id$="_municipionegocio"]').each(function(){
+                var munic_object = $(this);
+                var munic_selec = munic_object.find("option:selected").text();
+                var parameters = '?nomDepto=' + $('select[id$="_negocio_deptonegocio"]').find("option:selected").text();
+                
+                munic_object.empty().append('<option value="">Seleccione...</option>');
+                
+                $.getJSON(Routing.generate('get_municipios')+parameters,
+                        function(data) {
+                            $.each(data.regs, function(indice, reg) {
+                                if(reg.nommunicipiodm === munic_selec)
+                                    munic_object.append('<option value="' + reg.nommunicipiodm + '" selected="true">' + reg.nommunicipiodm + '</option>');
+                                else
+                                    munic_object.append('<option value="' + reg.nommunicipiodm + '">' + reg.nommunicipiodm + '</option>');                       
+                            });
+                        });
+                
+                
+            });
+            
+                
+        });    
     
-    function addTagForm(collectionHolder) {
-        // Get the data-prototype explained earlier
-        var prototype = collectionHolder.data('prototype');
-            
-        // get the new index
-        var index = collectionHolder.data('index');
-            
-        // Replace '__name__' in the prototype's HTML to
-        // instead be a number based on how many items we have
-        var newForm = prototype.replace(/__name__/g, index);
-            
-        // increase the index with one for the next item
-        collectionHolder.data('index', index + 1);
+        function addTagForm(collectionHolder) {
+            // Get the data-prototype explained earlier
+            var prototype = collectionHolder.data('prototype');
 
-        // Display the form in the page in an li, before the "Add a tag" link li
-        var $newFormLi = $('<li></li>').append('<div>'+newForm+'</div>');
-            
-        collectionHolder.append($newFormLi);
+            // get the new index
+            var index = collectionHolder.data('index');
 
-        // add a delete link to the new form
-        addTagFormDeleteLink($newFormLi);
-        
-        $('input[id*="_telefonoreflaboral"]').mask("9999-9999",{placeholder:"_"});
-        $('input[id*="_telefonoreffamiliar"]').mask("9999-9999",{placeholder:"_"});
-        $('input[id*="_telefonoclientedomicilio"]').mask("9999-9999",{placeholder:"_"});
-        
-        if(!Modernizr.inputtypes.number){
-            $('input[id*="_aniosresidenciaclientedomicilio"]').spinner({ min: 0 });
-            $(".ui-widget").css('marginLeft', 10);
-        };
-    }
+            // Replace '__name__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            var newForm = prototype.replace(/__name__/g, index);
+
+            // increase the index with one for the next item
+            collectionHolder.data('index', index + 1);
+
+            // Display the form in the page in an li, before the "Add a tag" link li
+            var $newFormLi = $('<li></li>').append('<div>'+newForm+'</div>');
+
+            collectionHolder.append($newFormLi);
+
+            // add a delete link to the new form
+            addTagFormDeleteLink($newFormLi);
+
+            $('input[id*="_telefonoreflaboral"]').mask("9999-9999",{placeholder:"_"});
+            $('input[id*="_telefonoreffamiliar"]').mask("9999-9999",{placeholder:"_"});
+            $('input[id*="_telefonoclientedomicilio"]').mask("9999-9999",{placeholder:"_"});
+
+            if(!Modernizr.inputtypes.number){
+                $('input[id*="_aniosresidenciaclientedomicilio"]').spinner({ min: 0 });
+                $(".ui-widget").css('marginLeft', 10);
+            };
+            
+        }
     
-    function addTagFormDeleteLink($tagFormLi) {
-        var $removeFormA = $('<a class="link" href="#"></a>');
-        $tagFormLi.append($removeFormA);
+        function addTagFormDeleteLink($tagFormLi) {
+            var $removeFormA = $('<a class="link" href="#"></a>');
+            $tagFormLi.append($removeFormA);
 
-        $removeFormA.on('click', function(e) {
-        
-            // prevent the link from creating a "#" on the URL
-            e.preventDefault();
+            $removeFormA.on('click', function(e) {
 
-            // remove the li for the tag form
-            $tagFormLi.remove();
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
 
-        });
-    }
+                // remove the li for the tag form
+                $tagFormLi.remove();
+
+            });
+        }
     
-    //if (!Modernizr.inputtypes['date']) {
+        //if (!Modernizr.inputtypes['date']) {
             $('.date').Zebra_DatePicker({
-                        direction: false,
-                        readonly_element: false,        
-                        format: 'd-m-Y'
-                    });
-    //}
+                direction: false,
+                readonly_element: false,        
+                format: 'd-m-Y'
+            });
+        //}
     
-    $('.ingfamiliares').focusout(function() {
-        var sum = 0;
-        $('.ingfamiliares').each(function(){
-            if($(this).val() !== '')
-                sum += parseFloat( $(this).val().replace(/,/g,'') ); 
+        $('.ingfamiliares').focusout(function() {
+            var sum = 0;
+            $('.ingfamiliares').each(function(){
+                if($(this).val() !== '')
+                    sum += parseFloat( $(this).val().replace(/,/g,'') ); 
+            });
+            $('#ues_perabundle_cliente_ingresosfamiliares_totalingfamiliares').val(sum.toFixed(2));
         });
-        $('#ues_perabundle_cliente_ingresosfamiliares_totalingfamiliares').val(sum.toFixed(2));
-    });
         
-    $('.gasfamiliares').focusout(function() {
-        var sum = 0;
-        $('.gasfamiliares').each(function(){
-            if($(this).val() !== '')
-                sum += parseFloat( $(this).val().replace(/,/g,'') ); 
+        $('.gasfamiliares').focusout(function() {
+            var sum = 0;
+            $('.gasfamiliares').each(function(){
+                if($(this).val() !== '')
+                    sum += parseFloat( $(this).val().replace(/,/g,'') ); 
+            });
+            $('#ues_perabundle_cliente_gastosfamiliares_totalgasfamiliares').val(sum.toFixed(2));
         });
-        $('#ues_perabundle_cliente_gastosfamiliares_totalgasfamiliares').val(sum.toFixed(2));
-    });
         
-    $('.ggn').focusout(function() {
-        var sum = 0;
-        $('.ggn').each(function(){
-            if($(this).val() !== '')
-                sum += parseFloat( $(this).val().replace(/,/g,'') ); 
+        $('.ggn').focusout(function() {
+            var sum = 0;
+            $('.ggn').each(function(){
+                if($(this).val() !== '')
+                    sum += parseFloat( $(this).val().replace(/,/g,'') ); 
+            });
+            $('#ues_perabundle_cliente_negocio_gastosgrlnegocio_totalggn').val(sum.toFixed(2));
         });
-        $('#ues_perabundle_cliente_negocio_gastosgrlnegocio_totalggn').val(sum.toFixed(2));
-    });
        
-    $('.ifc').focusout(function() {
-        var sum = 0;
-        $('.ifc').each(function(){
-            if($(this).val() !== '')
-                sum += parseFloat( $(this).val().replace(/,/g,'') ); 
+        $('.ifc').focusout(function() {
+            var sum = 0;
+            $('.ifc').each(function(){
+                if($(this).val() !== '')
+                    sum += parseFloat( $(this).val().replace(/,/g,'') ); 
+            });
+            $('#ues_perabundle_cliente_negocio_ingresoflujocaja_totalifc').val(sum.toFixed(2));
         });
-        $('#ues_perabundle_cliente_negocio_ingresoflujocaja_totalifc').val(sum.toFixed(2));
-    });
-       
-    $('.gfc').focusout(function() {
-        var sum = 0;
-        $('.gfc').each(function(){
-            if($(this).val() !== '')
-                sum += parseFloat( $(this).val().replace(/,/g,'') ); 
+
+        $('.gfc').focusout(function() {
+            var sum = 0;
+            $('.gfc').each(function(){
+                if($(this).val() !== '')
+                    sum += parseFloat( $(this).val().replace(/,/g,'') ); 
+            });
+            $('#ues_perabundle_cliente_negocio_gastosflujocaja_totalgfc').val(sum.toFixed(2));
         });
-        $('#ues_perabundle_cliente_negocio_gastosflujocaja_totalgfc').val(sum.toFixed(2));
-    });
+
+        $('.abg').focusout(function() {
+            var sum = 0;
+            $('.abg').each(function(){
+                if($(this).val() !== '')
+                    sum += parseFloat( $(this).val().replace(/,/g,'') ); 
+            });
+            $('#ues_perabundle_cliente_negocio_activobg_totalabg').val(sum.toFixed(2));
+        });
         
-    $('.abg').focusout(function() {
-        var sum = 0;
-        $('.abg').each(function(){
-            if($(this).val() !== '')
-                sum += parseFloat( $(this).val().replace(/,/g,'') ); 
+        $('.ppbg').focusout(function() {
+            var sum = 0;
+            $('.ppbg').each(function(){
+                if($(this).val() !== '')
+                    sum += parseFloat( $(this).val().replace(/,/g,'') ); 
+            });
+            $('#ues_perabundle_cliente_negocio_pasivopatrimoniobg_totalppbg').val(sum.toFixed(2));
         });
-        $('#ues_perabundle_cliente_negocio_activobg_totalabg').val(sum.toFixed(2));
-    });
-        
-    $('.ppbg').focusout(function() {
-        var sum = 0;
-        $('.ppbg').each(function(){
-            if($(this).val() !== '')
-                sum += parseFloat( $(this).val().replace(/,/g,'') ); 
-        });
-        $('#ues_perabundle_cliente_negocio_pasivopatrimoniobg_totalppbg').val(sum.toFixed(2));
-    });
     
-    $(window).scroll(function(){
+        $(window).scroll(function(){
 		            
-                var window_top = $(window).scrollTop();
-                var div_top = $('#form_wrapper').offset().top;
-                //alert(div_top);
-                if(window_top > div_top){
-                    $('#fixed_menu').css('visibility','visible');
-                }
-                else{
-                    $('#fixed_menu').css('visibility','hidden');
-                }
+            var window_top = $(window).scrollTop();
+            var div_top = $('#form_wrapper').offset().top;
+            //alert(div_top);
+            if(window_top > div_top){
+                $('#fixed_menu').css('visibility','visible');
+            }
+            else{
+                $('#fixed_menu').css('visibility','hidden');
+            }
                 
-    });
+        });
     
         // Validación y submit del formulario
         $('button.guardar').click(function(){
@@ -704,6 +747,53 @@
                         $('#cliente_form').submit();
                 }                
             });                
+        });
+        
+        //Actualizacion de municipios luego de seleccionar un departamento
+        $('ul.domicilio').on('change', 'select[id$="_deptoclientedomicilio"]', function() {
+            var id = 'select#'+$(this).parent().parent().attr('id')+'_municipioclientedomicilio';
+            
+            $(id).empty().append('<option value="">Seleccione...</option>');
+            
+            if( $(this).find("option:selected").text() == 'Seleccione...'){
+                $(id).attr('disabled',true);                
+            }
+            else{
+                var parameters = '?nomDepto=' + $(this).find("option:selected").text();
+                
+                $.getJSON(Routing.generate('get_municipios')+parameters,
+                        function(data) {
+                            $.each(data.regs, function(indice, reg) {
+                                $(id).append('<option value="' + reg.nommunicipiodm + '">' + reg.nommunicipiodm + '</option>');                       
+                            });
+                        });
+                        
+                $(id).removeAttr('disabled');
+
+            }
+        });
+        
+        $('select[id$="_negocio_deptonegocio"]').on('change', function() {
+            var id = 'select#ues_perabundle_cliente_negocio_municipionegocio';
+            
+            $(id).empty().append('<option value="">Seleccione...</option>');
+            
+            if( $(this).find("option:selected").text() == 'Seleccione...'){
+                $(id).attr('disabled',true);                
+            }
+            else{
+                var parameters = '?nomDepto=' + $(this).find("option:selected").text();
+                
+                $.getJSON(Routing.generate('get_municipios')+parameters,
+                        function(data) {
+                            $.each(data.regs, function(indice, reg) {
+                                $(id).append('<option value="' + reg.nommunicipiodm + '">' + reg.nommunicipiodm + '</option>');                       
+                            });
+                        });
+                        
+                $(id).removeAttr('disabled');
+
+            }
         });
     
     </script>

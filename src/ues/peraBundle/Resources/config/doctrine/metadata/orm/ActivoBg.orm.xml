@@ -12,8 +12,9 @@
     </id>
     <field name="disponibleabg" type="decimal" column="disponibleabg" precision="9" scale="2" nullable="false"/>
     <field name="cuentasxcobrarabg" type="decimal" column="cuentasxcobrarabg" precision="9" scale="2" nullable="false"/>
+    <field name="inventariosabg" type="decimal" column="inventariosabg" precision="9" scale="2" nullable="false"/>
     <field name="activofijoabg" type="decimal" column="activofijoabg" precision="9" scale="2" nullable="false"/>
-    <field name="totalabg" type="decimal" column="totalabg" precision="9" scale="2" nullable="true"/>
+    <field name="totalabg" type="decimal" column="totalabg" precision="9" scale="2" nullable="false"/>
     <many-to-one field="idnegocio" target-entity="Negocio">
       <join-columns>
         <join-column name="idnegocio" referenced-column-name="id"/>

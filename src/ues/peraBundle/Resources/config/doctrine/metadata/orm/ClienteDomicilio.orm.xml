@@ -18,7 +18,7 @@
     <field name="telefonoclientedomicilio" type="string" column="telefonoclientedomicilio" length="9" nullable="false"/>
     <field name="horarioclientedomicilio" type="string" column="horarioclientedomicilio" length="20" nullable="false"/>
     <field name="aniosresidenciaclientedomicilio" type="integer" column="aniosresidenciaclientedomicilio" nullable="false"/>
-    <field name="alquilerclientedomicilio" type="smallint" column="alquilerclientedomicilio" nullable="false"/>
+    <field name="alquilerclientedomicilio" type="string" column="alquilerclientedomicilio" nullable="false"/>
     <field name="institucionclientedomicilio" type="string" column="institucionclientedomicilio" length="40" nullable="true"/>
     <many-to-one field="idcliente" target-entity="Cliente">
       <join-columns>

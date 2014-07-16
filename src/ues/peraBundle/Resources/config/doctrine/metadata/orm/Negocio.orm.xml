@@ -16,7 +16,7 @@
     <field name="municipionegocio" type="string" column="municipionegocio" length="25" nullable="false"/>
     <field name="direccionnegocio" type="string" column="direccionnegocio" length="50" nullable="false"/>
     <field name="telefononegocio" type="string" column="telefononegocio" length="9" nullable="false"/>
-    <field name="horariopmcliente" type="string" column="horariopmcliente" length="20" nullable="false"/>
+    <field name="horarionegocio" type="string" column="horarionegocio" length="20" nullable="false"/>
     <many-to-one field="idcliente" target-entity="Cliente">
       <join-columns>
         <join-column name="idcliente" referenced-column-name="id"/>

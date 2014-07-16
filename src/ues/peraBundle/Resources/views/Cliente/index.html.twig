@@ -142,14 +142,14 @@
                $('#listado tbody tr').each(function(){                                      
                     if( $(this).hasClass('selected') ){
                         if( !$(this).children(':first').hasClass('dataTables_empty') )
-                         id = parseInt($(this).children(':first').text());                         
+                         id = parseInt($(this).children(':first').children('a').attr( "id" ));                         
                     }                   
                });
                
                if(id !== 0)
                    window.location = id+"/edit";
                else
-                   alert('seleccione un registro');               
+                   mensaje_info('Debe seleccionar un registro');               
             });
             
             /*
@@ -160,7 +160,7 @@
                $('#listado tbody tr').each(function(){
                     if( $(this).hasClass('selected') ){
                         if( !$(this).children(':first').hasClass('dataTables_empty') )
-                         id = parseInt($(this).children(':first').text());                         
+                         id = parseInt($(this).children(':first').children('a').attr( "id" ));                         
                     }
                });
                

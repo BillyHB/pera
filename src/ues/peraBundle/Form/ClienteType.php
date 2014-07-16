@@ -8,7 +8,13 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class ClienteType extends AbstractType
 {
-        /**
+    private $municipios;
+    
+    public function __construct($municipios) {
+        $this->municipios = $municipios;
+    }
+    
+    /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
@@ -69,23 +75,7 @@ class ClienteType extends AbstractType
             ->add('numhijocliente',null,
                   array('label' => 'No. de Hijos:',
                         'label_attr' => array('class' => 'largo'),
-                        'attr' => array('min' => 0, 'max'=> 15)
-                        /*'choices'   => array('0'  => '0', 
-                                             '1'  => '1', 
-                                             '2'  => '2',
-                                             '3'  => '3',
-                                             '4'  => '4',
-                                             '5'  => '5',
-                                             '6'  => '6',
-                                             '7'  => '7',
-                                             '8'  => '8',
-                                             '9'  => '9',
-                                             '10' => '10',
-                                             '11' => '11',
-                                             '12' => '12',
-                                             '13' => '13',
-                                             '14' => '14',
-                                             '15' => '15')*/
+                        'attr' => array('min' => 0, 'max'=> 15)                        
                        ))
             ->add('fechaingresocliente',null,
                   array('label' => 'Fecha de Ingreso:',
@@ -102,7 +92,7 @@ class ClienteType extends AbstractType
                   array('label' => "Gastos Familiares")
                  )
             
-            ->add('negocio', new NegocioType(),
+            ->add('negocio', new NegocioType($this->municipios),
                   array('label'    => "Información del Negocio",
                         //'required' => false
                         )
@@ -134,7 +124,7 @@ class ClienteType extends AbstractType
             
             ->add('clientedomicilio', 'collection', array(
                   'label'       => "Domicilio",
-                  'type'        => new ClienteDomicilioType(),
+                  'type'        => new ClienteDomicilioType($this->municipios),
                   'allow_add'   => true,
                   'allow_delete'=> true,
                   'by_reference'=> false
