@@ -63,4 +63,8 @@ class Destino
     {
         return $this->nomdestino;
     }
+    
+    public function __toString() {
+      return $this->nomdestino;
+    }
 }

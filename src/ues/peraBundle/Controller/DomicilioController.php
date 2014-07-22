@@ -194,7 +194,8 @@ class DomicilioController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('domicilio_edit', array('id' => $id)));
+            //return $this->redirect($this->generateUrl('domicilio_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('domicilio'));
         }
 
         return array(

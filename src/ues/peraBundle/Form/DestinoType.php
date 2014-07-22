@@ -15,7 +15,9 @@ class DestinoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nomdestino')
+            ->add('nomdestino',null,
+                  array('label'      => 'Destino:',
+                        'label_attr' => array('class' => 'largo')))
         ;
     }
     

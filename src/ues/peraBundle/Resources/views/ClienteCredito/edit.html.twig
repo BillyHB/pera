@@ -1,5 +1,10 @@
 {% extends 'uesperaBundle::Layout.html.twig' %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/uespera/js/alertify.js-0.3.11/mensajes.js') }}" ></script>
+{% endblock %}
+
 {% block body -%}
     <div id="form_wrapper">
         
@@ -8,7 +13,8 @@
                 <h1>Modificar Crédito</h1>
                 <div class="btns">                
                     <button class="cancelar" onclick="location.href='{{ path('clientecredito') }}';"> Cancelar </button>
-                    <button class="guardar" title="Guardar" onclick="document.getElementById('clientecredito_form').submit();">Guardar</button>                
+                    {#<button class="guardar" title="Guardar" onclick="document.getElementById('clientecredito_form').submit();">Guardar</button>#}
+                    <button class="guardar" title="Guardar">Guardar</button>
                 </div>
             </div>
         </section>
@@ -42,13 +48,89 @@
         
     </div>        
     
-{#<ul class="record_actions">
-    <li>
-        <a href="{{ path('clientecredito') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>#}
+{% endblock %}
 
+{% block script -%}
+    <script>
+        
+        $(document).ready(function() {
+            
+            $('select#ues_perabundle_clientecredito_destinocredito').each(function(){
+                var destino_object = $(this);
+                var destino_selec = destino_object.find("option:selected").text();
+                
+                var parameters = '?idCredito=' + $('select#ues_perabundle_clientecredito_idcredito').val();
+                
+                destino_object.empty().append('<option value="">Seleccione...</option>');
+                
+                $.getJSON(Routing.generate('get_destinos')+parameters,
+                        function(data) {
+                            $.each(data.regs, function(indice, reg) {
+                                if(reg.nomdestino === destino_selec)
+                                    destino_object.append('<option value="' + reg.nomdestino + '" selected="true">' + reg.nomdestino + '</option>');
+                                else
+                                    destino_object.append('<option value="' + reg.nomdestino + '">' + reg.nomdestino + '</option>');                       
+                            });
+                        });
+                
+                
+            });
+            
+        });
+        
+        // Validación y submit del formulario
+        $('button.guardar').click(function(){
+            alertify.confirm("¿ Está seguro de realizar esta operación ?", function (e){
+                if(e){
+                    var i=0;
+                    
+                    $("form#clientecredito_form input[type=text]").each(function(){
+                        var input = $(this); // This is the jquery object of the input, do what you will
+                        var attr = input.attr('required');
+                        
+                        if(attr === 'required' && !input.val())
+                            i++;
+                    });
+                    
+                    $("form#clientecredito_form select").each(function(){
+                        var input = $(this); // This is the jquery object of the input, do what you will
+                                                
+                        if(!input.val())
+                            i++;
+                    });
+                    
+                    if(i > 0)
+                        mensaje_error("¡ ERROR ¡, Existen campos sin llenar.");
+                    else
+                        $('#clientecredito_form').submit();
+                }                
+            });                
+        }); 
+        
+        //Actualizacion de municipios luego de seleccionar un departamento
+        $('select#ues_perabundle_clientecredito_idcredito').on('change', function() {
+            var id = 'select#ues_perabundle_clientecredito_destinocredito';
+            
+            
+            $(id).empty().append('<option value="">Seleccione...</option>');
+            
+            if( $(this).find("option:selected").text() == 'Seleccione...'){
+                $(id).attr('disabled',true);                
+            }
+            else{
+                var parameters = '?idCredito=' + $(this).find("option:selected").val();
+                
+                $.getJSON(Routing.generate('get_destinos')+parameters,
+                        function(data) {
+                            $.each(data.regs, function(indice, reg) {
+                                $(id).append('<option value="' + reg.nomdestino + '">' + reg.nomdestino + '</option>');                       
+                            });
+                        });
+                        
+                $(id).removeAttr('disabled');
+
+            }
+        });
+        
+    </script>
 {% endblock %}

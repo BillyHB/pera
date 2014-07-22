@@ -1,5 +1,21 @@
 {% extends 'uesperaBundle::Layout.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('bundles/uespera/js/Zebra_Datepicker-master/public/css/metallic.css') }}" rel="stylesheet" type="text/css" /> 
+    <link href="{{ asset('bundles/uespera/js/jquery-ui-1.11.0.custom/jquery-ui.css') }}" rel="stylesheet" type="text/css" />      
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/uespera/js/modernizr.custom.91424.js') }}" ></script> 
+    <script type="text/javascript" src="{{ asset('bundles/uespera/js/jquery.maskedinput.js') }}" ></script>           
+    <script type="text/javascript" src="{{ asset('bundles/uespera/js/jquery.price_format.2.0.min.js') }}" ></script>            
+    <script type="text/javascript" src="{{ asset('bundles/uespera/js/Zebra_Datepicker-master/public/javascript/zebra_datepicker.js') }}" ></script>           
+    <script type="text/javascript" src="{{ asset('bundles/uespera/js/jquery-ui-1.11.0.custom/jquery-ui.min.js') }}" ></script>       
+    <script type="text/javascript" src="{{ asset('bundles/uespera/js/alertify.js-0.3.11/mensajes.js') }}" ></script>
+{% endblock %}
+
 {% block body -%}
     <div id="form_wrapper">
         
@@ -8,7 +24,8 @@
                 <h1>Modificar Crédito</h1>
                 <div class="btns">                
                     <button class="cancelar" onclick="location.href='{{ path('credito') }}';"> Cancelar </button>
-                    <button class="guardar" title="Guardar" onclick="document.getElementById('credito_form').submit();">Guardar</button>                
+                    {#<button class="guardar" title="Guardar" onclick="document.getElementById('credito_form').submit();">Guardar</button>#}                
+                    <button class="guardar" title="Guardar">Guardar</button>
                 </div>
             </div>    
         </section>
@@ -30,17 +47,137 @@
                     <p class="col1"></p>
                 </div>
             </section>        
-                
+            
+            <section>
+                <div class="top">
+                    <h2>Destinos</h2>
+                    <a class="add_destino_link" title="Agregar Destino" href="#"></a>
+                </div>
+                <div class="content_wrapper">                  
+                    <ul class="destinos" data-prototype="{{ form_widget(edit_form.creditodestino.vars.prototype)|e }}">
+                        {% for destino in edit_form.creditodestino %}
+                            <li> 
+                                {{ form_row(destino) }} 
+                                <a class="link" href="#"></a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </section>
+                    
             {{ form_rest(edit_form) }}    
         </form>        
     </div>
 
-{#<ul class="record_actions">
-    <li>
-        <a href="{{ path('credito') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>#}
+{% endblock %}
+
+{% block script -%}
+    <script>
+    
+        $(document).ready(function(){
+
+            var collectionHolder  = $('ul.destinos');
+                collectionHolder.data('index', collectionHolder.find(':input').length);
+
+            $('.add_destino_link').on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // add a new tag form (see next code block)
+                addTagForm(collectionHolder);
+            });
+
+            $('.link').on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // remove the li for the tag form
+                $(this).parent('li').remove();
+            });
+
+        });
+        
+        function addTagForm(collectionHolder) {
+            // Get the data-prototype explained earlier
+            var prototype = collectionHolder.data('prototype');
+
+            // get the new index
+            var index = collectionHolder.data('index');
+
+            // Replace '__name__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            var newForm = prototype.replace(/__name__/g, index);
+
+            // increase the index with one for the next item
+            collectionHolder.data('index', index + 1);
+
+            // Display the form in the page in an li, before the "Add a tag" link li
+            var $newFormLi = $('<li></li>').append('<div>'+newForm+'</div>');
+
+            collectionHolder.append($newFormLi);
+
+            // add a delete link to the new form
+            addTagFormDeleteLink($newFormLi);
+            
+        }
+    
+        function addTagFormDeleteLink($tagFormLi) {
+            var $removeFormA = $('<a class="link" href="#"></a>');
+            $tagFormLi.append($removeFormA);
+
+            $removeFormA.on('click', function(e) {
+
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // remove the li for the tag form
+                $tagFormLi.remove();
+
+            });
+        }
+        
+        // Validación y submit del formulario
+        $('button.guardar').click(function(){
+            alertify.confirm("¿ Está seguro de realizar esta operación ?", function (e){
+                if(e){
+                    var i=0;
+                    var sel_val = "";
+                    var i_sel = 0;
+                    
+                    $("form#credito_form input[type=text]").each(function(){
+                        var input = $(this); // This is the jquery object of the input, do what you will
+                        var attr = input.attr('required');
+                        
+                        if(attr === 'required' && !input.val())
+                            i++;
+                    });
+                    
+                    $("form#credito_form select").each(function(){
+                        var input = $(this); // This is the jquery object of the input, do what you will
+                                                
+                        if(!input.val()){
+                            i++;
+                        }
+                        else{
+                            if( input.val() !== sel_val ){
+                                sel_val = input.val();
+                            }
+                            else{
+                                i_sel++;
+                            }
+                        }
+                        
+                    });
+                    
+                    if(i > 0)
+                        mensaje_error("¡ ERROR ¡, Existen campos sin llenar.");
+                    else if(i_sel > 0)
+                        mensaje_error("¡ ERROR ¡, Eligió el mismo destino dos o mas veces.");
+                    else
+                        $('#credito_form').submit();
+                }                
+            });                
+        });
+    
+    </script>
 {% endblock %}

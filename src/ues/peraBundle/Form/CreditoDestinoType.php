@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class CreditoType extends AbstractType
+class CreditoDestinoType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -15,17 +15,11 @@ class CreditoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nomcredito',null,
-                  array('label'      => 'Nombre:',
-                        'label_attr' => array('class' => 'largo')))
-                
-            ->add('creditodestino', 'collection', array(
-                  'label'       => "destinos",
-                  'type'        => new CreditoDestinoType(),
-                  'allow_add'   => true,
-                  'allow_delete'=> true,
-                  'by_reference'=> false
-                  ))
+            ->add('iddestino',null,
+                  array('empty_value' => 'Seleccione...',
+                        'label'       => 'Destino:',
+                        'label_attr'  => array('class' => 'largo')))
+            //->add('idcredito')
         ;
     }
     
@@ -35,7 +29,8 @@ class CreditoType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'ues\peraBundle\Entity\Credito'
+            'data_class' => 'ues\peraBundle\Entity\CreditoDestino',
+            'label' => false,
         ));
     }
 
@@ -44,6 +39,6 @@ class CreditoType extends AbstractType
      */
     public function getName()
     {
-        return 'ues_perabundle_credito';
+        return 'ues_perabundle_creditodestino';
     }
 }

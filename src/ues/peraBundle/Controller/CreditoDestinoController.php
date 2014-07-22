@@ -7,21 +7,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use ues\peraBundle\Entity\Destino;
-use ues\peraBundle\Form\DestinoType;
+use ues\peraBundle\Entity\CreditoDestino;
+use ues\peraBundle\Form\CreditoDestinoType;
 
 /**
- * Destino controller.
+ * CreditoDestino controller.
  *
- * @Route("/destino")
+ * @Route("/creditodestino")
  */
-class DestinoController extends Controller
+class CreditoDestinoController extends Controller
 {
 
     /**
-     * Lists all Destino entities.
+     * Lists all CreditoDestino entities.
      *
-     * @Route("/", name="destino")
+     * @Route("/", name="creditodestino")
      * @Method("GET")
      * @Template()
      */
@@ -29,22 +29,22 @@ class DestinoController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('uesperaBundle:Destino')->findAll();
+        $entities = $em->getRepository('uesperaBundle:CreditoDestino')->findAll();
 
         return array(
             'entities' => $entities,
         );
     }
     /**
-     * Creates a new Destino entity.
+     * Creates a new CreditoDestino entity.
      *
-     * @Route("/", name="destino_create")
+     * @Route("/", name="creditodestino_create")
      * @Method("POST")
-     * @Template("uesperaBundle:Destino:new.html.twig")
+     * @Template("uesperaBundle:CreditoDestino:new.html.twig")
      */
     public function createAction(Request $request)
     {
-        $entity = new Destino();
+        $entity = new CreditoDestino();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -53,8 +53,7 @@ class DestinoController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            //return $this->redirect($this->generateUrl('destino_show', array('id' => $entity->getId())));
-            return $this->redirect($this->generateUrl('destino'));
+            return $this->redirect($this->generateUrl('creditodestino_show', array('id' => $entity->getId())));
         }
 
         return array(
@@ -64,34 +63,34 @@ class DestinoController extends Controller
     }
 
     /**
-    * Creates a form to create a Destino entity.
+    * Creates a form to create a CreditoDestino entity.
     *
-    * @param Destino $entity The entity
+    * @param CreditoDestino $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createCreateForm(Destino $entity)
+    private function createCreateForm(CreditoDestino $entity)
     {
-        $form = $this->createForm(new DestinoType(), $entity, array(
-            'action' => $this->generateUrl('destino_create'),
+        $form = $this->createForm(new CreditoDestinoType(), $entity, array(
+            'action' => $this->generateUrl('creditodestino_create'),
             'method' => 'POST',
         ));
 
-        //$form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
     }
 
     /**
-     * Displays a form to create a new Destino entity.
+     * Displays a form to create a new CreditoDestino entity.
      *
-     * @Route("/new", name="destino_new")
+     * @Route("/new", name="creditodestino_new")
      * @Method("GET")
      * @Template()
      */
     public function newAction()
     {
-        $entity = new Destino();
+        $entity = new CreditoDestino();
         $form   = $this->createCreateForm($entity);
 
         return array(
@@ -101,9 +100,9 @@ class DestinoController extends Controller
     }
 
     /**
-     * Finds and displays a Destino entity.
+     * Finds and displays a CreditoDestino entity.
      *
-     * @Route("/{id}", name="destino_show")
+     * @Route("/{id}", name="creditodestino_show")
      * @Method("GET")
      * @Template()
      */
@@ -111,10 +110,10 @@ class DestinoController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('uesperaBundle:Destino')->find($id);
+        $entity = $em->getRepository('uesperaBundle:CreditoDestino')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Destino entity.');
+            throw $this->createNotFoundException('Unable to find CreditoDestino entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -126,9 +125,9 @@ class DestinoController extends Controller
     }
 
     /**
-     * Displays a form to edit an existing Destino entity.
+     * Displays a form to edit an existing CreditoDestino entity.
      *
-     * @Route("/{id}/edit", name="destino_edit")
+     * @Route("/{id}/edit", name="creditodestino_edit")
      * @Method("GET")
      * @Template()
      */
@@ -136,10 +135,10 @@ class DestinoController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('uesperaBundle:Destino')->find($id);
+        $entity = $em->getRepository('uesperaBundle:CreditoDestino')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Destino entity.');
+            throw $this->createNotFoundException('Unable to find CreditoDestino entity.');
         }
 
         $editForm = $this->createEditForm($entity);
@@ -153,38 +152,38 @@ class DestinoController extends Controller
     }
 
     /**
-    * Creates a form to edit a Destino entity.
+    * Creates a form to edit a CreditoDestino entity.
     *
-    * @param Destino $entity The entity
+    * @param CreditoDestino $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Destino $entity)
+    private function createEditForm(CreditoDestino $entity)
     {
-        $form = $this->createForm(new DestinoType(), $entity, array(
-            'action' => $this->generateUrl('destino_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new CreditoDestinoType(), $entity, array(
+            'action' => $this->generateUrl('creditodestino_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
-        //$form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
     }
     /**
-     * Edits an existing Destino entity.
+     * Edits an existing CreditoDestino entity.
      *
-     * @Route("/{id}", name="destino_update")
+     * @Route("/{id}", name="creditodestino_update")
      * @Method("PUT")
-     * @Template("uesperaBundle:Destino:edit.html.twig")
+     * @Template("uesperaBundle:CreditoDestino:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('uesperaBundle:Destino')->find($id);
+        $entity = $em->getRepository('uesperaBundle:CreditoDestino')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Destino entity.');
+            throw $this->createNotFoundException('Unable to find CreditoDestino entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -194,8 +193,7 @@ class DestinoController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            //return $this->redirect($this->generateUrl('destino_edit', array('id' => $id)));
-            return $this->redirect($this->generateUrl('destino'));
+            return $this->redirect($this->generateUrl('creditodestino_edit', array('id' => $id)));
         }
 
         return array(
@@ -205,9 +203,9 @@ class DestinoController extends Controller
         );
     }
     /**
-     * Deletes a Destino entity.
+     * Deletes a CreditoDestino entity.
      *
-     * @Route("/{id}", name="destino_delete")
+     * @Route("/{id}", name="creditodestino_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
@@ -217,21 +215,21 @@ class DestinoController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('uesperaBundle:Destino')->find($id);
+            $entity = $em->getRepository('uesperaBundle:CreditoDestino')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Destino entity.');
+                throw $this->createNotFoundException('Unable to find CreditoDestino entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('destino'));
+        return $this->redirect($this->generateUrl('creditodestino'));
     }
 
     /**
-     * Creates a form to delete a Destino entity by id.
+     * Creates a form to delete a CreditoDestino entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -240,7 +238,7 @@ class DestinoController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('destino_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('creditodestino_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()

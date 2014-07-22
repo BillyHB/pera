@@ -72,7 +72,7 @@ class ClienteCreditoController extends Controller
     */
     private function createCreateForm(ClienteCredito $entity)
     {
-        $form = $this->createForm(new ClienteCreditoType(), $entity, array(
+        $form = $this->createForm(new ClienteCreditoType( $this->getDestinosCh() ), $entity, array(
             'action' => $this->generateUrl('clientecredito_create'),
             'method' => 'POST',
         ));
@@ -161,7 +161,7 @@ class ClienteCreditoController extends Controller
     */
     private function createEditForm(ClienteCredito $entity)
     {
-        $form = $this->createForm(new ClienteCreditoType(), $entity, array(
+        $form = $this->createForm(new ClienteCreditoType( $this->getDestinosCh() ), $entity, array(
             'action' => $this->generateUrl('clientecredito_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
@@ -194,7 +194,8 @@ class ClienteCreditoController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('clientecredito_edit', array('id' => $id)));
+            //return $this->redirect($this->generateUrl('clientecredito_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('clientecredito'));
         }
 
         return array(
@@ -246,5 +247,46 @@ class ClienteCreditoController extends Controller
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
+    }
+    
+    /*
+     * Obtiene el listado de todos los destinos de credito y los envia al formulario
+     */
+    public function getDestinosCh(){
+        
+        $destinos = array();
+        
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $result = $em->getRepository('uesperaBundle:Destino')->findAll();
+        
+        foreach ($result as $dest){
+            $destinos[ $dest->getNomdestino() ] = $dest->getNomdestino();
+        }
+        
+        return $destinos;
+        
+    }
+    
+    /**
+     * @Route("/destinos/get", name="get_destinos", options={"expose"=true})
+     * @Method("GET")
+     */
+    public function getDestinosAction() {
+        
+        $request = $this->getRequest();
+        $idCredito = $request->get('idCredito');
+        $em = $this->getDoctrine()->getEntityManager();
+        
+        $dql = "SELECT des.nomdestino FROM uesperaBundle:CreditoDestino cd
+                JOIN cd.iddestino des
+                    WHERE des.id = cd.iddestino
+                    AND cd.idcredito = :idCredito";
+        
+        $destinos['regs'] = $em->createQuery($dql)
+                ->setParameter('idCredito', $idCredito)
+                ->getArrayResult();
+        
+        return new Response(json_encode($destinos));
     }
 }

@@ -194,7 +194,8 @@ class GarantiaController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('garantia_edit', array('id' => $id)));
+            //return $this->redirect($this->generateUrl('garantia_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('garantia'));
         }
 
         return array(
@@ -231,7 +232,7 @@ class GarantiaController extends Controller
                 }
                 catch (\Exception $e){
                     
-                    $reg = array('success' => false, 'msje' => "La garantía seleccionada ha sido asignada a uno o varios clientes \n y no puede ser eliminado.");
+                    $reg = array('success' => false, 'msje' => "La garantía seleccionada ha sido asignada a uno o varios clientes y no puede ser eliminada.");
                 }
             }
             

@@ -186,15 +186,35 @@ class CreditoController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Credito entity.');
         }
-
-        $deleteForm = $this->createDeleteForm($id);
+        
+        $originalDestinos = array();
+        // Create an array of the current Tag objects in the database 
+        foreach ($entity->getCreditodestino() as $destino) { 
+            $originalDestinos[] = $destino; 
+        }
+        
+        //$deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+            // filter $originalTags to contain tags no longer present 
+            foreach ($entity->getCreditodestino() as $destino) { 
+                foreach ($originalDestinos as $key => $toDel) { 
+                    if ($toDel->getId() === $destino->getId()) { 
+                        unset($originalDestinos[$key]);                         
+                    } } }
+                    
+            foreach ($originalDestinos as $tag) { 
+                $em->persist($tag);
+                // if you wanted to delete the Tag entirely, you can also do that 
+                $em->remove($tag);            
+            }            
+            
+            $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('credito_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('credito'));
         }
 
         return array(

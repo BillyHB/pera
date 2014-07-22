@@ -3,6 +3,7 @@
 namespace ues\peraBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Credito
@@ -12,6 +13,18 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Credito
 {
+    
+    public function __construct() {
+        
+        $this->creditodestino = new ArrayCollection();
+        
+    }
+    
+    /**
+     * @ORM\OneToMany(targetEntity="CreditoDestino", mappedBy="idcredito", cascade={"persist", "remove"})
+     */
+    protected $creditodestino;    
+    
     /**
      * @var integer
      *
@@ -66,5 +79,20 @@ class Credito
     
     public function __toString() {
       return $this->nomcredito;
+    }
+    
+    
+    public function getCreditodestino()
+    {
+        return $this->creditodestino;
+    }
+
+    public function setCreditodestino(\Doctrine\Common\Collections\Collection $creditodestinos)
+    {
+        $this->creditodestino = $creditodestinos;
+        
+        foreach ($creditodestinos as $creditodestino) {
+            $creditodestino->setIdcredito($this);
+        }
     }
 }

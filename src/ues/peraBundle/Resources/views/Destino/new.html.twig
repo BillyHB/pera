@@ -1,15 +1,72 @@
-{% extends '::base.html.twig' %}
+{% extends 'uesperaBundle::Layout.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}    
+    <script type="text/javascript" src="{{ asset('bundles/uespera/js/alertify.js-0.3.11/mensajes.js') }}" ></script>
+{% endblock %}
 
 {% block body -%}
-    <h1>Destino creation</h1>
+    <div id="form_wrapper">
+        
+        <section>
+            <div id="nombre_form">
+                <h1>Nuevo Destino</h1>
+                <div class="btns">                
+                    <button class="cancelar" onclick="location.href='{{ path('destino') }}';"> Cancelar </button>
+                    {#<button class="guardar" title="Guardar" onclick="document.getElementById('domicilio_form').submit();">Guardar</button>#}                 
+                    <button class="guardar" title="Guardar">Guardar</button>
+                </div>
+            </div>
+        </section>
+        
+        <form id="destino_form" action="{{ path('destino_create') }}" method="post" {{ form_enctype(form) }}> 
+            {{ form_errors(form) }}
+                
+            <section>
+                <div class="top">
+                    <h2>Información General</h2>
+                </div>
+                <div class="content_wrapper padding">
+                    <p class="col1"></p>
+                    <p class="col1">
+                        {{ form_label(form.nomdestino) }}
+                        {{ form_widget(form.nomdestino) }}
+                    </p>
+                    <p class="col1"></p>
+                </div>
+            </section>        
+                
+            {{ form_rest(form) }}    
+        </form>
+                    
+    </div> 
 
-    {{ form(form) }}
+{% endblock %}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('destino') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+{% block script -%}
+    <script>
+        
+        // Validación y submit del formulario
+        $('button.guardar').click(function(){
+            alertify.confirm("¿ Está seguro de realizar esta operación ?", function (e){
+                if(e){
+                    var i=0;
+                    
+                    $("form#destino_form input[type=text]").each(function(){
+                        var input = $(this); // This is the jquery object of the input, do what you will
+                        var attr = input.attr('required');
+                        
+                        if(attr === 'required' && !input.val())
+                            i++;
+                    });
+                    
+                    if(i > 0)
+                        mensaje_error("¡ ERROR ¡, Existen campos sin llenar.");
+                    else
+                        $('#destino_form').submit();
+                }                
+            });                
+        });
+        
+    </script>    
 {% endblock %}
